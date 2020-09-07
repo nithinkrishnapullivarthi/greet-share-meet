@@ -4,6 +4,7 @@ This web application helps students to greet,meet and share common interests
 # Requirements
 1. Install node
 2. Install angular-cli using command `npm install -g @angular/cli`
+3. Install `Visual Studio Code`. For developing angular code, it is suggested to be the best editor.
 
 # How to start the angular app
 
