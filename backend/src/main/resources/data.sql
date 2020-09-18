@@ -1,0 +1,1 @@
+insert into interests (id,interest) values(1,"basketball");
