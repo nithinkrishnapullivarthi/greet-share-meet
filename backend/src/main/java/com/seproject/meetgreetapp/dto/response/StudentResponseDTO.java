@@ -1,7 +1,5 @@
 package com.seproject.meetgreetapp.dto.response;
 
-import com.seproject.meetgreetapp.dto.request.InterestRequestDTO;
-
 import java.util.List;
 
 public class StudentResponseDTO {
@@ -14,13 +12,11 @@ public class StudentResponseDTO {
 
     private String email;
 
-    private String username;
-
-    private String password;
-
     private boolean isVolunteer;
 
     private String contact;
+
+    private List<String> interests;
 
     public void setId(Long id) {
         this.id = id;
@@ -62,27 +58,19 @@ public class StudentResponseDTO {
         this.contact = contact;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public boolean isVolunteer() {
         return isVolunteer;
     }
 
     public void setVolunteer(boolean volunteer) {
         isVolunteer = volunteer;
+    }
+
+    public List<String> getInterests() {
+        return interests;
+    }
+
+    public void setInterests(List<String> interests) {
+        this.interests = interests;
     }
 }

@@ -23,7 +23,7 @@ public class StudentRequestDTO {
 
     private String contact;
 
-    private List<InterestRequestDTO> interests;
+    private List<String> interests;
 
     public void setId(Long id) {
         this.id = id;
@@ -81,11 +81,11 @@ public class StudentRequestDTO {
         this.password = password;
     }
 
-    public List<InterestRequestDTO> getInterests() {
+    public List<String> getInterests() {
         return interests;
     }
 
-    public void setInterests(List<InterestRequestDTO> interestRequestDTOS) {
+    public void setInterests(List<String> interestRequestDTOS) {
         this.interests = interestRequestDTOS;
     }
 

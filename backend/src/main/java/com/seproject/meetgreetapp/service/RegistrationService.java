@@ -1,6 +1,6 @@
 package com.seproject.meetgreetapp.service;
 
-import com.seproject.meetgreetapp.dto.request.InterestRequestDTO;
+import com.seproject.meetgreetapp.dto.LoginDTO;
 import com.seproject.meetgreetapp.dto.request.StudentRequestDTO;
 import com.seproject.meetgreetapp.dto.response.StudentResponseDTO;
 import com.seproject.meetgreetapp.model.Student;
@@ -38,18 +38,27 @@ public class RegistrationService {
 
         Long sId = student.getId();
 
-        List<InterestRequestDTO> interestsDTO = studentRequestDTO.getInterests();
+        List<String> interests = studentRequestDTO.getInterests();
         List<StudentInterest> studentInterests = new ArrayList<StudentInterest>();
 
-        for(InterestRequestDTO interestRequestDTO : interestsDTO ){
+        for(String interest : interests ){
             StudentInterest studentInterest = new StudentInterest();
-            studentInterest.setStudent_id(sId);
-            studentInterest.setInterest_id(interestRepository.findByInterest(interestRequestDTO.getInterest()).getId());
+            studentInterest.setStudentId(sId);
+            studentInterest.setInterestId(interestRepository.findByInterest(interest).getId());
             studentInterests.add(studentInterest);
         }
 
         studentInterestRepository.saveAll(studentInterests);
+        studentRequestDTO.setId(sId);
+        StudentResponseDTO studentResponseDTO =  mapper.map(studentRequestDTO, StudentResponseDTO.class);
+        return studentResponseDTO;
+    }
 
-        return mapper.map(student, StudentResponseDTO.class);
+    public LoginDTO getLoginDetails(LoginDTO loginDTO){
+        Student student = studentRepository.findByUsernameAndPassword(loginDTO.getUsername(), loginDTO.getPassword());
+        if(student!=null)
+            return mapper.map(student,LoginDTO.class);
+        else
+            return null;
     }
 }
