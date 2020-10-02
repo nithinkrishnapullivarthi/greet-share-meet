@@ -1,0 +1,42 @@
+<div class="mainbody">
+  <div class="login-form">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-card>
+        <mat-card-header>
+          <div mat-card-avatar class="mat-card-header"></div>
+        </mat-card-header>
+        <mat-list role="list">
+          <mat-list-item role="listitem">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Username</mat-label>
+              <input matInput placeholder="Enter your Username" #userName formControlName="userName" type="text">
+            </mat-form-field>
+          </mat-list-item>
+          <br>
+          <mat-list-item role="listitem">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Password</mat-label>
+              <input matInput placeholder="Enter your password" formControlName="password" type="password">
+            </mat-form-field>
+          </mat-list-item>
+        </mat-list>
+        <mat-list-item role="listitem">
+          <div class="error-field">
+            <div *ngIf="!invalidLogin.status">{{invalidLogin.description}}</div>
+          </div>
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <div class="example-button-row">
+            <button mat-raised-button color="primary" [disabled]="loginForm.invalid" (click)="onSubmit()">Login</button>
+          </div>
+        </mat-list-item>
+        <mat-list-item role="listitem">&nbsp;</mat-list-item>
+        <mat-list-item role="listitem">
+          <div class="example-button-row">
+            <a mat-raised-button routerLink="/authentication/register">Register</a>
+          </div>
+        </mat-list-item>
+      </mat-card>
+    </form>
+  </div>
+</div>
