@@ -1,0 +1,313 @@
+openapi: 3.0.2
+info:
+  title: Scenario Manager API
+  version: '1.0'
+servers:
+  - url: 'https://api.server.test/v1'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+    Interests:
+      type: object
+      properties:
+        interest:
+          type: array
+          items:
+            type: string
+    StudentResponseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        department:
+          type: string
+        email:
+          type: string
+        is_volunteer:
+          type: boolean
+        contact:
+          type: string
+        interests:
+          type: array
+          items:
+            type: string
+    AnnouncementResponseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+        interest:
+          type: string
+        announcement:
+          type: string
+    PairUpResponseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+        studentId:
+          type: integer
+        interest:
+          type: string
+        startDate:
+          type: string
+        endDate:
+          type: string
+    StudentRequestDTO:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+        name:
+          type: string
+        department:
+          type: string
+        email:
+          type: string
+        is_volunteer:
+          type: boolean
+        contact:
+          type: string
+        interests:
+          type: array
+          items:
+            type: string
+    AnnouncementRequestDTO:
+      type: object
+      properties:
+        studentId:
+          type: integer
+        interest:
+          type: string
+        announcement:
+          type: string
+    PairUpRequestDTO:
+      type: object
+      properties:
+        studentId:
+          type: integer
+        interest:
+          type: string
+        startDate:
+          type: string
+        endDate:
+          type: string
+    ListStudentResponseDTO:
+      type: array
+      items:
+        $ref: '#/components/schemas/StudentResponseDTO'
+    ListAnnouncementResponseDTO:
+      type: array
+      items:
+        $ref: '#/components/schemas/AnnouncementResponseDTO'
+    ListPairUpResponseDTO:
+      type: array
+      items:
+        $ref: '#/components/schemas/PairUpResponseDTO'
+    user:
+      type: object
+      properties:
+        userName:
+          type: string
+        usertEmail:
+          type: string
+        interest:
+          $ref: '#/components/schemas/Interests'
+  responses:
+    SuccessfullAllStudentsRetrieval:
+      description: " "
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ListStudentResponseDTO'
+    SuccessfullStudentRetrieval:
+      description: " "
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StudentResponseDTO'
+    SuccessfulAnnouncement:
+      description: " "
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AnnouncementResponseDTO'
+    SuccessfulPairup:
+      description: " "
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PairUpResponseDTO'
+    SuccessfulAllRegisteredTimeslots:
+      description: " "
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ListPairUpResponseDTO'
+    Error:
+      description: Unknown error occured
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+paths:
+  "/meet-greet/students":
+    get:
+      description: To fetch all students with matching interest
+      operationId: getAllStudents
+      summary: Retrieves all students with matching interest of particular student
+      parameters:
+        - in: query
+          name: studentId
+          schema:
+            type: integer
+      responses:
+        '200':
+          $ref: '#/components/responses/SuccessfullAllStudentsRetrieval'
+        '404' :
+          $ref: '#/components/responses/Error'
+        default:
+          description: "Unknown Error"
+  "/meet-greet/students/{studentId}":
+    get:
+      description: To particular student details
+      operationId: getStudent
+      summary: Retrieves particular student information
+      parameters:
+        - in: path
+          name: studentId
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/SuccessfullStudentRetrieval'
+        '404' :
+          $ref: '#/components/responses/Error'
+        default:
+          description: "Unknown Error"
+  "/meet-greet/students/registration":
+    post:
+      description: To register student Information
+      operationId: registerUser
+      summary: To register student Information
+      requestBody:
+        description: Register student information
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudentRequestDTO'
+      responses:
+        '200':
+          $ref: '#/components/responses/SuccessfullStudentRetrieval'
+        '404' :
+          $ref: '#/components/responses/Error'
+        default:
+          description: "Unknown Error"
+  "/meet-greet/students/login":
+    get:
+      description: To particular student details
+      operationId: userLogin
+      summary: Retrieves particular student information
+      parameters:
+        - in: query
+          name: username
+          schema:
+            type: string
+        - in: query
+          name: password
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A JSON object containing user name
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+        '404' :
+          $ref: '#/components/responses/Error'
+        default:
+          description: "Unknown Error"
+  "/meet-greet/students/announcement":
+    post:
+      description: To make announcements
+      operationId: makeAnnouncement
+      summary: To make announcements
+      requestBody:
+        description: To make announcements
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnnouncementRequestDTO'
+      responses:
+        '200':
+          $ref: '#/components/responses/SuccessfulAnnouncement'
+        '404' :
+          $ref: '#/components/responses/Error'
+        default:
+          description: "Unknown Error"
+    get:
+      description: To get List of announcements
+      operationId: getAllAnnouncements
+      summary: To retrieve all annoucements
+      parameters:
+        - in: query
+          name: studentId
+          schema:
+            type: integer
+      responses:
+        '200':
+          $ref: '#/components/responses/SuccessfulAnnouncement'
+        '404' :
+          $ref: '#/components/responses/Error'
+        default:
+          description: "Unknown Error"
+  "/meet-greet/students/pairup":
+    post:
+      description: To pair students
+      operationId: createMatchmaking
+      summary: To pair students
+      requestBody:
+        description: match making
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PairUpRequestDTO'
+      responses:
+        '200':
+          $ref: '#/components/responses/SuccessfulPairup'
+        '404' :
+          $ref: '#/components/responses/Error'
+        default:
+          description: "Unknown Error"
+    get:
+      description: To get all registered time slots
+      operationId: getRegisteredTimeslots
+      summary: To get all registered time slots
+      parameters:
+        - in: query
+          name: studentId
+          schema:
+            type: integer
+      responses:
+        '200':
+          $ref: '#/components/responses/SuccessfulAllRegisteredTimeslots'
+        '404' :
+          $ref: '#/components/responses/Error'
+        default:
+          description: "Unknown Error"
