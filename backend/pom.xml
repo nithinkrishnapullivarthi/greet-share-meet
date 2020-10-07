@@ -95,11 +95,6 @@
 	</dependencies>
 
 	<build>
-		<resources>
-			<resource>
-				<directory>/generated/open-api/src/main/java</directory>
-			</resource>
-		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

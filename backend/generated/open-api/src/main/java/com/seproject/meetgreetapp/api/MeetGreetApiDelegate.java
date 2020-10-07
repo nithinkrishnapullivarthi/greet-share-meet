@@ -23,7 +23,7 @@ import java.util.Optional;
  * A delegate to be called by the {@link MeetGreetApiController}}.
  * Implement this interface with a {@link org.springframework.stereotype.Service} annotated class.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-01T20:18:34.565-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-06T23:01:53.911568-04:00[America/New_York]")
 
 public interface MeetGreetApiDelegate {
 
@@ -51,7 +51,7 @@ public interface MeetGreetApiDelegate {
     /**
      * @see MeetGreetApi#getAllAnnouncements
      */
-    default ResponseEntity<AnnouncementResponseDTO> getAllAnnouncements(Integer studentId) {
+    default ResponseEntity<List<AnnouncementResponseDTO>> getAllAnnouncements(Integer studentId) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
@@ -72,7 +72,7 @@ public interface MeetGreetApiDelegate {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"is_volunteer\" : true, \"contact\" : \"contact\", \"name\" : \"name\", \"id\" : 0, \"department\" : \"department\", \"interests\" : [ \"interests\", \"interests\" ], \"email\" : \"email\" }";
+                    String exampleString = "{ \"is_volunteer\" : true, \"volunteer_interest\" : [ { \"interest\" : \"interest\", \"id\" : 1, \"category\" : \"category\" }, { \"interest\" : \"interest\", \"id\" : 1, \"category\" : \"category\" } ], \"contact\" : \"contact\", \"name\" : \"name\", \"id\" : 0, \"department\" : \"department\", \"interests\" : [ { \"interest\" : \"interest\", \"id\" : 6, \"category\" : \"category\" }, { \"interest\" : \"interest\", \"id\" : 6, \"category\" : \"category\" } ], \"email\" : \"email\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -106,7 +106,7 @@ public interface MeetGreetApiDelegate {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"is_volunteer\" : true, \"contact\" : \"contact\", \"name\" : \"name\", \"id\" : 0, \"department\" : \"department\", \"interests\" : [ \"interests\", \"interests\" ], \"email\" : \"email\" }";
+                    String exampleString = "{ \"is_volunteer\" : true, \"volunteer_interest\" : [ { \"interest\" : \"interest\", \"id\" : 1, \"category\" : \"category\" }, { \"interest\" : \"interest\", \"id\" : 1, \"category\" : \"category\" } ], \"contact\" : \"contact\", \"name\" : \"name\", \"id\" : 0, \"department\" : \"department\", \"interests\" : [ { \"interest\" : \"interest\", \"id\" : 6, \"category\" : \"category\" }, { \"interest\" : \"interest\", \"id\" : 6, \"category\" : \"category\" } ], \"email\" : \"email\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -140,7 +140,7 @@ public interface MeetGreetApiDelegate {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"is_volunteer\" : true, \"contact\" : \"contact\", \"name\" : \"name\", \"id\" : 0, \"department\" : \"department\", \"interests\" : [ \"interests\", \"interests\" ], \"email\" : \"email\" }";
+                    String exampleString = "{ \"is_volunteer\" : true, \"volunteer_interest\" : [ { \"interest\" : \"interest\", \"id\" : 1, \"category\" : \"category\" }, { \"interest\" : \"interest\", \"id\" : 1, \"category\" : \"category\" } ], \"contact\" : \"contact\", \"name\" : \"name\", \"id\" : 0, \"department\" : \"department\", \"interests\" : [ { \"interest\" : \"interest\", \"id\" : 6, \"category\" : \"category\" }, { \"interest\" : \"interest\", \"id\" : 6, \"category\" : \"category\" } ], \"email\" : \"email\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

@@ -29,7 +29,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-01T20:18:34.565-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-06T23:01:53.911568-04:00[America/New_York]")
 
 @Validated
 @Api(value = "meet-greet", description = "the meet-greet API")
@@ -53,15 +53,15 @@ public interface MeetGreetApi {
     }
 
 
-    @ApiOperation(value = "To retrieve all annoucements", nickname = "getAllAnnouncements", notes = "To get List of announcements", response = AnnouncementResponseDTO.class, tags={  })
+    @ApiOperation(value = "To retrieve all annoucements", nickname = "getAllAnnouncements", notes = "To get List of announcements", response = AnnouncementResponseDTO.class, responseContainer = "List", tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "", response = AnnouncementResponseDTO.class),
+        @ApiResponse(code = 200, message = "", response = AnnouncementResponseDTO.class, responseContainer = "List"),
         @ApiResponse(code = 404, message = "Unknown error occured", response = Error.class),
         @ApiResponse(code = 200, message = "Unknown Error") })
     @RequestMapping(value = "/meet-greet/students/announcement",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<AnnouncementResponseDTO> getAllAnnouncements(@ApiParam(value = "") @Valid @RequestParam(value = "studentId", required = false) Integer studentId) {
+    default ResponseEntity<List<AnnouncementResponseDTO>> getAllAnnouncements(@ApiParam(value = "") @Valid @RequestParam(value = "studentId", required = false) Integer studentId) {
         return getDelegate().getAllAnnouncements(studentId);
     }
 

@@ -10,21 +10,21 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * AnnouncementResponseDTO
+ * VolunteerInterest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-06T23:01:53.911568-04:00[America/New_York]")
 
-public class AnnouncementResponseDTO   {
+public class VolunteerInterest   {
   @JsonProperty("id")
   private Integer id;
 
   @JsonProperty("interest")
   private String interest;
 
-  @JsonProperty("announcement")
-  private String announcement;
+  @JsonProperty("category")
+  private String category;
 
-  public AnnouncementResponseDTO id(Integer id) {
+  public VolunteerInterest id(Integer id) {
     this.id = id;
     return this;
   }
@@ -44,7 +44,7 @@ public class AnnouncementResponseDTO   {
     this.id = id;
   }
 
-  public AnnouncementResponseDTO interest(String interest) {
+  public VolunteerInterest interest(String interest) {
     this.interest = interest;
     return this;
   }
@@ -64,24 +64,24 @@ public class AnnouncementResponseDTO   {
     this.interest = interest;
   }
 
-  public AnnouncementResponseDTO announcement(String announcement) {
-    this.announcement = announcement;
+  public VolunteerInterest category(String category) {
+    this.category = category;
     return this;
   }
 
   /**
-   * Get announcement
-   * @return announcement
+   * Get category
+   * @return category
   */
   @ApiModelProperty(value = "")
 
 
-  public String getAnnouncement() {
-    return announcement;
+  public String getCategory() {
+    return category;
   }
 
-  public void setAnnouncement(String announcement) {
-    this.announcement = announcement;
+  public void setCategory(String category) {
+    this.category = category;
   }
 
 
@@ -93,25 +93,25 @@ public class AnnouncementResponseDTO   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AnnouncementResponseDTO announcementResponseDTO = (AnnouncementResponseDTO) o;
-    return Objects.equals(this.id, announcementResponseDTO.id) &&
-        Objects.equals(this.interest, announcementResponseDTO.interest) &&
-        Objects.equals(this.announcement, announcementResponseDTO.announcement);
+    VolunteerInterest volunteerInterest = (VolunteerInterest) o;
+    return Objects.equals(this.id, volunteerInterest.id) &&
+        Objects.equals(this.interest, volunteerInterest.interest) &&
+        Objects.equals(this.category, volunteerInterest.category);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, interest, announcement);
+    return Objects.hash(id, interest, category);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AnnouncementResponseDTO {\n");
+    sb.append("class VolunteerInterest {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    interest: ").append(toIndentedString(interest)).append("\n");
-    sb.append("    announcement: ").append(toIndentedString(announcement)).append("\n");
+    sb.append("    category: ").append(toIndentedString(category)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -5,8 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.ArrayList;
-import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -14,23 +12,40 @@ import javax.validation.constraints.*;
 /**
  * Interests
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-01T20:18:34.565-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-06T23:01:53.911568-04:00[America/New_York]")
 
 public class Interests   {
-  @JsonProperty("interest")
-  @Valid
-  private List<String> interest = null;
+  @JsonProperty("id")
+  private Integer id;
 
-  public Interests interest(List<String> interest) {
-    this.interest = interest;
+  @JsonProperty("interest")
+  private String interest;
+
+  @JsonProperty("category")
+  private String category;
+
+  public Interests id(Integer id) {
+    this.id = id;
     return this;
   }
 
-  public Interests addInterestItem(String interestItem) {
-    if (this.interest == null) {
-      this.interest = new ArrayList<>();
-    }
-    this.interest.add(interestItem);
+  /**
+   * Get id
+   * @return id
+  */
+  @ApiModelProperty(value = "")
+
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public Interests interest(String interest) {
+    this.interest = interest;
     return this;
   }
 
@@ -41,12 +56,32 @@ public class Interests   {
   @ApiModelProperty(value = "")
 
 
-  public List<String> getInterest() {
+  public String getInterest() {
     return interest;
   }
 
-  public void setInterest(List<String> interest) {
+  public void setInterest(String interest) {
     this.interest = interest;
+  }
+
+  public Interests category(String category) {
+    this.category = category;
+    return this;
+  }
+
+  /**
+   * Get category
+   * @return category
+  */
+  @ApiModelProperty(value = "")
+
+
+  public String getCategory() {
+    return category;
+  }
+
+  public void setCategory(String category) {
+    this.category = category;
   }
 
 
@@ -59,12 +94,14 @@ public class Interests   {
       return false;
     }
     Interests interests = (Interests) o;
-    return Objects.equals(this.interest, interests.interest);
+    return Objects.equals(this.id, interests.id) &&
+        Objects.equals(this.interest, interests.interest) &&
+        Objects.equals(this.category, interests.category);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(interest);
+    return Objects.hash(id, interest, category);
   }
 
   @Override
@@ -72,7 +109,9 @@ public class Interests   {
     StringBuilder sb = new StringBuilder();
     sb.append("class Interests {\n");
     
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    interest: ").append(toIndentedString(interest)).append("\n");
+    sb.append("    category: ").append(toIndentedString(category)).append("\n");
     sb.append("}");
     return sb.toString();
   }

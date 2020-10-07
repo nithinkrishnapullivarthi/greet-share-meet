@@ -22,7 +22,7 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate{
     }
 
     @Override
-    public ResponseEntity<AnnouncementResponseDTO> getAllAnnouncements(Integer studentId) {
+    public ResponseEntity<List<AnnouncementResponseDTO>> getAllAnnouncements(Integer studentId) {
         return null;
     }
 

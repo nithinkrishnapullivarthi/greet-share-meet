@@ -14,10 +14,21 @@ components:
     Interests:
       type: object
       properties:
+        id:
+          type: integer
         interest:
-          type: array
-          items:
-            type: string
+          type: string
+        category:
+          type: string
+    VolunteerInterest:
+      type: object
+      properties:
+        id:
+          type: integer
+        interest:
+          type: string
+        category:
+          type: string
     StudentResponseDTO:
       type: object
       properties:
@@ -36,7 +47,11 @@ components:
         interests:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/Interests'
+        volunteer_interest:
+          type: array
+          items:
+            $ref: '#/components/schemas/VolunteerInterest'
     AnnouncementResponseDTO:
       type: object
       properties:
@@ -79,7 +94,11 @@ components:
         interests:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/Interests'
+        volunteer_interest:
+          type: array
+          items:
+            $ref: '#/components/schemas/VolunteerInterest'
     AnnouncementRequestDTO:
       type: object
       properties:
@@ -140,6 +159,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/AnnouncementResponseDTO'
+    SuccessfulAllAnnouncements:
+      description: " "
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ListAnnouncementResponseDTO'
     SuccessfulPairup:
       description: " "
       content:
@@ -271,7 +296,7 @@ paths:
             type: integer
       responses:
         '200':
-          $ref: '#/components/responses/SuccessfulAnnouncement'
+          $ref: '#/components/responses/SuccessfulAllAnnouncements'
         '404' :
           $ref: '#/components/responses/Error'
         default:
@@ -291,7 +316,7 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/SuccessfulPairup'
-        '404' :
+        '404':
           $ref: '#/components/responses/Error'
         default:
           description: "Unknown Error"

@@ -3,6 +3,8 @@ package com.seproject.meetgreetapp;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.seproject.meetgreetapp.Interests;
+import com.seproject.meetgreetapp.VolunteerInterest;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
@@ -14,7 +16,7 @@ import javax.validation.constraints.*;
 /**
  * StudentRequestDTO
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-01T20:18:34.565-05:00[America/Chicago]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-06T23:01:53.911568-04:00[America/New_York]")
 
 public class StudentRequestDTO   {
   @JsonProperty("username")
@@ -40,7 +42,11 @@ public class StudentRequestDTO   {
 
   @JsonProperty("interests")
   @Valid
-  private List<String> interests = null;
+  private List<Interests> interests = null;
+
+  @JsonProperty("volunteer_interest")
+  @Valid
+  private List<VolunteerInterest> volunteerInterest = null;
 
   public StudentRequestDTO username(String username) {
     this.username = username;
@@ -182,12 +188,12 @@ public class StudentRequestDTO   {
     this.contact = contact;
   }
 
-  public StudentRequestDTO interests(List<String> interests) {
+  public StudentRequestDTO interests(List<Interests> interests) {
     this.interests = interests;
     return this;
   }
 
-  public StudentRequestDTO addInterestsItem(String interestsItem) {
+  public StudentRequestDTO addInterestsItem(Interests interestsItem) {
     if (this.interests == null) {
       this.interests = new ArrayList<>();
     }
@@ -201,13 +207,43 @@ public class StudentRequestDTO   {
   */
   @ApiModelProperty(value = "")
 
+  @Valid
 
-  public List<String> getInterests() {
+  public List<Interests> getInterests() {
     return interests;
   }
 
-  public void setInterests(List<String> interests) {
+  public void setInterests(List<Interests> interests) {
     this.interests = interests;
+  }
+
+  public StudentRequestDTO volunteerInterest(List<VolunteerInterest> volunteerInterest) {
+    this.volunteerInterest = volunteerInterest;
+    return this;
+  }
+
+  public StudentRequestDTO addVolunteerInterestItem(VolunteerInterest volunteerInterestItem) {
+    if (this.volunteerInterest == null) {
+      this.volunteerInterest = new ArrayList<>();
+    }
+    this.volunteerInterest.add(volunteerInterestItem);
+    return this;
+  }
+
+  /**
+   * Get volunteerInterest
+   * @return volunteerInterest
+  */
+  @ApiModelProperty(value = "")
+
+  @Valid
+
+  public List<VolunteerInterest> getVolunteerInterest() {
+    return volunteerInterest;
+  }
+
+  public void setVolunteerInterest(List<VolunteerInterest> volunteerInterest) {
+    this.volunteerInterest = volunteerInterest;
   }
 
 
@@ -227,12 +263,13 @@ public class StudentRequestDTO   {
         Objects.equals(this.email, studentRequestDTO.email) &&
         Objects.equals(this.isVolunteer, studentRequestDTO.isVolunteer) &&
         Objects.equals(this.contact, studentRequestDTO.contact) &&
-        Objects.equals(this.interests, studentRequestDTO.interests);
+        Objects.equals(this.interests, studentRequestDTO.interests) &&
+        Objects.equals(this.volunteerInterest, studentRequestDTO.volunteerInterest);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(username, password, name, department, email, isVolunteer, contact, interests);
+    return Objects.hash(username, password, name, department, email, isVolunteer, contact, interests, volunteerInterest);
   }
 
   @Override
@@ -248,6 +285,7 @@ public class StudentRequestDTO   {
     sb.append("    isVolunteer: ").append(toIndentedString(isVolunteer)).append("\n");
     sb.append("    contact: ").append(toIndentedString(contact)).append("\n");
     sb.append("    interests: ").append(toIndentedString(interests)).append("\n");
+    sb.append("    volunteerInterest: ").append(toIndentedString(volunteerInterest)).append("\n");
     sb.append("}");
     return sb.toString();
   }
