@@ -9,6 +9,7 @@ import com.seproject.meetgreetapp.AnnouncementRequestDTO;
 import com.seproject.meetgreetapp.AnnouncementResponseDTO;
 import com.seproject.meetgreetapp.Error;
 import com.seproject.meetgreetapp.InlineResponse200;
+import com.seproject.meetgreetapp.LoginRequestDTO;
 import com.seproject.meetgreetapp.PairUpRequestDTO;
 import com.seproject.meetgreetapp.PairUpResponseDTO;
 import com.seproject.meetgreetapp.StudentRequestDTO;
@@ -29,7 +30,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-06T23:01:53.911568-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-07T13:59:37.202113-04:00[America/New_York]")
 
 @Validated
 @Api(value = "meet-greet", description = "the meet-greet API")
@@ -133,16 +134,17 @@ public interface MeetGreetApi {
     }
 
 
-    @ApiOperation(value = "Retrieves particular student information", nickname = "userLogin", notes = "To particular student details", response = InlineResponse200.class, tags={  })
+    @ApiOperation(value = "To authenticate the user", nickname = "userLogin", notes = "To particular student details", response = InlineResponse200.class, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "A JSON object containing user name", response = InlineResponse200.class),
         @ApiResponse(code = 404, message = "Unknown error occured", response = Error.class),
         @ApiResponse(code = 200, message = "Unknown Error") })
     @RequestMapping(value = "/meet-greet/students/login",
         produces = { "application/json" }, 
-        method = RequestMethod.GET)
-    default ResponseEntity<InlineResponse200> userLogin(@ApiParam(value = "") @Valid @RequestParam(value = "username", required = false) String username,@ApiParam(value = "") @Valid @RequestParam(value = "password", required = false) String password) {
-        return getDelegate().userLogin(username, password);
+        consumes = { "application/json" },
+        method = RequestMethod.POST)
+    default ResponseEntity<InlineResponse200> userLogin(@ApiParam(value = "To make announcements" ,required=true )  @Valid @RequestBody LoginRequestDTO loginRequestDTO) {
+        return getDelegate().userLogin(loginRequestDTO);
     }
 
 }

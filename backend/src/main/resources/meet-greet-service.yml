@@ -119,6 +119,13 @@ components:
           type: string
         endDate:
           type: string
+    LoginRequestDTO:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
     ListStudentResponseDTO:
       type: array
       items:
@@ -239,19 +246,17 @@ paths:
         default:
           description: "Unknown Error"
   "/meet-greet/students/login":
-    get:
+    post:
       description: To particular student details
       operationId: userLogin
-      summary: Retrieves particular student information
-      parameters:
-        - in: query
-          name: username
-          schema:
-            type: string
-        - in: query
-          name: password
-          schema:
-            type: string
+      summary: To authenticate the user
+      requestBody:
+        description: To make announcements
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequestDTO'
       responses:
         '200':
           description: A JSON object containing user name

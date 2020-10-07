@@ -10,32 +10,55 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * Error
+ * LoginRequestDTO
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-07T13:59:37.202113-04:00[America/New_York]")
 
-public class Error   {
-  @JsonProperty("message")
-  private String message;
+public class LoginRequestDTO   {
+  @JsonProperty("username")
+  private String username;
 
-  public Error message(String message) {
-    this.message = message;
+  @JsonProperty("password")
+  private String password;
+
+  public LoginRequestDTO username(String username) {
+    this.username = username;
     return this;
   }
 
   /**
-   * Get message
-   * @return message
+   * Get username
+   * @return username
   */
   @ApiModelProperty(value = "")
 
 
-  public String getMessage() {
-    return message;
+  public String getUsername() {
+    return username;
   }
 
-  public void setMessage(String message) {
-    this.message = message;
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public LoginRequestDTO password(String password) {
+    this.password = password;
+    return this;
+  }
+
+  /**
+   * Get password
+   * @return password
+  */
+  @ApiModelProperty(value = "")
+
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
   }
 
 
@@ -47,21 +70,23 @@ public class Error   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Error error = (Error) o;
-    return Objects.equals(this.message, error.message);
+    LoginRequestDTO loginRequestDTO = (LoginRequestDTO) o;
+    return Objects.equals(this.username, loginRequestDTO.username) &&
+        Objects.equals(this.password, loginRequestDTO.password);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(message);
+    return Objects.hash(username, password);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Error {\n");
+    sb.append("class LoginRequestDTO {\n");
     
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    username: ").append(toIndentedString(username)).append("\n");
+    sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("}");
     return sb.toString();
   }
