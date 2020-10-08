@@ -10,41 +10,41 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * AnnouncementRequestDTO
+ * Interest
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-08T00:12:36.432262-04:00[America/New_York]")
 
-public class AnnouncementRequestDTO   {
-  @JsonProperty("studentId")
-  private Integer studentId;
+public class Interest   {
+  @JsonProperty("id")
+  private Integer id;
 
   @JsonProperty("interest")
   private String interest;
 
-  @JsonProperty("announcement")
-  private String announcement;
+  @JsonProperty("category")
+  private String category;
 
-  public AnnouncementRequestDTO studentId(Integer studentId) {
-    this.studentId = studentId;
+  public Interest id(Integer id) {
+    this.id = id;
     return this;
   }
 
   /**
-   * Get studentId
-   * @return studentId
+   * Get id
+   * @return id
   */
   @ApiModelProperty(value = "")
 
 
-  public Integer getStudentId() {
-    return studentId;
+  public Integer getId() {
+    return id;
   }
 
-  public void setStudentId(Integer studentId) {
-    this.studentId = studentId;
+  public void setId(Integer id) {
+    this.id = id;
   }
 
-  public AnnouncementRequestDTO interest(String interest) {
+  public Interest interest(String interest) {
     this.interest = interest;
     return this;
   }
@@ -64,24 +64,24 @@ public class AnnouncementRequestDTO   {
     this.interest = interest;
   }
 
-  public AnnouncementRequestDTO announcement(String announcement) {
-    this.announcement = announcement;
+  public Interest category(String category) {
+    this.category = category;
     return this;
   }
 
   /**
-   * Get announcement
-   * @return announcement
+   * Get category
+   * @return category
   */
   @ApiModelProperty(value = "")
 
 
-  public String getAnnouncement() {
-    return announcement;
+  public String getCategory() {
+    return category;
   }
 
-  public void setAnnouncement(String announcement) {
-    this.announcement = announcement;
+  public void setCategory(String category) {
+    this.category = category;
   }
 
 
@@ -93,25 +93,25 @@ public class AnnouncementRequestDTO   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AnnouncementRequestDTO announcementRequestDTO = (AnnouncementRequestDTO) o;
-    return Objects.equals(this.studentId, announcementRequestDTO.studentId) &&
-        Objects.equals(this.interest, announcementRequestDTO.interest) &&
-        Objects.equals(this.announcement, announcementRequestDTO.announcement);
+    Interest interest = (Interest) o;
+    return Objects.equals(this.id, interest.id) &&
+        Objects.equals(this.interest, interest.interest) &&
+        Objects.equals(this.category, interest.category);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(studentId, interest, announcement);
+    return Objects.hash(id, interest, category);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AnnouncementRequestDTO {\n");
+    sb.append("class Interest {\n");
     
-    sb.append("    studentId: ").append(toIndentedString(studentId)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    interest: ").append(toIndentedString(interest)).append("\n");
-    sb.append("    announcement: ").append(toIndentedString(announcement)).append("\n");
+    sb.append("    category: ").append(toIndentedString(category)).append("\n");
     sb.append("}");
     return sb.toString();
   }

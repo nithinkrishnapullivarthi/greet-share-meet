@@ -11,7 +11,7 @@ components:
       properties:
         message:
           type: string
-    Interests:
+    Interest:
       type: object
       properties:
         id:
@@ -47,7 +47,7 @@ components:
         interests:
           type: array
           items:
-            $ref: '#/components/schemas/Interests'
+            $ref: '#/components/schemas/Interest'
         volunteer_interest:
           type: array
           items:
@@ -94,7 +94,7 @@ components:
         interests:
           type: array
           items:
-            $ref: '#/components/schemas/Interests'
+            $ref: '#/components/schemas/Interest'
         volunteer_interest:
           type: array
           items:
@@ -146,7 +146,7 @@ components:
         usertEmail:
           type: string
         interest:
-          $ref: '#/components/schemas/Interests'
+          $ref: '#/components/schemas/Interest'
   responses:
     SuccessfullAllStudentsRetrieval:
       description: " "

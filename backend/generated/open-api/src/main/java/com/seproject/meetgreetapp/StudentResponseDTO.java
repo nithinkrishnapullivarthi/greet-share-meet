@@ -3,7 +3,7 @@ package com.seproject.meetgreetapp;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.seproject.meetgreetapp.Interests;
+import com.seproject.meetgreetapp.Interest;
 import com.seproject.meetgreetapp.VolunteerInterest;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -16,7 +16,7 @@ import javax.validation.constraints.*;
 /**
  * StudentResponseDTO
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-07T13:59:37.202113-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-08T00:12:36.432262-04:00[America/New_York]")
 
 public class StudentResponseDTO   {
   @JsonProperty("id")
@@ -39,7 +39,7 @@ public class StudentResponseDTO   {
 
   @JsonProperty("interests")
   @Valid
-  private List<Interests> interests = null;
+  private List<Interest> interests = null;
 
   @JsonProperty("volunteer_interest")
   @Valid
@@ -165,12 +165,12 @@ public class StudentResponseDTO   {
     this.contact = contact;
   }
 
-  public StudentResponseDTO interests(List<Interests> interests) {
+  public StudentResponseDTO interests(List<Interest> interests) {
     this.interests = interests;
     return this;
   }
 
-  public StudentResponseDTO addInterestsItem(Interests interestsItem) {
+  public StudentResponseDTO addInterestsItem(Interest interestsItem) {
     if (this.interests == null) {
       this.interests = new ArrayList<>();
     }
@@ -186,11 +186,11 @@ public class StudentResponseDTO   {
 
   @Valid
 
-  public List<Interests> getInterests() {
+  public List<Interest> getInterests() {
     return interests;
   }
 
-  public void setInterests(List<Interests> interests) {
+  public void setInterests(List<Interest> interests) {
     this.interests = interests;
   }
 

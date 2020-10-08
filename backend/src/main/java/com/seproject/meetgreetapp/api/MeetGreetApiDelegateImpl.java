@@ -4,6 +4,7 @@ import com.seproject.meetgreetapp.*;
 import com.seproject.meetgreetapp.Error;
 import com.seproject.meetgreetapp.model.Student;
 import com.seproject.meetgreetapp.repository.StudentRepository;
+import com.seproject.meetgreetapp.service.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,9 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate{
 
     @Autowired
     StudentRepository studentRepository;
+
+    @Autowired
+    RegistrationService registrationService;
 
     @Override
     public Optional<NativeWebRequest> getRequest() {
@@ -56,7 +60,8 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate{
 
     @Override
     public ResponseEntity<StudentResponseDTO> registerUser(StudentRequestDTO studentRequestDTO) {
-        return null;
+        StudentResponseDTO studentResponseDTO = registrationService.saveStudentDetails(studentRequestDTO);
+        return new ResponseEntity(studentResponseDTO, HttpStatus.CREATED);
     }
 
     @Override
@@ -73,7 +78,6 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate{
             error.setMessage("INVALID_CREDENTIALS");
             return new ResponseEntity(error,HttpStatus.BAD_REQUEST);
         }
-
         return new ResponseEntity(student.getId(), HttpStatus.OK);
     }
 }

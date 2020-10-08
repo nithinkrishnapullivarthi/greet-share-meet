@@ -2,9 +2,7 @@ package com.seproject.meetgreetapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class MeetGreetAppApplication {
@@ -13,4 +11,8 @@ public class MeetGreetAppApplication {
 		SpringApplication.run(MeetGreetAppApplication.class, args);
 	}
 
+	@Bean
+	public org.modelmapper.ModelMapper modelMapper() {
+		return new org.modelmapper.ModelMapper();
+	}
 }
