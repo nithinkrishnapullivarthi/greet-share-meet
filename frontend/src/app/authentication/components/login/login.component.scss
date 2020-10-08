@@ -1,53 +1,56 @@
 .mainbody{
-background-color: beige;
-}
-.login-form{
-  background-image: url('../../../../assets/images/blurbackground.jpg');
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 100%;
-  height: 100vh;
-  background-color: blueviolet;
-}
-mat-card{
-  min-width: 470px;
-  height: auto;
-  padding: 4rem;
-  vertical-align: middle;
-  border-radius: 0rem;
-  .mat-card-header {
-    background-color: black;
-    background-image: url('../../../../assets/images/meetandgreetlogo.jpg');
-    height: 95px;
-    margin-bottom: 2rem;
-
-   }
-   
-   .error-field{
-     color: red;
-     font-size: 14px;
-     font-weight: bold;
-     height: 14px;
-     padding: 1rem;
-     margin-left: 11rem;
-   }
-}
-button,a{
-  min-width: 150px;
-  border-radius: 0.2em;
-  width: 100%;
-  padding:1% !important;
-  background-color: #3f51b5;
-  font-size: 1.2em;
-  color: #fff !important;
-}
-.example-form {
-  min-width: 150px;
-  max-width: 470px;
-  width: 100%;
+  background-color: beige;
+  }
+  .login-form{
+    background-image: url('../../../../assets/images/blurbackground.jpg');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    height: 100vh;
+    background-color: blueviolet;
+  }
+  mat-card{
+    min-width: 470px;
+    height: auto;
+    padding: 4rem;
+    vertical-align: middle;
+    border-radius: 0rem;
+    .mat-card-header {
+      background-color: black;
+      background-image: url('../../../../assets/images/meetandgreetlogo.jpg');
+      height: 95px;
+      margin-bottom: 2rem;
   
-}
-.example-full-width {
-  width: 100%;
-}
+     }
+     
+     .error-field{
+       color: red;
+       font-size: 14px;
+       font-weight: bold;
+       height: 14px;
+       padding: 1rem;
+       margin-left: 11rem;
+     }
+  }
+  button,a{
+    min-width: 150px;
+    border-radius: 0.2em;
+    width: 97%;
+    padding:1% !important;
+    background-color: #3f51b5;
+    font-size: 1.2em;
+    color: #fff !important;
+  }
+  .example-form {
+    min-width: 150px;
+    max-width: 470px;
+    width: 100%;
+    
+  }
+  .example-full-width {
+    width: 100%;
+  }
+  
+  
+  

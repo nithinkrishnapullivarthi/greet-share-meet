@@ -40,3 +40,11 @@ mat-grid-tile {
 .ml-2{margin-left: 2%;}
 .width-100{width: 100%;}
 .width-25{width: 24%;}
+.example-container .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+
+.error-feild{
+  color: red;
+}

@@ -1,123 +1,134 @@
 <div class="main-body">
-<mat-card>
+    <mat-card>
         <mat-card-header>
-          <div mat-card-avatar class="mat-card-header"></div>
+            <div mat-card-avatar class="mat-card-header"></div>
         </mat-card-header>
-<form [formGroup]="registerForm" (ngSubmit)="onRegister()">
-    <mat-grid-list cols="1" rowHeight="500px" style="background-color: aqua;">
-        <mat-grid-tile>
-            <div class="example-container">
-                <mat-form-field appearance="fill" class="width-50">
-                    <mat-label>Name</mat-label>
-                    <input matInput #name formControlName="name" placeholder="enter your name">
-                </mat-form-field>
-                <mat-form-field appearance="fill" class="width-50 ml-2">
-                    <mat-label>Department</mat-label>
-                    <input matInput #department formControlName="department" placeholder="enter your department">
-                </mat-form-field>
-                <br>
-                <mat-form-field appearance="fill" class="width-50">
-                    <mat-label>Email</mat-label>
-                    <input matInput #email formControlName="email" type="email" placeholder="Ex. name@example.com">
-                </mat-form-field>
-                <mat-form-field appearance="fill" class="width-50 ml-2">
-                    <mat-label>Telephone</mat-label>
-                    <span matPrefix>+1 &nbsp;</span>
-                    <input #contactNumber type="tel" matInput formControlName="contactNumber"
-                        placeholder="555-555-1234">
-                    <mat-icon matSuffix>mode_edit</mat-icon>
-                </mat-form-field>
-                <br>
-                <mat-form-field appearance="fill" class="width-50">
-                    <mat-label>Username</mat-label>
-                    <input matInput placeholder="Enter your Username" #userName formControlName="userName" type="text">
-                </mat-form-field>
-                <mat-form-field appearance="fill" class="width-50 ml-2">
-                    <mat-label>Password</mat-label>
-                    <input matInput placeholder="Enter your password" formControlName="password" type="password">
-                </mat-form-field>
-                <br>
-                <h2 class="width-100" class="interests">Select your interests!</h2>
-                <mat-form-field appearance="fill" class="width-25">
-                    <mat-label>Sports</mat-label>
-                    <mat-select #sports formControlName="sports" multiple>
-                        <mat-select-trigger>
-                            {{sports.value ? sports.value[0] : ''}}
-                            <span *ngIf="sports.value?.length > 1" class="example-additional-selection">
-                                (+{{sports.value.length - 1}} {{sports.value?.length === 2 ? 'other' : 'others'}})
-                            </span>
-                        </mat-select-trigger>
-                        <mat-option *ngFor="let sport of sportsList" [value]="sport">{{sport}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field appearance="fill" class="width-25 ml-1">
-                    <mat-label>Academics</mat-label>
-                    <mat-select #academics formControlName="academics" multiple>
-                        <mat-select-trigger>
-                            {{academics.value ? academics.value[0] : ''}}
-                            <span *ngIf="academics.value?.length > 1" class="example-additional-selection">
-                                (+{{academics.value.length - 1}} {{academics.value?.length === 2 ? 'other' : 'others'}})
-                            </span>
-                        </mat-select-trigger>
-                        <mat-option *ngFor="let academics of academicsList" [value]="academics">{{academics}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>&nbsp;&nbsp;
-                <mat-form-field appearance="fill" class="width-25 ml-1">
-                    <mat-label>Activities</mat-label>
-                    <mat-select #activities formControlName="activities" multiple>
-                        <mat-select-trigger>
-                            {{activities.value ? activities.value[0] : ''}}
-                            <span *ngIf="activities.value?.length > 1" class="example-additional-selection">
-                                (+{{activities.value.length - 1}}
-                                {{activities.value?.length === 2 ? 'other' : 'others'}})
-                            </span>
-                        </mat-select-trigger>
-                        <mat-option *ngFor="let activities of activitiesList" [value]="activities">{{activities}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field appearance="fill" class="width-25 ml-1">
-                    <mat-label>Musical Instruments</mat-label>
-                    <mat-select #musicalInstruments formControlName="musicalInstruments" multiple>
-                        <mat-select-trigger>
-                            {{musicalInstruments.value ? musicalInstruments.value[0] : ''}}
-                            <span *ngIf="musicalInstruments.value?.length > 1" class="example-additional-selection">
-                                (+{{musicalInstruments.value.length - 1}}
-                                {{musicalInstruments.value?.length === 2 ? 'other' : 'others'}})
-                            </span>
-                        </mat-select-trigger>
-                        <mat-option *ngFor="let musicalInstruments of musicalInstrumentsList"
-                            [value]="musicalInstruments">{{musicalInstruments}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <br>
-                <label id="example-radio-group-label"  style="font-size: 18px; font-weight:500;">Would you like to volunteer?</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <mat-radio-group (change)="onRadioChange($event, 'volunteerradio')"
-                    aria-labelledby="example-radio-group-label" 
-                    formControlName="volunteerradio">
-                    <mat-radio-button value="yes">Yes</mat-radio-button>&nbsp;
-                    <mat-radio-button value="no"> No</mat-radio-button>
-                </mat-radio-group>&nbsp;
-                <span style="font-size: 16px; font-weight:500;"  class="width-25 ml-1">Select atleast one category to volunteer</span>
-                <mat-form-field appearance="fill" class="width-25 ml-2">
-                    <mat-label>volunteer</mat-label>
-                    <mat-select #volunteer formControlName="volunteer" multiple>
-                        <mat-select-trigger>
-                            {{volunteer.value ? volunteer.value[0] : ''}}
-                            <span *ngIf="volunteer.value?.length > 1" class="example-additional-selection">
-                                (+{{volunteer.value.length - 1}} {{volunteer.value?.length === 2 ? 'other' : 'others'}})
-                            </span>
-                        </mat-select-trigger>
-                        <mat-option *ngFor="let item of volunteerTo" [value]="item">{{item}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <br>
-                <button mat-raised-button color="primary" type="submit" (click)="onRegister()"
-                    [disabled]="registerForm.invalid">Register</button>
-            </div>
-        </mat-grid-tile>
-    </mat-grid-list>
-</form>
-</mat-card>
+        <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+            <mat-grid-list cols="1" rowHeight="500px" style="background-color: aqua;">
+                <mat-grid-tile>
+                    <div class="example-container">
+                        <mat-form-field appearance="fill" class="width-50">
+                            <mat-label>Name</mat-label>
+                            <input matInput #name formControlName="name" placeholder="enter your name"> 
+                        </mat-form-field>
+                        
+                        <mat-form-field appearance="fill" class="width-50 ml-2">
+                            <mat-label>Department</mat-label>
+                            <input matInput #department formControlName="department"
+                                placeholder="enter your department">
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field appearance="fill" class="width-50">
+                            <mat-label>Email</mat-label>
+                            <input matInput #email formControlName="email"
+                                placeholder="Ex. name@example.com">
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="width-50 ml-2">
+                            <mat-label>Telephone</mat-label>
+                            <span matPrefix>+1 &nbsp;</span>
+                            <input #contactNumber type="tel" matInput formControlName="contactNumber"
+                                placeholder="555-555-1234" maxlength=10>
+                            <mat-icon matSuffix>mode_edit</mat-icon>
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field appearance="fill" class="width-50">
+                            <mat-label>Username</mat-label>
+                            <input matInput placeholder="Enter your Username" #userName formControlName="userName"
+                                type="text">
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="width-50 ml-2">
+                            <mat-label>Password</mat-label>
+                            <input matInput placeholder="password must be minimum 8 characters"
+                                formControlName="password" type="password" minlength="8">
+                        </mat-form-field>
+                        <br>
+                        <h2 class="width-100" class="interests">Select your interests!</h2>
+                        <mat-form-field appearance="fill" class="width-25">
+                            <mat-label>Sports</mat-label>
+                            <mat-select #sports formControlName="sports" multiple>
+                                <mat-select-trigger>
+                                    {{sports.value ? sports.value[0] : ''}}
+                                    <span *ngIf="sports.value?.length > 1" class="example-additional-selection">
+                                        (+{{sports.value.length - 1}}
+                                        {{sports.value?.length === 2 ? 'other' : 'others'}})
+                                    </span>
+                                </mat-select-trigger>
+                                <mat-option *ngFor="let sport of sportsList" [value]="sport">{{sport}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="width-25 ml-1">
+                            <mat-label>Academics</mat-label>
+                            <mat-select #academics formControlName="academics" multiple>
+                                <mat-select-trigger>
+                                    {{academics.value ? academics.value[0] : ''}}
+                                    <span *ngIf="academics.value?.length > 1" class="example-additional-selection">
+                                        (+{{academics.value.length - 1}}
+                                        {{academics.value?.length === 2 ? 'other' : 'others'}})
+                                    </span>
+                                </mat-select-trigger>
+                                <mat-option *ngFor="let academics of academicsList" [value]="academics">{{academics}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>&nbsp;&nbsp;
+                        <mat-form-field appearance="fill" class="width-25 ml-1">
+                            <mat-label>Activities</mat-label>
+                            <mat-select #activities formControlName="activities" multiple>
+                                <mat-select-trigger>
+                                    {{activities.value ? activities.value[0] : ''}}
+                                    <span *ngIf="activities.value?.length > 1" class="example-additional-selection">
+                                        (+{{activities.value.length - 1}}
+                                        {{activities.value?.length === 2 ? 'other' : 'others'}})
+                                    </span>
+                                </mat-select-trigger>
+                                <mat-option *ngFor="let activities of activitiesList" [value]="activities">
+                                    {{activities}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill" class="width-25 ml-1">
+                            <mat-label>Musical Instruments</mat-label>
+                            <mat-select #musicalInstruments formControlName="musicalInstruments" multiple>
+                                <mat-select-trigger>
+                                    {{musicalInstruments.value ? musicalInstruments.value[0] : ''}}
+                                    <span *ngIf="musicalInstruments.value?.length > 1"
+                                        class="example-additional-selection">
+                                        (+{{musicalInstruments.value.length - 1}}
+                                        {{musicalInstruments.value?.length === 2 ? 'other' : 'others'}})
+                                    </span>
+                                </mat-select-trigger>
+                                <mat-option *ngFor="let musicalInstruments of musicalInstrumentsList"
+                                    [value]="musicalInstruments">{{musicalInstruments}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <br>
+                        <label id="example-radio-group-label" style="font-size: 18px; font-weight:500;">Would you like
+                            to volunteer?</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <mat-radio-group (change)="onRadioChange($event, 'volunteerradio')"
+                            aria-labelledby="example-radio-group-label" formControlName="volunteerradio">
+                            <mat-radio-button value="yes">Yes</mat-radio-button>&nbsp;&nbsp;
+                            <mat-radio-button value="no"> No</mat-radio-button>
+                        </mat-radio-group>&nbsp;
+                        <span style="font-size: 16px; font-weight:500;" class="width-25 ml-1">Select atleast one
+                            category to volunteer</span>&nbsp;
+                        <mat-form-field appearance="fill" class="width-25 ml-1">
+                            <mat-label>volunteer</mat-label>
+                            <mat-select #volunteer formControlName="volunteer" multiple>
+                                <mat-select-trigger>
+                                    {{volunteer.value ? volunteer.value[0] : ''}}
+                                    <span *ngIf="volunteer.value?.length > 1" class="example-additional-selection">
+                                        (+{{volunteer.value.length - 1}}
+                                        {{volunteer.value?.length === 2 ? 'other' : 'others'}})
+                                    </span>
+                                </mat-select-trigger>
+                                <mat-option *ngFor="let item of volunteerTo" [value]="item">{{item}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <br>
+                        <button mat-raised-button color="primary" type="submit" (click)="onRegister()"
+                            [disabled]="registerForm.invalid||volunteerTo.length<1">Register</button>
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </form>
+    </mat-card>
 </div>

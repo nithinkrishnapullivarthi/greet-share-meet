@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     loginRequest = this.loginForm.value;
   const res=this.loginservice.authenticate(loginRequest);
     if(res.status ) {
-      this.router.navigate(['home']);
+      this.router.navigate(['home/home']);
     }
     else {
       this.invalidLogin = res;
