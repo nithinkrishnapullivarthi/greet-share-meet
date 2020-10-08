@@ -3,7 +3,7 @@ package com.seproject.meetgreetapp;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.seproject.meetgreetapp.Interests;
+import com.seproject.meetgreetapp.Interest;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
 /**
  * User
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-07T13:59:37.202113-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-08T00:12:36.432262-04:00[America/New_York]")
 
 public class User   {
   @JsonProperty("userName")
@@ -23,7 +23,7 @@ public class User   {
   private String usertEmail;
 
   @JsonProperty("interest")
-  private Interests interest;
+  private Interest interest;
 
   public User userName(String userName) {
     this.userName = userName;
@@ -65,7 +65,7 @@ public class User   {
     this.usertEmail = usertEmail;
   }
 
-  public User interest(Interests interest) {
+  public User interest(Interest interest) {
     this.interest = interest;
     return this;
   }
@@ -78,11 +78,11 @@ public class User   {
 
   @Valid
 
-  public Interests getInterest() {
+  public Interest getInterest() {
     return interest;
   }
 
-  public void setInterest(Interests interest) {
+  public void setInterest(Interest interest) {
     this.interest = interest;
   }
 
