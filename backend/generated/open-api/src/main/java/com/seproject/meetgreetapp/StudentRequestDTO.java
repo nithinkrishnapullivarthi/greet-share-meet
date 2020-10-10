@@ -14,7 +14,7 @@ import javax.validation.constraints.*;
 /**
  * StudentRequestDTO
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-10T16:23:41.599991-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-10T18:45:17.758195-04:00[America/New_York]")
 
 public class StudentRequestDTO   {
   @JsonProperty("username")
@@ -42,9 +42,9 @@ public class StudentRequestDTO   {
   @Valid
   private List<String> interests = null;
 
-  @JsonProperty("volunteer_interest")
+  @JsonProperty("volunteer_interests")
   @Valid
-  private List<String> volunteerInterest = null;
+  private List<String> volunteerInterests = null;
 
   public StudentRequestDTO username(String username) {
     this.username = username;
@@ -214,32 +214,32 @@ public class StudentRequestDTO   {
     this.interests = interests;
   }
 
-  public StudentRequestDTO volunteerInterest(List<String> volunteerInterest) {
-    this.volunteerInterest = volunteerInterest;
+  public StudentRequestDTO volunteerInterests(List<String> volunteerInterests) {
+    this.volunteerInterests = volunteerInterests;
     return this;
   }
 
-  public StudentRequestDTO addVolunteerInterestItem(String volunteerInterestItem) {
-    if (this.volunteerInterest == null) {
-      this.volunteerInterest = new ArrayList<>();
+  public StudentRequestDTO addVolunteerInterestsItem(String volunteerInterestsItem) {
+    if (this.volunteerInterests == null) {
+      this.volunteerInterests = new ArrayList<>();
     }
-    this.volunteerInterest.add(volunteerInterestItem);
+    this.volunteerInterests.add(volunteerInterestsItem);
     return this;
   }
 
   /**
-   * Get volunteerInterest
-   * @return volunteerInterest
+   * Get volunteerInterests
+   * @return volunteerInterests
   */
   @ApiModelProperty(value = "")
 
 
-  public List<String> getVolunteerInterest() {
-    return volunteerInterest;
+  public List<String> getVolunteerInterests() {
+    return volunteerInterests;
   }
 
-  public void setVolunteerInterest(List<String> volunteerInterest) {
-    this.volunteerInterest = volunteerInterest;
+  public void setVolunteerInterests(List<String> volunteerInterests) {
+    this.volunteerInterests = volunteerInterests;
   }
 
 
@@ -260,12 +260,12 @@ public class StudentRequestDTO   {
         Objects.equals(this.isVolunteer, studentRequestDTO.isVolunteer) &&
         Objects.equals(this.contact, studentRequestDTO.contact) &&
         Objects.equals(this.interests, studentRequestDTO.interests) &&
-        Objects.equals(this.volunteerInterest, studentRequestDTO.volunteerInterest);
+        Objects.equals(this.volunteerInterests, studentRequestDTO.volunteerInterests);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(username, password, name, department, email, isVolunteer, contact, interests, volunteerInterest);
+    return Objects.hash(username, password, name, department, email, isVolunteer, contact, interests, volunteerInterests);
   }
 
   @Override
@@ -281,7 +281,7 @@ public class StudentRequestDTO   {
     sb.append("    isVolunteer: ").append(toIndentedString(isVolunteer)).append("\n");
     sb.append("    contact: ").append(toIndentedString(contact)).append("\n");
     sb.append("    interests: ").append(toIndentedString(interests)).append("\n");
-    sb.append("    volunteerInterest: ").append(toIndentedString(volunteerInterest)).append("\n");
+    sb.append("    volunteerInterests: ").append(toIndentedString(volunteerInterests)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -48,7 +48,7 @@ components:
           type: array
           items:
             type: string
-        volunteer_interest:
+        volunteer_interests:
           type: array
           items:
             type: string
@@ -97,7 +97,7 @@ components:
           type: array
           items:
             type: string
-        volunteer_interest:
+        volunteer_interests:
           type: array
           items:
             type: string

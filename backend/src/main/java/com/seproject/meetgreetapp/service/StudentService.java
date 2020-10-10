@@ -109,10 +109,49 @@ public class StudentService {
                 }
             }
             studentResponseDTO.setInterests(interestList);
-            studentResponseDTO.setVolunteerInterest(volunteerInterestList);
+            studentResponseDTO.setVolunteerInterests(volunteerInterestList);
             responseDTOList.add(studentResponseDTO);
         }
         return responseDTOList;
+    }
+
+    public StudentResponseDTO getStudentDetails(Integer studentId){
+
+        List<StudentInterest> studentInterests = studentInterestRepository.findByStudentId(studentId);
+        List<StudentVolunteerInterest> studentVolunteerInterests = studentVolunteerInterestRepository.findByStudentId(studentId);
+        Optional<Student> studentDetails = studentRepository.findById(studentId);
+        StudentResponseDTO studentResponseDTO = null;
+        List<Interest> interests = interestRepository.findAll();
+
+
+        List<String> studentInterestList = new ArrayList<>();
+
+        for(StudentInterest studentInterest: studentInterests){
+            for(Interest interest: interests){
+                if(interest.getId() == studentInterest.getInterestId()){
+                    studentInterestList.add(interest.getInterest());
+                }
+            }
+        }
+
+        List<String> studentVolunteerInterestList = new ArrayList<>();
+
+        for(StudentVolunteerInterest studentVolunteerInterest: studentVolunteerInterests){
+            for(Interest interest: interests){
+                if(interest.getId() == studentVolunteerInterest.getInterestId()){
+                    studentVolunteerInterestList.add(interest.getInterest());
+                }
+            }
+        }
+
+        if(studentDetails.isPresent()){
+            studentResponseDTO = mapper.map(studentDetails.get(), StudentResponseDTO.class);
+        }
+        studentResponseDTO.setInterests(studentInterestList);
+        if(studentResponseDTO.getIsVolunteer()){
+            studentResponseDTO.setVolunteerInterests(studentVolunteerInterestList);
+        }
+        return studentResponseDTO;
     }
 
 }

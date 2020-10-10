@@ -1,9 +1,7 @@
 package com.seproject.meetgreetapp.service;
 
-import com.seproject.meetgreetapp.Interest;
 import com.seproject.meetgreetapp.StudentRequestDTO;
 import com.seproject.meetgreetapp.StudentResponseDTO;
-import com.seproject.meetgreetapp.VolunteerInterest;
 import com.seproject.meetgreetapp.model.Student;
 import com.seproject.meetgreetapp.model.StudentInterest;
 import com.seproject.meetgreetapp.model.StudentVolunteerInterest;
@@ -52,7 +50,7 @@ public class RegistrationService {
 
         studentInterestRepository.saveAll(studentInterests);
         if(studentRequestDTO.getIsVolunteer()){
-            studentVolunteerInterestRepository.saveAll( getStudentVolunteerInterests(studentRequestDTO.getInterests(),sId));
+            studentVolunteerInterestRepository.saveAll(getStudentVolunteerInterests(studentRequestDTO.getVolunteerInterests(),sId));
         }
 
         StudentResponseDTO studentResponseDTO =  mapper.map(studentRequestDTO, StudentResponseDTO.class);
