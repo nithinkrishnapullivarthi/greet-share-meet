@@ -12,43 +12,20 @@ import javax.validation.constraints.*;
 /**
  * PairUpResponseDTO
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-08T00:12:36.432262-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-10T13:26:42.059678-04:00[America/New_York]")
 
 public class PairUpResponseDTO   {
-  @JsonProperty("id")
-  private Integer id;
-
   @JsonProperty("studentId")
   private Integer studentId;
 
   @JsonProperty("interest")
   private String interest;
 
-  @JsonProperty("startDate")
-  private String startDate;
+  @JsonProperty("startDateTime")
+  private String startDateTime;
 
-  @JsonProperty("endDate")
-  private String endDate;
-
-  public PairUpResponseDTO id(Integer id) {
-    this.id = id;
-    return this;
-  }
-
-  /**
-   * Get id
-   * @return id
-  */
-  @ApiModelProperty(value = "")
-
-
-  public Integer getId() {
-    return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
+  @JsonProperty("endDateTime")
+  private String endDateTime;
 
   public PairUpResponseDTO studentId(Integer studentId) {
     this.studentId = studentId;
@@ -90,44 +67,44 @@ public class PairUpResponseDTO   {
     this.interest = interest;
   }
 
-  public PairUpResponseDTO startDate(String startDate) {
-    this.startDate = startDate;
+  public PairUpResponseDTO startDateTime(String startDateTime) {
+    this.startDateTime = startDateTime;
     return this;
   }
 
   /**
-   * Get startDate
-   * @return startDate
+   * Get startDateTime
+   * @return startDateTime
   */
   @ApiModelProperty(value = "")
 
 
-  public String getStartDate() {
-    return startDate;
+  public String getStartDateTime() {
+    return startDateTime;
   }
 
-  public void setStartDate(String startDate) {
-    this.startDate = startDate;
+  public void setStartDateTime(String startDateTime) {
+    this.startDateTime = startDateTime;
   }
 
-  public PairUpResponseDTO endDate(String endDate) {
-    this.endDate = endDate;
+  public PairUpResponseDTO endDateTime(String endDateTime) {
+    this.endDateTime = endDateTime;
     return this;
   }
 
   /**
-   * Get endDate
-   * @return endDate
+   * Get endDateTime
+   * @return endDateTime
   */
   @ApiModelProperty(value = "")
 
 
-  public String getEndDate() {
-    return endDate;
+  public String getEndDateTime() {
+    return endDateTime;
   }
 
-  public void setEndDate(String endDate) {
-    this.endDate = endDate;
+  public void setEndDateTime(String endDateTime) {
+    this.endDateTime = endDateTime;
   }
 
 
@@ -140,16 +117,15 @@ public class PairUpResponseDTO   {
       return false;
     }
     PairUpResponseDTO pairUpResponseDTO = (PairUpResponseDTO) o;
-    return Objects.equals(this.id, pairUpResponseDTO.id) &&
-        Objects.equals(this.studentId, pairUpResponseDTO.studentId) &&
+    return Objects.equals(this.studentId, pairUpResponseDTO.studentId) &&
         Objects.equals(this.interest, pairUpResponseDTO.interest) &&
-        Objects.equals(this.startDate, pairUpResponseDTO.startDate) &&
-        Objects.equals(this.endDate, pairUpResponseDTO.endDate);
+        Objects.equals(this.startDateTime, pairUpResponseDTO.startDateTime) &&
+        Objects.equals(this.endDateTime, pairUpResponseDTO.endDateTime);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, studentId, interest, startDate, endDate);
+    return Objects.hash(studentId, interest, startDateTime, endDateTime);
   }
 
   @Override
@@ -157,11 +133,10 @@ public class PairUpResponseDTO   {
     StringBuilder sb = new StringBuilder();
     sb.append("class PairUpResponseDTO {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    studentId: ").append(toIndentedString(studentId)).append("\n");
     sb.append("    interest: ").append(toIndentedString(interest)).append("\n");
-    sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
-    sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
+    sb.append("    startDateTime: ").append(toIndentedString(startDateTime)).append("\n");
+    sb.append("    endDateTime: ").append(toIndentedString(endDateTime)).append("\n");
     sb.append("}");
     return sb.toString();
   }

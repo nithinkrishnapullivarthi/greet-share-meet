@@ -12,7 +12,7 @@ import javax.validation.constraints.*;
 /**
  * PairUpRequestDTO
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-08T00:12:36.432262-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-10T13:26:42.059678-04:00[America/New_York]")
 
 public class PairUpRequestDTO   {
   @JsonProperty("studentId")
@@ -21,11 +21,11 @@ public class PairUpRequestDTO   {
   @JsonProperty("interest")
   private String interest;
 
-  @JsonProperty("startDate")
-  private String startDate;
+  @JsonProperty("startDateTime")
+  private String startDateTime;
 
-  @JsonProperty("endDate")
-  private String endDate;
+  @JsonProperty("endDateTime")
+  private String endDateTime;
 
   public PairUpRequestDTO studentId(Integer studentId) {
     this.studentId = studentId;
@@ -67,44 +67,44 @@ public class PairUpRequestDTO   {
     this.interest = interest;
   }
 
-  public PairUpRequestDTO startDate(String startDate) {
-    this.startDate = startDate;
+  public PairUpRequestDTO startDateTime(String startDateTime) {
+    this.startDateTime = startDateTime;
     return this;
   }
 
   /**
-   * Get startDate
-   * @return startDate
+   * Get startDateTime
+   * @return startDateTime
   */
   @ApiModelProperty(value = "")
 
 
-  public String getStartDate() {
-    return startDate;
+  public String getStartDateTime() {
+    return startDateTime;
   }
 
-  public void setStartDate(String startDate) {
-    this.startDate = startDate;
+  public void setStartDateTime(String startDateTime) {
+    this.startDateTime = startDateTime;
   }
 
-  public PairUpRequestDTO endDate(String endDate) {
-    this.endDate = endDate;
+  public PairUpRequestDTO endDateTime(String endDateTime) {
+    this.endDateTime = endDateTime;
     return this;
   }
 
   /**
-   * Get endDate
-   * @return endDate
+   * Get endDateTime
+   * @return endDateTime
   */
   @ApiModelProperty(value = "")
 
 
-  public String getEndDate() {
-    return endDate;
+  public String getEndDateTime() {
+    return endDateTime;
   }
 
-  public void setEndDate(String endDate) {
-    this.endDate = endDate;
+  public void setEndDateTime(String endDateTime) {
+    this.endDateTime = endDateTime;
   }
 
 
@@ -119,13 +119,13 @@ public class PairUpRequestDTO   {
     PairUpRequestDTO pairUpRequestDTO = (PairUpRequestDTO) o;
     return Objects.equals(this.studentId, pairUpRequestDTO.studentId) &&
         Objects.equals(this.interest, pairUpRequestDTO.interest) &&
-        Objects.equals(this.startDate, pairUpRequestDTO.startDate) &&
-        Objects.equals(this.endDate, pairUpRequestDTO.endDate);
+        Objects.equals(this.startDateTime, pairUpRequestDTO.startDateTime) &&
+        Objects.equals(this.endDateTime, pairUpRequestDTO.endDateTime);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(studentId, interest, startDate, endDate);
+    return Objects.hash(studentId, interest, startDateTime, endDateTime);
   }
 
   @Override
@@ -135,8 +135,8 @@ public class PairUpRequestDTO   {
     
     sb.append("    studentId: ").append(toIndentedString(studentId)).append("\n");
     sb.append("    interest: ").append(toIndentedString(interest)).append("\n");
-    sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
-    sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
+    sb.append("    startDateTime: ").append(toIndentedString(startDateTime)).append("\n");
+    sb.append("    endDateTime: ").append(toIndentedString(endDateTime)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -61,18 +61,20 @@ components:
           type: string
         announcement:
           type: string
-    PairUpResponseDTO:
+    PairUpMatchesResponseDTO:
       type: object
       properties:
-        id:
-          type: integer
-        studentId:
-          type: integer
+        name:
+          type: string
+        contact:
+          type: string
+        email:
+          type: string
         interest:
           type: string
-        startDate:
+        startDateAndTime:
           type: string
-        endDate:
+        endDateAndTime:
           type: string
     StudentRequestDTO:
       type: object
@@ -115,9 +117,20 @@ components:
           type: integer
         interest:
           type: string
-        startDate:
+        startDateTime:
           type: string
-        endDate:
+        endDateTime:
+          type: string
+    PairUpResponseDTO:
+      type: object
+      properties:
+        studentId:
+          type: integer
+        interest:
+          type: string
+        startDateTime:
+          type: string
+        endDateTime:
           type: string
     LoginRequestDTO:
       type: object
@@ -134,10 +147,10 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/AnnouncementResponseDTO'
-    ListPairUpResponseDTO:
+    ListPairUpMatchesResponseDTO:
       type: array
       items:
-        $ref: '#/components/schemas/PairUpResponseDTO'
+        $ref: '#/components/schemas/PairUpMatchesResponseDTO'
     user:
       type: object
       properties:
@@ -178,12 +191,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/PairUpResponseDTO'
-    SuccessfulAllRegisteredTimeslots:
+    SuccessfulAllMatches:
       description: " "
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ListPairUpResponseDTO'
+            $ref: '#/components/schemas/ListPairUpMatchesResponseDTO'
     Error:
       description: Unknown error occured
       content:
@@ -327,7 +340,7 @@ paths:
           description: "Unknown Error"
     get:
       description: To get all registered time slots
-      operationId: getRegisteredTimeslots
+      operationId: getMatches
       summary: To get all registered time slots
       parameters:
         - in: query
@@ -336,7 +349,7 @@ paths:
             type: integer
       responses:
         '200':
-          $ref: '#/components/responses/SuccessfulAllRegisteredTimeslots'
+          $ref: '#/components/responses/SuccessfulAllMatches'
         '404' :
           $ref: '#/components/responses/Error'
         default:

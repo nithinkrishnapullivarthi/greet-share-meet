@@ -5,6 +5,7 @@ import com.seproject.meetgreetapp.AnnouncementResponseDTO;
 import com.seproject.meetgreetapp.Error;
 import com.seproject.meetgreetapp.InlineResponse200;
 import com.seproject.meetgreetapp.LoginRequestDTO;
+import com.seproject.meetgreetapp.PairUpMatchesResponseDTO;
 import com.seproject.meetgreetapp.PairUpRequestDTO;
 import com.seproject.meetgreetapp.PairUpResponseDTO;
 import com.seproject.meetgreetapp.StudentRequestDTO;
@@ -24,7 +25,7 @@ import java.util.Optional;
  * A delegate to be called by the {@link MeetGreetApiController}}.
  * Implement this interface with a {@link org.springframework.stereotype.Service} annotated class.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-08T00:12:36.432262-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-10T13:26:42.059678-04:00[America/New_York]")
 
 public interface MeetGreetApiDelegate {
 
@@ -39,7 +40,7 @@ public interface MeetGreetApiDelegate {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"studentId\" : 6, \"interest\" : \"interest\", \"endDate\" : \"endDate\", \"id\" : 0, \"startDate\" : \"startDate\" }";
+                    String exampleString = "{ \"studentId\" : 0, \"startDateTime\" : \"startDateTime\", \"interest\" : \"interest\", \"endDateTime\" : \"endDateTime\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -84,13 +85,13 @@ public interface MeetGreetApiDelegate {
     }
 
     /**
-     * @see MeetGreetApi#getRegisteredTimeslots
+     * @see MeetGreetApi#getMatches
      */
-    default ResponseEntity<List<PairUpResponseDTO>> getRegisteredTimeslots(Integer studentId) {
+    default ResponseEntity<List<PairUpMatchesResponseDTO>> getMatches(Integer studentId) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"studentId\" : 6, \"interest\" : \"interest\", \"endDate\" : \"endDate\", \"id\" : 0, \"startDate\" : \"startDate\" }";
+                    String exampleString = "{ \"interest\" : \"interest\", \"contact\" : \"contact\", \"startDateAndTime\" : \"startDateAndTime\", \"name\" : \"name\", \"endDateAndTime\" : \"endDateAndTime\", \"email\" : \"email\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

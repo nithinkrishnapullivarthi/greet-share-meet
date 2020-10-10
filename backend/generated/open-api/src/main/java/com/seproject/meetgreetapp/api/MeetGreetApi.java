@@ -10,6 +10,7 @@ import com.seproject.meetgreetapp.AnnouncementResponseDTO;
 import com.seproject.meetgreetapp.Error;
 import com.seproject.meetgreetapp.InlineResponse200;
 import com.seproject.meetgreetapp.LoginRequestDTO;
+import com.seproject.meetgreetapp.PairUpMatchesResponseDTO;
 import com.seproject.meetgreetapp.PairUpRequestDTO;
 import com.seproject.meetgreetapp.PairUpResponseDTO;
 import com.seproject.meetgreetapp.StudentRequestDTO;
@@ -30,7 +31,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-08T00:12:36.432262-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-10T13:26:42.059678-04:00[America/New_York]")
 
 @Validated
 @Api(value = "meet-greet", description = "the meet-greet API")
@@ -80,16 +81,16 @@ public interface MeetGreetApi {
     }
 
 
-    @ApiOperation(value = "To get all registered time slots", nickname = "getRegisteredTimeslots", notes = "To get all registered time slots", response = PairUpResponseDTO.class, responseContainer = "List", tags={  })
+    @ApiOperation(value = "To get all registered time slots", nickname = "getMatches", notes = "To get all registered time slots", response = PairUpMatchesResponseDTO.class, responseContainer = "List", tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "", response = PairUpResponseDTO.class, responseContainer = "List"),
+        @ApiResponse(code = 200, message = "", response = PairUpMatchesResponseDTO.class, responseContainer = "List"),
         @ApiResponse(code = 404, message = "Unknown error occured", response = Error.class),
         @ApiResponse(code = 200, message = "Unknown Error") })
     @RequestMapping(value = "/meet-greet/students/pairup",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<List<PairUpResponseDTO>> getRegisteredTimeslots(@ApiParam(value = "") @Valid @RequestParam(value = "studentId", required = false) Integer studentId) {
-        return getDelegate().getRegisteredTimeslots(studentId);
+    default ResponseEntity<List<PairUpMatchesResponseDTO>> getMatches(@ApiParam(value = "") @Valid @RequestParam(value = "studentId", required = false) Integer studentId) {
+        return getDelegate().getMatches(studentId);
     }
 
 

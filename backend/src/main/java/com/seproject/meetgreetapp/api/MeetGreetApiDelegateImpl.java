@@ -44,7 +44,7 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate{
     }
 
     @Override
-    public ResponseEntity<List<PairUpResponseDTO>> getRegisteredTimeslots(Integer studentId) {
+    public ResponseEntity<List<PairUpMatchesResponseDTO>> getMatches(Integer studentId) {
         return null;
     }
 
@@ -60,6 +60,12 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate{
 
     @Override
     public ResponseEntity<StudentResponseDTO> registerUser(StudentRequestDTO studentRequestDTO) {
+
+        if(studentRepository.findByUsername(studentRequestDTO.getUsername()) != null){
+            Error error = new Error();
+            error.setMessage("USERNAME_EXISTS");
+            return new ResponseEntity(error,HttpStatus.BAD_REQUEST);
+        }
         StudentResponseDTO studentResponseDTO = registrationService.saveStudentDetails(studentRequestDTO);
         return new ResponseEntity(studentResponseDTO, HttpStatus.CREATED);
     }
