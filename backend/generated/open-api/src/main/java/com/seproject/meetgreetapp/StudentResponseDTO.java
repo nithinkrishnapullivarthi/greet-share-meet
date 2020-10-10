@@ -3,8 +3,6 @@ package com.seproject.meetgreetapp;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.seproject.meetgreetapp.Interest;
-import com.seproject.meetgreetapp.VolunteerInterest;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
@@ -16,7 +14,7 @@ import javax.validation.constraints.*;
 /**
  * StudentResponseDTO
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-10T13:26:42.059678-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-10T15:11:38.676506-04:00[America/New_York]")
 
 public class StudentResponseDTO   {
   @JsonProperty("id")
@@ -39,11 +37,11 @@ public class StudentResponseDTO   {
 
   @JsonProperty("interests")
   @Valid
-  private List<Interest> interests = null;
+  private List<String> interests = null;
 
   @JsonProperty("volunteer_interest")
   @Valid
-  private List<VolunteerInterest> volunteerInterest = null;
+  private List<String> volunteerInterest = null;
 
   public StudentResponseDTO id(Integer id) {
     this.id = id;
@@ -165,12 +163,12 @@ public class StudentResponseDTO   {
     this.contact = contact;
   }
 
-  public StudentResponseDTO interests(List<Interest> interests) {
+  public StudentResponseDTO interests(List<String> interests) {
     this.interests = interests;
     return this;
   }
 
-  public StudentResponseDTO addInterestsItem(Interest interestsItem) {
+  public StudentResponseDTO addInterestsItem(String interestsItem) {
     if (this.interests == null) {
       this.interests = new ArrayList<>();
     }
@@ -184,22 +182,21 @@ public class StudentResponseDTO   {
   */
   @ApiModelProperty(value = "")
 
-  @Valid
 
-  public List<Interest> getInterests() {
+  public List<String> getInterests() {
     return interests;
   }
 
-  public void setInterests(List<Interest> interests) {
+  public void setInterests(List<String> interests) {
     this.interests = interests;
   }
 
-  public StudentResponseDTO volunteerInterest(List<VolunteerInterest> volunteerInterest) {
+  public StudentResponseDTO volunteerInterest(List<String> volunteerInterest) {
     this.volunteerInterest = volunteerInterest;
     return this;
   }
 
-  public StudentResponseDTO addVolunteerInterestItem(VolunteerInterest volunteerInterestItem) {
+  public StudentResponseDTO addVolunteerInterestItem(String volunteerInterestItem) {
     if (this.volunteerInterest == null) {
       this.volunteerInterest = new ArrayList<>();
     }
@@ -213,13 +210,12 @@ public class StudentResponseDTO   {
   */
   @ApiModelProperty(value = "")
 
-  @Valid
 
-  public List<VolunteerInterest> getVolunteerInterest() {
+  public List<String> getVolunteerInterest() {
     return volunteerInterest;
   }
 
-  public void setVolunteerInterest(List<VolunteerInterest> volunteerInterest) {
+  public void setVolunteerInterest(List<String> volunteerInterest) {
     this.volunteerInterest = volunteerInterest;
   }
 

@@ -47,11 +47,11 @@ components:
         interests:
           type: array
           items:
-            $ref: '#/components/schemas/Interest'
+            type: string
         volunteer_interest:
           type: array
           items:
-            $ref: '#/components/schemas/VolunteerInterest'
+            type: string
     AnnouncementResponseDTO:
       type: object
       properties:
@@ -96,11 +96,11 @@ components:
         interests:
           type: array
           items:
-            $ref: '#/components/schemas/Interest'
+            type: string
         volunteer_interest:
           type: array
           items:
-            $ref: '#/components/schemas/VolunteerInterest'
+            type: string
     AnnouncementRequestDTO:
       type: object
       properties:

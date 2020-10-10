@@ -5,6 +5,7 @@ import com.seproject.meetgreetapp.Error;
 import com.seproject.meetgreetapp.model.Student;
 import com.seproject.meetgreetapp.repository.StudentRepository;
 import com.seproject.meetgreetapp.service.RegistrationService;
+import com.seproject.meetgreetapp.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,9 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate{
     @Autowired
     RegistrationService registrationService;
 
+    @Autowired
+    StudentService studentService;
+
     @Override
     public Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
@@ -40,7 +44,8 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate{
 
     @Override
     public ResponseEntity<List<StudentResponseDTO>> getAllStudents(Integer studentId) {
-        return null;
+        List<StudentResponseDTO> studentResponseDTOList = studentService.getStudentDetailsWithMatchingInterests(studentId);
+        return new ResponseEntity(studentResponseDTOList,HttpStatus.OK);
     }
 
     @Override
