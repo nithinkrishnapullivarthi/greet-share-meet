@@ -25,7 +25,7 @@ import java.util.Optional;
  * A delegate to be called by the {@link MeetGreetApiController}}.
  * Implement this interface with a {@link org.springframework.stereotype.Service} annotated class.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-10T15:11:38.676506-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-10T16:23:41.599991-04:00[America/New_York]")
 
 public interface MeetGreetApiDelegate {
 

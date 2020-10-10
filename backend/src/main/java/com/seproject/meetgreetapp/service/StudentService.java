@@ -4,9 +4,11 @@ import com.seproject.meetgreetapp.StudentResponseDTO;
 import com.seproject.meetgreetapp.model.Interest;
 import com.seproject.meetgreetapp.model.Student;
 import com.seproject.meetgreetapp.model.StudentInterest;
+import com.seproject.meetgreetapp.model.StudentVolunteerInterest;
 import com.seproject.meetgreetapp.repository.InterestRepository;
 import com.seproject.meetgreetapp.repository.StudentInterestRepository;
 import com.seproject.meetgreetapp.repository.StudentRepository;
+import com.seproject.meetgreetapp.repository.StudentVolunteerInterestRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +30,9 @@ public class StudentService {
     @Autowired
     StudentInterestRepository studentInterestRepository;
 
+    @Autowired
+    StudentVolunteerInterestRepository studentVolunteerInterestRepository;
+
     public List<StudentResponseDTO> getStudentDetailsWithMatchingInterests(Integer studentId) {
 
         List<StudentInterest> studentInterests = studentInterestRepository.findByStudentId(studentId);
@@ -42,7 +47,8 @@ public class StudentService {
 
         List<Student> students = studentRepository.findAllById(studentIds);
 
-        return mapToResponseDTOList(students,studentToInterestMapping);
+        Map<Integer,List<Integer>> studentToVolunteerInterestMapping = getStudentIdToVolunteerInterestsMapping(studentIds);
+        return mapToResponseDTOList(students,studentToInterestMapping,studentToVolunteerInterestMapping);
     }
 
     private Map<Integer,List<Integer>> getStudentIdToInterestsMapping(List<StudentInterest> matchingStudents){
@@ -60,22 +66,53 @@ public class StudentService {
         return studentToInterestMapping;
     }
 
-    private List<StudentResponseDTO> mapToResponseDTOList(List<Student> students, Map<Integer, List<Integer>> studentToInterestMapping ){
+    private Map<Integer,List<Integer>> getStudentIdToVolunteerInterestsMapping(Set<Integer> studentIds){
+        HashMap<Integer,List<Integer>> studentToVolunteerInterestMapping = new HashMap<>();
+        List<StudentVolunteerInterest> studentVolunteerInterests = studentVolunteerInterestRepository.findAllByStudentIdIn(studentIds);
+
+        for(StudentVolunteerInterest studentVolunteerInterest: studentVolunteerInterests){
+            if(studentToVolunteerInterestMapping.get(studentVolunteerInterest.getStudentId())==null){
+                List<Integer> volunteerInterestIds = new ArrayList<>();
+                volunteerInterestIds.add(studentVolunteerInterest.getInterestId());
+                studentToVolunteerInterestMapping.put(studentVolunteerInterest.getStudentId(),volunteerInterestIds);
+            }
+            else{
+                studentToVolunteerInterestMapping.get(studentVolunteerInterest.getStudentId()).add(studentVolunteerInterest.getInterestId());
+            }
+        }
+        return studentToVolunteerInterestMapping;
+    }
+
+    private List<StudentResponseDTO> mapToResponseDTOList(List<Student> students, Map<Integer, List<Integer>> studentToInterestMapping,Map<Integer, List<Integer>> studentToVolunteerInterestMapping ){
         List<StudentResponseDTO> responseDTOList = new ArrayList<>();
         List<Interest> interests = interestRepository.findAll();
         for(Student student:students){
+
             StudentResponseDTO studentResponseDTO = mapper.map(student, StudentResponseDTO.class);
             List<Integer> sInterests = studentToInterestMapping.get(studentResponseDTO.getId());
+            List<Integer> sVolunteerInterests = studentToVolunteerInterestMapping.get(studentResponseDTO.getId());
             List<String> interestList = new ArrayList<>();
+            List<String> volunteerInterestList = new ArrayList<>();
+
+            // Populating student interests
             for(Integer interestID: sInterests){
                 for(Interest interest: interests){
                     if(interest.getId() == interestID)
                         interestList.add(interest.getInterest());
                 }
             }
+            // Populating student volunteer interests
+            for(Integer interestID: sVolunteerInterests){
+                for(Interest interest: interests){
+                    if(interest.getId() == interestID)
+                        volunteerInterestList.add(interest.getInterest());
+                }
+            }
             studentResponseDTO.setInterests(interestList);
+            studentResponseDTO.setVolunteerInterest(volunteerInterestList);
             responseDTOList.add(studentResponseDTO);
         }
         return responseDTOList;
     }
+
 }
