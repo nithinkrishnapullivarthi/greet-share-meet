@@ -1,4 +1,8 @@
 export class LoginRequest {
-    public userName: string;
+    id :number;
+    public username: string;
     public password: string;
+
+    constructor(){
+    }
 }

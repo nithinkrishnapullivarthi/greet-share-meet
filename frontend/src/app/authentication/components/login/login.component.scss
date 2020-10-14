@@ -26,11 +26,9 @@ mat-card{
    
    .error-field{
      color: red;
-     font-size: 14px;
-     font-weight: bold;
+    
      height: 14px;
-     padding: 1rem;
-     margin-left: 11rem;
+   
    }
 }
 button,a{
@@ -51,3 +49,13 @@ button,a{
 .example-full-width {
   width: 100%;
 }
+.error{
+    float: right;
+    position: relative;
+    top: -10px;
+    margin: 0;
+    background: #fff;
+    margin-right: 20px;
+    width: fit-content;
+  }
+

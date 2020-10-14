@@ -10,11 +10,10 @@ import { LoginRequest } from '../../models';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  private loginComponent: LoginComponent;
   public loginForm: FormGroup;
   invalidLogin = {
-    status: false,
-    description: ''
+    isError: false,
+    message: ''
   };
   constructor
     (private fb: FormBuilder,
@@ -23,21 +22,26 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      userName: ['', [Validators.required, Validators.minLength(5)]],
-      password: ['', Validators.required],
+      username: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', Validators.required,Validators.minLength(8)],
     });
   }
 
   onSubmit() {
-    let loginRequest = new LoginRequest();
-    loginRequest = this.loginForm.value;
-  const res=this.loginservice.authenticate(loginRequest);
-    if(res.status ) {
-      this.router.navigate(['home']);
-    }
-    else {
-      this.invalidLogin = res;
-    }
+    let loginrequest = new LoginRequest();
+    loginrequest = this.loginForm.value;
+    
+    this.loginservice.loginAuthentication(loginrequest).subscribe(res => {
+      if (!(res.isError) && res.data) {
+        this.router.navigate(['home']);
+      }
+      else {
+        this.invalidLogin = { isError: res.isError, message: res.message }
+      }
+      console.log(res);
+    });
+
+
   }
 
 }

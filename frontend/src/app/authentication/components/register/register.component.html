@@ -10,31 +10,61 @@
                 <mat-form-field appearance="fill" class="width-50">
                     <mat-label>Name</mat-label>
                     <input matInput #name formControlName="name" placeholder="enter your name">
+                    <mat-error class="error-field"*ngIf="registerForm.controls.name.hasError('required')">
+                        Name is a required field
+                      </mat-error>
+                      <mat-error class="error-field"*ngIf="registerForm.controls.name.hasError('minlength')">
+                        Name must be at least 6 characters long
+                      </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="fill" class="width-50 ml-2">
                     <mat-label>Department</mat-label>
                     <input matInput #department formControlName="department" placeholder="enter your department">
+                    <mat-error class="error-field"*ngIf="registerForm.controls.department.hasError('required')">
+                        Department  is a required field
+                      </mat-error>
                 </mat-form-field>
                 <br>
                 <mat-form-field appearance="fill" class="width-50">
                     <mat-label>Email</mat-label>
                     <input matInput #email formControlName="email" type="email" placeholder="Ex. name@example.com">
+                      <mat-error class="error-field"*ngIf="registerForm.controls.email.hasError('required')">
+                        Email address is a required field.
+                      </mat-error>
+                      <mat-error class="error-field"*ngIf="registerForm.controls.email.hasError('email')">
+                       Please enter a valid email address
+                      </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="fill" class="width-50 ml-2">
-                    <mat-label>Telephone</mat-label>
+                    <mat-label>Contact Number</mat-label>
                     <span matPrefix>+1 &nbsp;</span>
                     <input #contactNumber type="tel" matInput formControlName="contactNumber"
-                        placeholder="555-555-1234">
+                        placeholder="555-555-1234" maxlength="10">
+                        <mat-error class="error-field"*ngIf="registerForm.controls.contactNumber.hasError('required')">
+                            Contact Number  is a required field.
+                        </mat-error>
                     <mat-icon matSuffix>mode_edit</mat-icon>
                 </mat-form-field>
                 <br>
                 <mat-form-field appearance="fill" class="width-50">
                     <mat-label>Username</mat-label>
                     <input matInput placeholder="Enter your Username" #userName formControlName="userName" type="text">
+                    <mat-error class="error-field"*ngIf="registerForm.controls.userName.hasError('required')">
+                        Username is a required field
+                      </mat-error>
+                      <mat-error class="error-field"*ngIf="registerForm.controls.userName.hasError('minlength')">
+                        Username must be at least 6 characters long
+                       </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="fill" class="width-50 ml-2">
                     <mat-label>Password</mat-label>
                     <input matInput placeholder="Enter your password" formControlName="password" type="password">
+                    <mat-error class="error-field"*ngIf="registerForm.controls.password.hasError('required')">
+                        Username is a required field
+                      </mat-error>
+                      <mat-error class="error-field"*ngIf="registerForm.controls.password.hasError('minlength')">
+                        Password must be at least 8 characters long
+                       </mat-error>
                 </mat-form-field>
                 <br>
                 <h2 class="width-100" class="interests">Select your interests!</h2>
