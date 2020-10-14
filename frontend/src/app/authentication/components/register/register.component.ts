@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
       department: ['', Validators.required],
       contactNumber: ['', [Validators.required,Validators.pattern("[0-9]{10}"),Validators.maxLength(10)]],
       userName: ['', [Validators.required, Validators.minLength(6)]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      password: ['', [Validators.required, Validators.minLength(8   )]],
       volunteerradio: ['', Validators.required],
       volunteer:[{value: '', disabled:true},Validators.required],
       sports: [],

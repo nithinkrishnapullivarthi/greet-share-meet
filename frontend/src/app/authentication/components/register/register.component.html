@@ -39,9 +39,12 @@
                     <mat-label>Contact Number</mat-label>
                     <span matPrefix>+1 &nbsp;</span>
                     <input #contactNumber type="tel" matInput formControlName="contactNumber"
-                        placeholder="555-555-1234" maxlength="10">
+                        placeholder="555-555-1234">
                         <mat-error class="error-field"*ngIf="registerForm.controls.contactNumber.hasError('required')">
                             Contact Number  is a required field.
+                        </mat-error>
+                        <mat-error class="error-field"*ngIf="registerForm.controls.contactNumber.hasError('pattern')">
+                            Enter valid contact number.
                         </mat-error>
                     <mat-icon matSuffix>mode_edit</mat-icon>
                 </mat-form-field>
@@ -67,7 +70,7 @@
                        </mat-error>
                 </mat-form-field>
                 <br>
-                <h2 class="width-100" class="interests">Select your interests!</h2>
+                <div class="width-100" class="interests"><h2>Select your interests!</h2></div>
                 <mat-form-field appearance="fill" class="width-25">
                     <mat-label>Sports</mat-label>
                     <mat-select #sports formControlName="sports" multiple>
@@ -120,6 +123,9 @@
                         <mat-option *ngFor="let musicalInstruments of musicalInstrumentsList"
                             [value]="musicalInstruments">{{musicalInstruments}}</mat-option>
                     </mat-select>
+                    <mat-error class="error-field"*ngIf="volunteerTo.length<1">
+                        Select atleast one interest from the above categories
+                    </mat-error>
                 </mat-form-field>
                 <br>
                 <label id="example-radio-group-label"  style="font-size: 18px; font-weight:500;">Would you like to volunteer?</label>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -144,10 +150,10 @@
                 </mat-form-field>
                 <br>
                 <button mat-raised-button color="primary" type="submit" (click)="onRegister()"
-                    [disabled]="registerForm.invalid">Register</button>
+                    [disabled]="registerForm.invalid||volunteerTo.length<1">Register</button>
             </div>
         </mat-grid-tile>
-    </mat-grid-list>
+    </mat-grid-list>    
 </form>
 </mat-card>
 </div>
