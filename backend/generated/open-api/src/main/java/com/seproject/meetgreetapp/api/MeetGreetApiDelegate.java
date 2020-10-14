@@ -3,7 +3,6 @@ package com.seproject.meetgreetapp.api;
 import com.seproject.meetgreetapp.AnnouncementRequestDTO;
 import com.seproject.meetgreetapp.AnnouncementResponseDTO;
 import com.seproject.meetgreetapp.Error;
-import com.seproject.meetgreetapp.InlineResponse200;
 import com.seproject.meetgreetapp.LoginRequestDTO;
 import com.seproject.meetgreetapp.PairUpMatchesResponseDTO;
 import com.seproject.meetgreetapp.PairUpRequestDTO;
@@ -25,7 +24,7 @@ import java.util.Optional;
  * A delegate to be called by the {@link MeetGreetApiController}}.
  * Implement this interface with a {@link org.springframework.stereotype.Service} annotated class.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-10T18:45:17.758195-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-14T11:20:10.394987-04:00[America/New_York]")
 
 public interface MeetGreetApiDelegate {
 
@@ -155,11 +154,11 @@ public interface MeetGreetApiDelegate {
     /**
      * @see MeetGreetApi#userLogin
      */
-    default ResponseEntity<InlineResponse200> userLogin(LoginRequestDTO loginRequestDTO) {
+    default ResponseEntity<StudentResponseDTO> userLogin(LoginRequestDTO loginRequestDTO) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"id\" : 0 }";
+                    String exampleString = "{ \"is_volunteer\" : true, \"contact\" : \"contact\", \"name\" : \"name\", \"id\" : 0, \"department\" : \"department\", \"interests\" : [ \"interests\", \"interests\" ], \"email\" : \"email\", \"volunteer_interests\" : [ \"volunteer_interests\", \"volunteer_interests\" ] }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

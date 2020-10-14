@@ -6,6 +6,7 @@ import com.seproject.meetgreetapp.model.Student;
 import com.seproject.meetgreetapp.repository.StudentRepository;
 import com.seproject.meetgreetapp.service.RegistrationService;
 import com.seproject.meetgreetapp.service.StudentService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,9 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate{
 
     @Autowired
     StudentService studentService;
+
+    @Autowired
+    ModelMapper mapper;
 
     @Override
     public Optional<NativeWebRequest> getRequest() {
@@ -76,7 +80,7 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate{
     }
 
     @Override
-    public ResponseEntity<InlineResponse200> userLogin(LoginRequestDTO loginRequestDTO) {
+    public ResponseEntity<StudentResponseDTO> userLogin(LoginRequestDTO loginRequestDTO) {
         if(studentRepository.findByUsername(loginRequestDTO.getUsername()) == null){
             Error error = new Error();
             error.setMessage("USER_NOT_FOUND");
@@ -89,6 +93,7 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate{
             error.setMessage("INVALID_CREDENTIALS");
             return new ResponseEntity(error,HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity(student.getId(), HttpStatus.OK);
+        StudentResponseDTO studentResponseDTO =  mapper.map(student, StudentResponseDTO.class);
+        return new ResponseEntity(studentResponseDTO, HttpStatus.OK);
     }
 }
