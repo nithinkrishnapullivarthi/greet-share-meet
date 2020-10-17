@@ -7,7 +7,8 @@
     <mat-grid-list cols="1" rowHeight="500px" style="background-color: aqua;">
         <mat-grid-tile>
             <div class="example-container">
-                <mat-form-field appearance="fill" class="width-50">
+                <mat-form-field appearance="outline" class="width-50">
+                    <mat-icon matPrefix>face</mat-icon>
                     <mat-label>Name</mat-label>
                     <input matInput #name formControlName="name" placeholder="enter your name">
                     <mat-error class="error-field"*ngIf="registerForm.controls.name.hasError('required')">
@@ -17,7 +18,8 @@
                         Name must be at least 6 characters long
                       </mat-error>
                 </mat-form-field>
-                <mat-form-field appearance="fill" class="width-50 ml-2">
+                <mat-form-field appearance="outline" class="width-50 ml-2">
+                    <mat-icon matPrefix>school</mat-icon>
                     <mat-label>Department</mat-label>
                     <input matInput #department formControlName="department" placeholder="enter your department">
                     <mat-error class="error-field"*ngIf="registerForm.controls.department.hasError('required')">
@@ -25,7 +27,8 @@
                       </mat-error>
                 </mat-form-field>
                 <br>
-                <mat-form-field appearance="fill" class="width-50">
+                <mat-form-field appearance="outline" class="width-50">
+                    <mat-icon matPrefix>email</mat-icon>
                     <mat-label>Email</mat-label>
                     <input matInput #email formControlName="email" type="email" placeholder="Ex. name@example.com">
                       <mat-error class="error-field"*ngIf="registerForm.controls.email.hasError('required')">
@@ -35,9 +38,9 @@
                        Please enter a valid email address
                       </mat-error>
                 </mat-form-field>
-                <mat-form-field appearance="fill" class="width-50 ml-2">
+                <mat-form-field appearance="outline" class="width-50 ml-2">
+                    <mat-icon matPrefix>phone</mat-icon>
                     <mat-label>Contact Number</mat-label>
-                    <span matPrefix>+1 &nbsp;</span>
                     <input #contactNumber type="tel" matInput formControlName="contactNumber"
                         placeholder="555-555-1234">
                         <mat-error class="error-field"*ngIf="registerForm.controls.contactNumber.hasError('required')">
@@ -49,7 +52,8 @@
                     <mat-icon matSuffix>mode_edit</mat-icon>
                 </mat-form-field>
                 <br>
-                <mat-form-field appearance="fill" class="width-50">
+                <mat-form-field appearance="outline" class="width-50">
+                    <mat-icon matPrefix>account_circle</mat-icon>
                     <mat-label>Username</mat-label>
                     <input matInput placeholder="Enter your Username" #userName formControlName="userName" type="text">
                     <mat-error class="error-field"*ngIf="registerForm.controls.userName.hasError('required')">
@@ -59,11 +63,12 @@
                         Username must be at least 6 characters long
                        </mat-error>
                 </mat-form-field>
-                <mat-form-field appearance="fill" class="width-50 ml-2">
+                <mat-form-field appearance="outline" class="width-50 ml-2">
+                    <mat-icon matPrefix>lock</mat-icon>
                     <mat-label>Password</mat-label>
                     <input matInput placeholder="Enter your password" formControlName="password" type="password">
                     <mat-error class="error-field"*ngIf="registerForm.controls.password.hasError('required')">
-                        Username is a required field
+                        Password is a required field
                       </mat-error>
                       <mat-error class="error-field"*ngIf="registerForm.controls.password.hasError('minlength')">
                         Password must be at least 8 characters long
@@ -71,7 +76,7 @@
                 </mat-form-field>
                 <br>
                 <div class="width-100" class="interests"><h2>Select your interests!</h2></div>
-                <mat-form-field appearance="fill" class="width-25">
+                <mat-form-field appearance="outline" class="width-25">
                     <mat-label>Sports</mat-label>
                     <mat-select #sports formControlName="sports" multiple>
                         <mat-select-trigger>
@@ -83,7 +88,7 @@
                         <mat-option *ngFor="let sport of sportsList" [value]="sport">{{sport}}</mat-option>
                     </mat-select>
                 </mat-form-field>
-                <mat-form-field appearance="fill" class="width-25 ml-1">
+                <mat-form-field appearance="outline" class="width-25 ml-1">
                     <mat-label>Academics</mat-label>
                     <mat-select #academics formControlName="academics" multiple>
                         <mat-select-trigger>
@@ -95,8 +100,8 @@
                         <mat-option *ngFor="let academics of academicsList" [value]="academics">{{academics}}
                         </mat-option>
                     </mat-select>
-                </mat-form-field>&nbsp;&nbsp;
-                <mat-form-field appearance="fill" class="width-25 ml-1">
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="width-25 ml-1">
                     <mat-label>Activities</mat-label>
                     <mat-select #activities formControlName="activities" multiple>
                         <mat-select-trigger>
@@ -110,7 +115,7 @@
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
-                <mat-form-field appearance="fill" class="width-25 ml-1">
+                <mat-form-field appearance="outline" class="width-25 ml-1">
                     <mat-label>Musical Instruments</mat-label>
                     <mat-select #musicalInstruments formControlName="musicalInstruments" multiple>
                         <mat-select-trigger>
@@ -136,7 +141,7 @@
                     <mat-radio-button value="no"> No</mat-radio-button>
                 </mat-radio-group>&nbsp;
                 <span style="font-size: 16px; font-weight:500;"  class="width-25 ml-1">Select atleast one category to volunteer</span>
-                <mat-form-field appearance="fill" class="width-25 ml-2">
+                <mat-form-field appearance="outline" class="width-25 ml-2">
                     <mat-label>volunteer</mat-label>
                     <mat-select #volunteer formControlName="volunteer" multiple>
                         <mat-select-trigger>
@@ -149,8 +154,10 @@
                     </mat-select>
                 </mat-form-field>
                 <br>
+            
                 <button mat-raised-button color="primary" type="submit" (click)="onRegister()"
                     [disabled]="registerForm.invalid||volunteerTo.length<1">Register</button>
+            
             </div>
         </mat-grid-tile>
     </mat-grid-list>    

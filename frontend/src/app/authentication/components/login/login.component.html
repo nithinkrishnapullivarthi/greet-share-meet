@@ -7,17 +7,15 @@
         </mat-card-header>
         <mat-list role="list">
           <mat-list-item role="listitem">
-
             <mat-form-field class="example-full-width" appearance="outline">
-              <mat-icon matPrefix>face</mat-icon>
+              <mat-icon matPrefix>account_circle</mat-icon>
               <mat-label>Username</mat-label>
               <input matInput placeholder="Enter your Username" formControlName="username" type="text">
-              <mat-error class="error-field"*ngIf="loginForm.controls.username.hasError('required')">
-                Username is a required field
+              <mat-error *ngIf="loginForm.controls.username.hasError('required')">
+                Username is required
               </mat-error>
-              <mat-error class="error-field"*ngIf="loginForm.controls.username.hasError('minlength')">
+              <mat-error *ngIf="loginForm.controls.username.hasError('minlength')">
                 Username must be at least 6 characters long
-
               </mat-error>
             </mat-form-field>
           </mat-list-item>
@@ -34,7 +32,6 @@
                 Password must be at least 8 characters long
               </mat-error>
             </mat-form-field>
-
           </mat-list-item>
         </mat-list>
         <mat-list-item role="listitem">

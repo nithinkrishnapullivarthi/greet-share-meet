@@ -1,8 +1,7 @@
 .main-body{
-  height: 91.43%;
   background-image: url('../../../../assets/images/blurbackground.jpg');
   justify-content: center;
-  padding: 3rem 1rem 1rem 2rem;
+  padding: 3rem 1rem 3rem 3rem;
 }
 mat-card{
   width: 95%;
@@ -36,7 +35,11 @@ mat-grid-tile {
   padding-top: 1rem;
 }
 .width-50{width: 49%;}
-.ml-1{margin-left: 1%;}
+.ml-1{margin-left: .5%;}
 .ml-2{margin-left: 2%;}
 .width-100{width: 100%;}
-.width-25{width: 24%;}
+.width-25{width: 23%;}
+
+.mat-grid-tile .mat-figure {
+  margin: -4px 0px 0px 0px !important;
+}
