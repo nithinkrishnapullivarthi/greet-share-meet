@@ -84,15 +84,16 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate{
         if(studentRepository.findByUsername(loginRequestDTO.getUsername()) == null){
             Error error = new Error();
             error.setMessage("USER_NOT_FOUND");
-            return new ResponseEntity(error,HttpStatus.NOT_FOUND);
+            return new ResponseEntity(error,HttpStatus.OK);
         }
 
         Student student = studentRepository.findByUsernameAndPassword(loginRequestDTO.getUsername(),loginRequestDTO.getPassword());
         if(student == null){
             Error error = new Error();
             error.setMessage("INVALID_CREDENTIALS");
-            return new ResponseEntity(error,HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(error,HttpStatus.OK);
         }
+
         StudentResponseDTO studentResponseDTO =  mapper.map(student, StudentResponseDTO.class);
         return new ResponseEntity(studentResponseDTO, HttpStatus.OK);
     }
