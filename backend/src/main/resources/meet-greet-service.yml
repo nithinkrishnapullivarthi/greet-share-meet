@@ -108,6 +108,8 @@ components:
           type: integer
         interest:
           type: string
+        interest_id:
+          type: integer
         announcement:
           type: string
     PairUpRequestDTO:

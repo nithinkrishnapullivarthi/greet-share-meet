@@ -47,7 +47,7 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate{
 
     @Override
     public ResponseEntity<List<AnnouncementResponseDTO>> getAllAnnouncements(Integer studentId) {
-        return null;
+        return new ResponseEntity(announcementService.getAllAnnouncementForStudent(studentId),HttpStatus.OK);
     }
 
     @Override

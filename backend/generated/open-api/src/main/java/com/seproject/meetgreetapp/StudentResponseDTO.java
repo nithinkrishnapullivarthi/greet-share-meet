@@ -14,7 +14,11 @@ import javax.validation.constraints.*;
 /**
  * StudentResponseDTO
  */
+<<<<<<< HEAD
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-14T11:20:10.394987-04:00[America/New_York]")
+=======
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-18T16:37:25.301242500-05:00[America/Chicago]")
+>>>>>>> 014a674... get announcements for matching interests
 
 public class StudentResponseDTO   {
   @JsonProperty("id")

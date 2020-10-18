@@ -21,6 +21,10 @@ public class Announcement {
     @Column(name="announcement", nullable = false)
     private String announcement;
 
+    @Column(name="interest_id", nullable = false)
+    private int interestId;
+
+
     @Column(name = "created_at")
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -47,6 +51,14 @@ public class Announcement {
 
     public void setInterest(String interest) {
         this.interest = interest;
+    }
+
+    public int getInterestId() {
+        return interestId;
+    }
+
+    public void setInterestId(int interestId) {
+        this.interestId = interestId;
     }
 
     public String getAnnouncement() {
