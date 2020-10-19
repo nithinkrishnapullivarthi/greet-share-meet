@@ -4,6 +4,7 @@ import com.seproject.meetgreetapp.*;
 import com.seproject.meetgreetapp.Error;
 import com.seproject.meetgreetapp.model.Student;
 import com.seproject.meetgreetapp.repository.StudentRepository;
+import com.seproject.meetgreetapp.service.AnnouncementService;
 import com.seproject.meetgreetapp.service.RegistrationService;
 import com.seproject.meetgreetapp.service.StudentService;
 import org.modelmapper.ModelMapper;
@@ -31,6 +32,9 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate{
     @Autowired
     ModelMapper mapper;
 
+    @Autowired
+    AnnouncementService announcementService;
+
     @Override
     public Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
@@ -43,7 +47,7 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate{
 
     @Override
     public ResponseEntity<List<AnnouncementResponseDTO>> getAllAnnouncements(Integer studentId) {
-        return null;
+        return new ResponseEntity(announcementService.getAllAnnouncementForStudent(studentId),HttpStatus.OK);
     }
 
     @Override
@@ -64,7 +68,7 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate{
 
     @Override
     public ResponseEntity<AnnouncementResponseDTO> makeAnnouncement(AnnouncementRequestDTO announcementRequestDTO) {
-        return null;
+        return new ResponseEntity(announcementService.createAnnouncement(announcementRequestDTO), HttpStatus.CREATED);
     }
 
     @Override
