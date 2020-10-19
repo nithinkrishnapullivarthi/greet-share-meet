@@ -4,6 +4,7 @@ import com.seproject.meetgreetapp.*;
 import com.seproject.meetgreetapp.Error;
 import com.seproject.meetgreetapp.model.Student;
 import com.seproject.meetgreetapp.repository.StudentRepository;
+import com.seproject.meetgreetapp.service.AnnouncementService;
 import com.seproject.meetgreetapp.service.RegistrationService;
 import com.seproject.meetgreetapp.service.StudentService;
 import org.modelmapper.ModelMapper;
@@ -31,6 +32,9 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate{
     @Autowired
     ModelMapper mapper;
 
+    @Autowired
+    AnnouncementService announcementService;
+
     @Override
     public Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
@@ -43,7 +47,7 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate{
 
     @Override
     public ResponseEntity<List<AnnouncementResponseDTO>> getAllAnnouncements(Integer studentId) {
-        return null;
+        return new ResponseEntity(announcementService.getAllAnnouncementForStudent(studentId),HttpStatus.OK);
     }
 
     @Override
@@ -64,7 +68,7 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate{
 
     @Override
     public ResponseEntity<AnnouncementResponseDTO> makeAnnouncement(AnnouncementRequestDTO announcementRequestDTO) {
-        return null;
+        return new ResponseEntity(announcementService.createAnnouncement(announcementRequestDTO), HttpStatus.CREATED);
     }
 
     @Override
@@ -84,15 +88,16 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate{
         if(studentRepository.findByUsername(loginRequestDTO.getUsername()) == null){
             Error error = new Error();
             error.setMessage("USER_NOT_FOUND");
-            return new ResponseEntity(error,HttpStatus.NOT_FOUND);
+            return new ResponseEntity(error,HttpStatus.OK);
         }
 
         Student student = studentRepository.findByUsernameAndPassword(loginRequestDTO.getUsername(),loginRequestDTO.getPassword());
         if(student == null){
             Error error = new Error();
             error.setMessage("INVALID_CREDENTIALS");
-            return new ResponseEntity(error,HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(error,HttpStatus.OK);
         }
+
         StudentResponseDTO studentResponseDTO =  mapper.map(student, StudentResponseDTO.class);
         return new ResponseEntity(studentResponseDTO, HttpStatus.OK);
     }
