@@ -30,7 +30,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-14T11:20:10.394987-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-21T14:20:59.893016-04:00[America/New_York]")
 
 @Validated
 @Api(value = "meet-greet", description = "the meet-greet API")

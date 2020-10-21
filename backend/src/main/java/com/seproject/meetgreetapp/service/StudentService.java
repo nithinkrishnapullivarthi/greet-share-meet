@@ -101,15 +101,18 @@ public class StudentService {
                         interestList.add(interest.getInterest());
                 }
             }
+
             // Populating student volunteer interests
-            for(Integer interestID: sVolunteerInterests){
-                for(Interest interest: interests){
-                    if(interest.getId() == interestID)
-                        volunteerInterestList.add(interest.getInterest());
+            if(student.getIsVolunteer()){
+                for(Integer interestID: sVolunteerInterests){
+                    for(Interest interest: interests){
+                        if(interest.getId() == interestID)
+                            volunteerInterestList.add(interest.getInterest());
+                    }
                 }
+                studentResponseDTO.setVolunteerInterests(volunteerInterestList);
             }
             studentResponseDTO.setInterests(interestList);
-            studentResponseDTO.setVolunteerInterests(volunteerInterestList);
             responseDTOList.add(studentResponseDTO);
         }
         return responseDTOList;
