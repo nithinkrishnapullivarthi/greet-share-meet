@@ -77,7 +77,7 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate{
         if(studentRepository.findByUsername(studentRequestDTO.getUsername()) != null){
             Error error = new Error();
             error.setMessage("USERNAME_EXISTS");
-            return new ResponseEntity(error,HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(error,HttpStatus.OK);
         }
         StudentResponseDTO studentResponseDTO = registrationService.saveStudentDetails(studentRequestDTO);
         return new ResponseEntity(studentResponseDTO, HttpStatus.CREATED);

@@ -22,7 +22,7 @@ public class Student {
     private String email;
 
     @Column(name="is_volunteer")
-    private String isVolunteer;
+    private Boolean isVolunteer;
 
     @Column(name="username")
     private String username;
@@ -70,11 +70,11 @@ public class Student {
         this.email = email;
     }
 
-    public String getIsVolunteer() {
+    public Boolean getIsVolunteer() {
         return isVolunteer;
     }
 
-    public void setIsVolunteer(String isVolunteer) {
+    public void setIsVolunteer(Boolean isVolunteer) {
         this.isVolunteer = isVolunteer;
     }
 
