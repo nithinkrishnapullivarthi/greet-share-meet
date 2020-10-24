@@ -3,7 +3,7 @@
         <mat-card-header>
             <img src="assets/images/meetandgreetlogo.jpg" alt="" class="responsive">
         </mat-card-header>
-        <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+        <form [formGroup]="registerForm">
             <div class="example-container">
                 <div class="flex-wrap-sec">
                     <mat-form-field appearance="outline" class="width-50">
@@ -39,29 +39,27 @@
                     <mat-form-field appearance="outline" class="width-50">
                         <mat-icon matPrefix>phone</mat-icon>
                         <mat-label>Contact Number</mat-label>
-                        <input #contactNumber type="tel" matInput formControlName="contactNumber"
+                        <input #contactNumber type="tel" matInput formControlName="contact"
                             placeholder="555-555-1234">
-                        <mat-error class="error-field" *ngIf="registerForm.controls.contactNumber.hasError('required')">
+                        <mat-error class="error-field" *ngIf="registerForm.controls.contact.hasError('required')">
                             Contact Number is a required field.
                         </mat-error>
-                        <mat-error class="error-field" *ngIf="registerForm.controls.contactNumber.hasError('pattern')">
+                        <mat-error class="error-field" *ngIf="registerForm.controls.contact.hasError('pattern')">
                             Enter valid contact number.
                         </mat-error>
                     </mat-form-field>
-
                     <mat-form-field appearance="outline" class="width-50">
                         <mat-icon matPrefix>account_circle</mat-icon>
                         <mat-label>Username</mat-label>
-                        <input matInput placeholder="Enter your Username" #userName formControlName="userName"
+                        <input matInput placeholder="Enter your Username" #userName formControlName="username"
                             type="text">
-                        <mat-error class="error-field" *ngIf="registerForm.controls.userName.hasError('required')">
+                        <mat-error class="error-field" *ngIf="registerForm.controls.username.hasError('required')">
                             Username is a required field
                         </mat-error>
-                        <mat-error class="error-field" *ngIf="registerForm.controls.userName.hasError('minlength')">
+                        <mat-error class="error-field" *ngIf="registerForm.controls.username.hasError('minlength')">
                             Username must be at least 6 characters long
                         </mat-error>
                     </mat-form-field>
-
                     <mat-form-field appearance="outline" class="width-50">
                         <mat-icon matPrefix>lock</mat-icon>
                         <mat-label>Password</mat-label>
@@ -133,10 +131,7 @@
                             </mat-select-trigger>
                             <mat-option *ngFor="let musicalInstruments of musicalInstrumentsList"
                                 [value]="musicalInstruments">{{musicalInstruments}}</mat-option>
-                        </mat-select>
-                        <mat-error class="error-field" *ngIf="volunteerTo.length<1">
-                            Select atleast one interest from the above categories
-                        </mat-error>
+                        </mat-select>   
                     </mat-form-field>
                 </div>
                 <div class="flex-wrap-sec">
@@ -147,15 +142,15 @@
                         </label>
                     </div>
                     <div class="radio-class">
-                        <mat-radio-group (change)="onRadioChange($event, 'volunteerradio')"
-                            aria-labelledby="example-radio-group-label" formControlName="volunteerradio">
-                            <mat-radio-button value="yes">Yes</mat-radio-button>&nbsp;
-                            <mat-radio-button value="no"> No</mat-radio-button>
+                        <mat-radio-group (change)="onRadioChange($event, 'is_volunteer')"
+                            aria-labelledby="example-radio-group-label" formControlName="is_volunteer">
+                            <mat-radio-button value="true">Yes</mat-radio-button>&nbsp;
+                            <mat-radio-button value="false"> No</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <mat-form-field appearance="outline" class="width-25">
                         <mat-label>volunteer</mat-label>
-                        <mat-select #volunteer formControlName="volunteer" multiple>
+                        <mat-select #volunteer formControlName="volunteer_interests" multiple>
                             <mat-select-trigger>
                                 {{volunteer.value ? volunteer.value[0] : ''}}
                                 <span *ngIf="volunteer.value?.length > 1" class="example-additional-selection">
@@ -163,16 +158,16 @@
                                     {{volunteer.value?.length === 2 ? 'other' : 'others'}})
                                 </span>
                             </mat-select-trigger>
-                            <mat-option *ngFor="let item of volunteerTo" [value]="item">{{item}}</mat-option>
+                            <mat-option *ngFor="let item of volunteer_interests" [value]="item">{{item}}</mat-option>
                         </mat-select>
                         <mat-error class="error-field"
-                            *ngIf="registerForm.controls.volunteerradio && registerForm.controls.volunteer.hasError('required')">
+                            *ngIf="registerForm.controls.is_volunteer && registerForm.controls.volunteer_interests.hasError('required')">
                             Select atleast one
                         </mat-error>
                     </mat-form-field>
                 </div>
                 <button mat-raised-button color="primary" type="submit" (click)="onRegister()"
-                    [disabled]="registerForm.invalid||volunteerTo.length<1">Register</button>
+                    [disabled]="registerForm.invalid||volunteer_interests.length<1">Register</button>
             </div>
         </form>
     </mat-card>

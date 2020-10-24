@@ -27,12 +27,12 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     let loginrequest = new LoginRequest();
     loginrequest = this.loginForm.value;
-
     this.loginservice.loginAuthentication(loginrequest).subscribe(res => {
       if ((!res.hasOwnProperty('message'))) {
         this.router.navigate(['home']);
       } else {
           if(res.message=="USER_NOT_FOUND")
+            console.log(res.message)
             this.errorMessage = "Account not found. Please register";
           if(res.message=="INVALID_CREDENTIALS")
             this.errorMessage = "Incorrect Username or Password";
