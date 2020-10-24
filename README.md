@@ -22,6 +22,6 @@ This web application helps students to greet,meet and share common interests
 3. Import the backend project as maven project in to IDE of your choice (Use Intellij or eclipse)
 4. Click on File -> Project Structure. 
 5. On the left side, click on Project Settings -> Modules.
-6. In the project structure, right click on the folder java in the path generated/open-api/src/main/java. select sources and click on Apply button.
+6. In the project structure, right click on the folder java in the path generated/open-api/src/main/java. select sources and click on Apply button. (Check the screenshot of Project structure in the root folder)
 7. Excute the command `mvn spring-boot:run`. This should start the spring boot application.
 
