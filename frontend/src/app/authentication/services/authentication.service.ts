@@ -1,44 +1,48 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LoginRequest } from '../models';
-
+import { RegisterRequest } from '../models';
+import { Observable, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http'
+import { environment } from 'src/environments/environment';
+import { catchError, map, tap } from 'rxjs/operators'
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  data: any;
+  constructor(private http: HttpClient) {
 
-  constructor(private http: HttpService) {
-    this.http.getConfig('assets/mock/data.json').subscribe(resp => {
-      this.data = resp;
-    });
   }
 
-  authenticate(request: LoginRequest) {
-    if (!this.data.hasOwnProperty(request.userName)) {
-      return {
-        status: false,
-        description: 'User not found'
-      }
-    } else {
-      const user = this.data[request.userName];
-      const status = (user.isActive) && (user.userName === request.userName) && (user.password === request.password);
-      status && sessionStorage.setItem('uaser', JSON.stringify(user));
+  public loginAuthentication(request: LoginRequest): Observable<any> {
+    return this.http.post<any>(environment.baseUrl + "/v1/meet-greet/students/login", request).pipe(
+      tap(response => {
+        if (!(response.message)) {
+          sessionStorage.setItem('user', JSON.stringify(response));
+        }
+      }),
+      catchError(error => this.handleError(error))
+    );
 
-      return {
-        status,
-        description: status ? 'Authentication successuful!' : (user.isActive ? 'Incorrect password!' : 'User access hasbeen restricted')
-      }
-    }
   }
-
   isUserLoggedIn() {
-    let user = sessionStorage.getItem('uaser');
+    let user = sessionStorage.getItem('user');
     console.log(!(user === null))
-    return !(user === null)
+    return (user === null)
   }
-
+  public registerUser(register :RegisterRequest):Observable<any>{
+    return this.http.post<any>(environment.baseUrl+"/v1/meet-greet/students/registration",register).pipe(
+      tap(response =>{
+      }),
+      catchError(error => this.handleError(error))
+    )
+  }
+  private handleError(error: HttpErrorResponse) {
+    return throwError(
+      'Something bad happened; please try again later.');
+  }
   logOut() {
-    sessionStorage.removeItem('uaser');
+    sessionStorage.removeItem('user');
   }
+  
 }

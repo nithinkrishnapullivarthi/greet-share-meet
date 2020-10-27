@@ -1,53 +1,85 @@
 .mainbody{
-background-color: beige;
-}
-.login-form{
   background-image: url('../../../../assets/images/blurbackground.jpg');
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 100%;
-  height: 100vh;
-  background-color: blueviolet;
+    justify-content: center;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    height: 100vh;
 }
 mat-card{
-  min-width: 470px;
+  width: 40%;
   height: auto;
-  padding: 4rem;
-  vertical-align: middle;
-  border-radius: 0rem;
+  background: #ffffffa3; 
+  border-radius: 0.2rem;
+  .responsive{
+    max-width: 100%;
+    height: auto;
+  }
   .mat-card-header {
-    background-color: black;
-    background-image: url('../../../../assets/images/meetandgreetlogo.jpg');
-    height: 95px;
-    margin-bottom: 2rem;
-
-   }
-   
-   .error-field{
-     color: red;
-     font-size: 14px;
-     font-weight: bold;
-     height: 14px;
-     padding: 1rem;
-     margin-left: 11rem;
-   }
+    flex-direction: row;
+    background: #191719;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img{
+      width: inherit;
+      height: auto;
+    }
 }
+  }
+  ::ng-deep .mat-card-header-text {
+    margin: 0px !important;
+  }
 button,a{
-  min-width: 150px;
   border-radius: 0.2em;
-  width: 100%;
   padding:1% !important;
   background-color: #3f51b5;
   font-size: 1.2em;
   color: #fff !important;
+  min-width: 120px;
+  margin: 10px 0px;
 }
-.example-form {
-  min-width: 150px;
-  max-width: 470px;
+.flex-wrap-sec{
+  display: flex;
+  flex-wrap: wrap;
   width: 100%;
+  justify-content: center;
+  margin: 15px 0;
   
 }
-.example-full-width {
+.flex-wrap{
+  display: flex;
+  flex-wrap: wrap;
   width: 100%;
+  justify-content: center;
+  font-size: 30px;
+  line-height: 1.2;
+  margin: 14px 0px 10px;
+  font-family: "Arial Black", Gadget, sans-serif;
+}
+.mat-form-field{
+  min-width: 120px;
+  margin: 0px 20px;
+}
+.width-50{
+  width: 36%;
+
+}
+.ml-1{margin-left: .5%;}
+.ml-2{margin-left: 2%;}
+.width-100{width: 80%;}
+.width-25{width: 20%;}
+
+.error-field{
+  color: rgb(255, 4, 4);
+  padding: 12px 9px;
+  margin: -10px auto 6px;
+  font-size: 13px;
+  font-weight: 500;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  background-color: #FFE3DA;
+  border-color: rgba(241, 97, 104, 0.2);
+  width: fit-content;
 }

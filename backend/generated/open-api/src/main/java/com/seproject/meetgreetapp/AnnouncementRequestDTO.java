@@ -12,7 +12,7 @@ import javax.validation.constraints.*;
 /**
  * AnnouncementRequestDTO
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-08T00:12:36.432262-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-21T14:20:59.893016-04:00[America/New_York]")
 
 public class AnnouncementRequestDTO   {
   @JsonProperty("studentId")
@@ -20,6 +20,9 @@ public class AnnouncementRequestDTO   {
 
   @JsonProperty("interest")
   private String interest;
+
+  @JsonProperty("interest_id")
+  private Integer interestId;
 
   @JsonProperty("announcement")
   private String announcement;
@@ -64,6 +67,26 @@ public class AnnouncementRequestDTO   {
     this.interest = interest;
   }
 
+  public AnnouncementRequestDTO interestId(Integer interestId) {
+    this.interestId = interestId;
+    return this;
+  }
+
+  /**
+   * Get interestId
+   * @return interestId
+  */
+  @ApiModelProperty(value = "")
+
+
+  public Integer getInterestId() {
+    return interestId;
+  }
+
+  public void setInterestId(Integer interestId) {
+    this.interestId = interestId;
+  }
+
   public AnnouncementRequestDTO announcement(String announcement) {
     this.announcement = announcement;
     return this;
@@ -96,12 +119,13 @@ public class AnnouncementRequestDTO   {
     AnnouncementRequestDTO announcementRequestDTO = (AnnouncementRequestDTO) o;
     return Objects.equals(this.studentId, announcementRequestDTO.studentId) &&
         Objects.equals(this.interest, announcementRequestDTO.interest) &&
+        Objects.equals(this.interestId, announcementRequestDTO.interestId) &&
         Objects.equals(this.announcement, announcementRequestDTO.announcement);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(studentId, interest, announcement);
+    return Objects.hash(studentId, interest, interestId, announcement);
   }
 
   @Override
@@ -111,6 +135,7 @@ public class AnnouncementRequestDTO   {
     
     sb.append("    studentId: ").append(toIndentedString(studentId)).append("\n");
     sb.append("    interest: ").append(toIndentedString(interest)).append("\n");
+    sb.append("    interestId: ").append(toIndentedString(interestId)).append("\n");
     sb.append("    announcement: ").append(toIndentedString(announcement)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -3,8 +3,8 @@ package com.seproject.meetgreetapp.api;
 import com.seproject.meetgreetapp.AnnouncementRequestDTO;
 import com.seproject.meetgreetapp.AnnouncementResponseDTO;
 import com.seproject.meetgreetapp.Error;
-import com.seproject.meetgreetapp.InlineResponse200;
 import com.seproject.meetgreetapp.LoginRequestDTO;
+import com.seproject.meetgreetapp.PairUpMatchesResponseDTO;
 import com.seproject.meetgreetapp.PairUpRequestDTO;
 import com.seproject.meetgreetapp.PairUpResponseDTO;
 import com.seproject.meetgreetapp.StudentRequestDTO;
@@ -24,7 +24,7 @@ import java.util.Optional;
  * A delegate to be called by the {@link MeetGreetApiController}}.
  * Implement this interface with a {@link org.springframework.stereotype.Service} annotated class.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-08T00:12:36.432262-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-21T14:20:59.893016-04:00[America/New_York]")
 
 public interface MeetGreetApiDelegate {
 
@@ -39,7 +39,7 @@ public interface MeetGreetApiDelegate {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"studentId\" : 6, \"interest\" : \"interest\", \"endDate\" : \"endDate\", \"id\" : 0, \"startDate\" : \"startDate\" }";
+                    String exampleString = "{ \"studentId\" : 0, \"startDateTime\" : \"startDateTime\", \"interest\" : \"interest\", \"endDateTime\" : \"endDateTime\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -73,7 +73,7 @@ public interface MeetGreetApiDelegate {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"is_volunteer\" : true, \"volunteer_interest\" : [ { \"interest\" : \"interest\", \"id\" : 1, \"category\" : \"category\" }, { \"interest\" : \"interest\", \"id\" : 1, \"category\" : \"category\" } ], \"contact\" : \"contact\", \"name\" : \"name\", \"id\" : 0, \"department\" : \"department\", \"interests\" : [ { \"interest\" : \"interest\", \"id\" : 6, \"category\" : \"category\" }, { \"interest\" : \"interest\", \"id\" : 6, \"category\" : \"category\" } ], \"email\" : \"email\" }";
+                    String exampleString = "{ \"is_volunteer\" : true, \"contact\" : \"contact\", \"name\" : \"name\", \"id\" : 0, \"department\" : \"department\", \"interests\" : [ \"interests\", \"interests\" ], \"email\" : \"email\", \"volunteer_interests\" : [ \"volunteer_interests\", \"volunteer_interests\" ] }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -84,13 +84,13 @@ public interface MeetGreetApiDelegate {
     }
 
     /**
-     * @see MeetGreetApi#getRegisteredTimeslots
+     * @see MeetGreetApi#getMatches
      */
-    default ResponseEntity<List<PairUpResponseDTO>> getRegisteredTimeslots(Integer studentId) {
+    default ResponseEntity<List<PairUpMatchesResponseDTO>> getMatches(Integer studentId) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"studentId\" : 6, \"interest\" : \"interest\", \"endDate\" : \"endDate\", \"id\" : 0, \"startDate\" : \"startDate\" }";
+                    String exampleString = "{ \"interest\" : \"interest\", \"contact\" : \"contact\", \"startDateAndTime\" : \"startDateAndTime\", \"name\" : \"name\", \"endDateAndTime\" : \"endDateAndTime\", \"email\" : \"email\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -107,7 +107,7 @@ public interface MeetGreetApiDelegate {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"is_volunteer\" : true, \"volunteer_interest\" : [ { \"interest\" : \"interest\", \"id\" : 1, \"category\" : \"category\" }, { \"interest\" : \"interest\", \"id\" : 1, \"category\" : \"category\" } ], \"contact\" : \"contact\", \"name\" : \"name\", \"id\" : 0, \"department\" : \"department\", \"interests\" : [ { \"interest\" : \"interest\", \"id\" : 6, \"category\" : \"category\" }, { \"interest\" : \"interest\", \"id\" : 6, \"category\" : \"category\" } ], \"email\" : \"email\" }";
+                    String exampleString = "{ \"is_volunteer\" : true, \"contact\" : \"contact\", \"name\" : \"name\", \"id\" : 0, \"department\" : \"department\", \"interests\" : [ \"interests\", \"interests\" ], \"email\" : \"email\", \"volunteer_interests\" : [ \"volunteer_interests\", \"volunteer_interests\" ] }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -141,7 +141,7 @@ public interface MeetGreetApiDelegate {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"is_volunteer\" : true, \"volunteer_interest\" : [ { \"interest\" : \"interest\", \"id\" : 1, \"category\" : \"category\" }, { \"interest\" : \"interest\", \"id\" : 1, \"category\" : \"category\" } ], \"contact\" : \"contact\", \"name\" : \"name\", \"id\" : 0, \"department\" : \"department\", \"interests\" : [ { \"interest\" : \"interest\", \"id\" : 6, \"category\" : \"category\" }, { \"interest\" : \"interest\", \"id\" : 6, \"category\" : \"category\" } ], \"email\" : \"email\" }";
+                    String exampleString = "{ \"is_volunteer\" : true, \"contact\" : \"contact\", \"name\" : \"name\", \"id\" : 0, \"department\" : \"department\", \"interests\" : [ \"interests\", \"interests\" ], \"email\" : \"email\", \"volunteer_interests\" : [ \"volunteer_interests\", \"volunteer_interests\" ] }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }
@@ -154,11 +154,11 @@ public interface MeetGreetApiDelegate {
     /**
      * @see MeetGreetApi#userLogin
      */
-    default ResponseEntity<InlineResponse200> userLogin(LoginRequestDTO loginRequestDTO) {
+    default ResponseEntity<StudentResponseDTO> userLogin(LoginRequestDTO loginRequestDTO) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"id\" : 0 }";
+                    String exampleString = "{ \"is_volunteer\" : true, \"contact\" : \"contact\", \"name\" : \"name\", \"id\" : 0, \"department\" : \"department\", \"interests\" : [ \"interests\", \"interests\" ], \"email\" : \"email\", \"volunteer_interests\" : [ \"volunteer_interests\", \"volunteer_interests\" ] }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

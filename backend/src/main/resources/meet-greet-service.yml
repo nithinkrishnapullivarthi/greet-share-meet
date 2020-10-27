@@ -47,11 +47,11 @@ components:
         interests:
           type: array
           items:
-            $ref: '#/components/schemas/Interest'
-        volunteer_interest:
+            type: string
+        volunteer_interests:
           type: array
           items:
-            $ref: '#/components/schemas/VolunteerInterest'
+            type: string
     AnnouncementResponseDTO:
       type: object
       properties:
@@ -61,18 +61,20 @@ components:
           type: string
         announcement:
           type: string
-    PairUpResponseDTO:
+    PairUpMatchesResponseDTO:
       type: object
       properties:
-        id:
-          type: integer
-        studentId:
-          type: integer
+        name:
+          type: string
+        contact:
+          type: string
+        email:
+          type: string
         interest:
           type: string
-        startDate:
+        startDateAndTime:
           type: string
-        endDate:
+        endDateAndTime:
           type: string
     StudentRequestDTO:
       type: object
@@ -94,11 +96,11 @@ components:
         interests:
           type: array
           items:
-            $ref: '#/components/schemas/Interest'
-        volunteer_interest:
+            type: string
+        volunteer_interests:
           type: array
           items:
-            $ref: '#/components/schemas/VolunteerInterest'
+            type: string
     AnnouncementRequestDTO:
       type: object
       properties:
@@ -106,6 +108,8 @@ components:
           type: integer
         interest:
           type: string
+        interest_id:
+          type: integer
         announcement:
           type: string
     PairUpRequestDTO:
@@ -115,9 +119,20 @@ components:
           type: integer
         interest:
           type: string
-        startDate:
+        startDateTime:
           type: string
-        endDate:
+        endDateTime:
+          type: string
+    PairUpResponseDTO:
+      type: object
+      properties:
+        studentId:
+          type: integer
+        interest:
+          type: string
+        startDateTime:
+          type: string
+        endDateTime:
           type: string
     LoginRequestDTO:
       type: object
@@ -134,10 +149,10 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/AnnouncementResponseDTO'
-    ListPairUpResponseDTO:
+    ListPairUpMatchesResponseDTO:
       type: array
       items:
-        $ref: '#/components/schemas/PairUpResponseDTO'
+        $ref: '#/components/schemas/PairUpMatchesResponseDTO'
     user:
       type: object
       properties:
@@ -178,12 +193,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/PairUpResponseDTO'
-    SuccessfulAllRegisteredTimeslots:
+    SuccessfulAllMatches:
       description: " "
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ListPairUpResponseDTO'
+            $ref: '#/components/schemas/ListPairUpMatchesResponseDTO'
     Error:
       description: Unknown error occured
       content:
@@ -259,15 +274,8 @@ paths:
               $ref: '#/components/schemas/LoginRequestDTO'
       responses:
         '200':
-          description: A JSON object containing user name
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-        '404' :
+          $ref: '#/components/responses/SuccessfullStudentRetrieval'
+        '404':
           $ref: '#/components/responses/Error'
         default:
           description: "Unknown Error"
@@ -327,7 +335,7 @@ paths:
           description: "Unknown Error"
     get:
       description: To get all registered time slots
-      operationId: getRegisteredTimeslots
+      operationId: getMatches
       summary: To get all registered time slots
       parameters:
         - in: query
@@ -336,7 +344,7 @@ paths:
             type: integer
       responses:
         '200':
-          $ref: '#/components/responses/SuccessfulAllRegisteredTimeslots'
+          $ref: '#/components/responses/SuccessfulAllMatches'
         '404' :
           $ref: '#/components/responses/Error'
         default:

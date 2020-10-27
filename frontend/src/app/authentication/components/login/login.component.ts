@@ -10,12 +10,8 @@ import { LoginRequest } from '../../models';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  private loginComponent: LoginComponent;
   public loginForm: FormGroup;
-  invalidLogin = {
-    status: false,
-    description: ''
-  };
+  errorMessage = null;
   constructor
     (private fb: FormBuilder,
       private router: Router,
@@ -23,21 +19,25 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      userName: ['', [Validators.required, Validators.minLength(5)]],
-      password: ['', Validators.required],
+      username: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
   onSubmit() {
-    let loginRequest = new LoginRequest();
-    loginRequest = this.loginForm.value;
-  const res=this.loginservice.authenticate(loginRequest);
-    if(res.status ) {
-      this.router.navigate(['home']);
-    }
-    else {
-      this.invalidLogin = res;
-    }
+    let loginrequest = new LoginRequest();
+    loginrequest = this.loginForm.value;
+    this.loginservice.loginAuthentication(loginrequest).subscribe(res => {
+      if ((!res.hasOwnProperty('message'))) {
+        this.router.navigate(['home']);
+      } else {
+          if(res.message=="USER_NOT_FOUND")
+            console.log(res.message)
+            this.errorMessage = "Account not found. Please register";
+          if(res.message=="INVALID_CREDENTIALS")
+            this.errorMessage = "Incorrect Username or Password";
+      }
+    });
   }
 
 }

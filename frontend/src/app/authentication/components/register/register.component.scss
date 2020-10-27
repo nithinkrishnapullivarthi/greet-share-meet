@@ -1,19 +1,26 @@
 .main-body{
-  height: 91.43%;
   background-image: url('../../../../assets/images/blurbackground.jpg');
-  justify-content: center;
-  padding: 3rem 1rem 1rem 2rem;
+    justify-content: center;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    height: 100vh;
 }
 mat-card{
-  width: 95%;
+  width: 65%;
+  height: auto;
+  background: #ffffffa3;
+  .responsive{
+    max-width: 100%;
+    height: auto;
+  }
   .mat-card-header {
-    background-image: url('../../../../assets/images/meetandgreetlogo.jpg');
-    height: 100px;
-    background-color: black;
-    background-repeat: repeat-y;
-    background-position: 30rem;
-    margin-bottom: 20px;
-   }
+    flex-direction: row;
+    background: #191719;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
   }
 
 button,a {
@@ -25,18 +32,45 @@ button,a {
   font-size: 1.2em;
   color: #fff !important;
 }
-.example-container{
-  
+.flex-wrap-sec{
+  display: flex;
+  flex-wrap: wrap;
   width: 100%;
-  padding: 2rem;
+  justify-content: center;
+  margin: 15px 0;
+}
+.flex-wrap{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
 }
 .example-radio-button{margin-left: 7px;}
 mat-grid-tile {
   background:#fafafa;
   padding-top: 1rem;
 }
-.width-50{width: 49%;}
-.ml-1{margin-left: 1%;}
+::ng-deep .mat-card-header-text {
+  margin: 0px !important;
+}
+.mat-form-field{
+  min-width: 120px;
+  margin: 0px 20px;
+}
+.width-50{
+  width: 45%;
+
+}
+.ml-1{margin-left: .5%;}
 .ml-2{margin-left: 2%;}
 .width-100{width: 100%;}
-.width-25{width: 24%;}
+.width-25{width: 20%;}
+.radio-class{
+  margin: 10px;
+  padding-top: 10px;
+}
+@media only screen and (max-width: 1231px) {
+  .main-body{
+     height: unset;
+  }
+}

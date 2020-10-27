@@ -3,8 +3,6 @@ package com.seproject.meetgreetapp;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.seproject.meetgreetapp.Interest;
-import com.seproject.meetgreetapp.VolunteerInterest;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
@@ -16,7 +14,7 @@ import javax.validation.constraints.*;
 /**
  * StudentResponseDTO
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-08T00:12:36.432262-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-21T14:20:59.893016-04:00[America/New_York]")
 
 public class StudentResponseDTO   {
   @JsonProperty("id")
@@ -39,11 +37,11 @@ public class StudentResponseDTO   {
 
   @JsonProperty("interests")
   @Valid
-  private List<Interest> interests = null;
+  private List<String> interests = null;
 
-  @JsonProperty("volunteer_interest")
+  @JsonProperty("volunteer_interests")
   @Valid
-  private List<VolunteerInterest> volunteerInterest = null;
+  private List<String> volunteerInterests = null;
 
   public StudentResponseDTO id(Integer id) {
     this.id = id;
@@ -165,12 +163,12 @@ public class StudentResponseDTO   {
     this.contact = contact;
   }
 
-  public StudentResponseDTO interests(List<Interest> interests) {
+  public StudentResponseDTO interests(List<String> interests) {
     this.interests = interests;
     return this;
   }
 
-  public StudentResponseDTO addInterestsItem(Interest interestsItem) {
+  public StudentResponseDTO addInterestsItem(String interestsItem) {
     if (this.interests == null) {
       this.interests = new ArrayList<>();
     }
@@ -184,43 +182,41 @@ public class StudentResponseDTO   {
   */
   @ApiModelProperty(value = "")
 
-  @Valid
 
-  public List<Interest> getInterests() {
+  public List<String> getInterests() {
     return interests;
   }
 
-  public void setInterests(List<Interest> interests) {
+  public void setInterests(List<String> interests) {
     this.interests = interests;
   }
 
-  public StudentResponseDTO volunteerInterest(List<VolunteerInterest> volunteerInterest) {
-    this.volunteerInterest = volunteerInterest;
+  public StudentResponseDTO volunteerInterests(List<String> volunteerInterests) {
+    this.volunteerInterests = volunteerInterests;
     return this;
   }
 
-  public StudentResponseDTO addVolunteerInterestItem(VolunteerInterest volunteerInterestItem) {
-    if (this.volunteerInterest == null) {
-      this.volunteerInterest = new ArrayList<>();
+  public StudentResponseDTO addVolunteerInterestsItem(String volunteerInterestsItem) {
+    if (this.volunteerInterests == null) {
+      this.volunteerInterests = new ArrayList<>();
     }
-    this.volunteerInterest.add(volunteerInterestItem);
+    this.volunteerInterests.add(volunteerInterestsItem);
     return this;
   }
 
   /**
-   * Get volunteerInterest
-   * @return volunteerInterest
+   * Get volunteerInterests
+   * @return volunteerInterests
   */
   @ApiModelProperty(value = "")
 
-  @Valid
 
-  public List<VolunteerInterest> getVolunteerInterest() {
-    return volunteerInterest;
+  public List<String> getVolunteerInterests() {
+    return volunteerInterests;
   }
 
-  public void setVolunteerInterest(List<VolunteerInterest> volunteerInterest) {
-    this.volunteerInterest = volunteerInterest;
+  public void setVolunteerInterests(List<String> volunteerInterests) {
+    this.volunteerInterests = volunteerInterests;
   }
 
 
@@ -240,12 +236,12 @@ public class StudentResponseDTO   {
         Objects.equals(this.isVolunteer, studentResponseDTO.isVolunteer) &&
         Objects.equals(this.contact, studentResponseDTO.contact) &&
         Objects.equals(this.interests, studentResponseDTO.interests) &&
-        Objects.equals(this.volunteerInterest, studentResponseDTO.volunteerInterest);
+        Objects.equals(this.volunteerInterests, studentResponseDTO.volunteerInterests);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, department, email, isVolunteer, contact, interests, volunteerInterest);
+    return Objects.hash(id, name, department, email, isVolunteer, contact, interests, volunteerInterests);
   }
 
   @Override
@@ -260,7 +256,7 @@ public class StudentResponseDTO   {
     sb.append("    isVolunteer: ").append(toIndentedString(isVolunteer)).append("\n");
     sb.append("    contact: ").append(toIndentedString(contact)).append("\n");
     sb.append("    interests: ").append(toIndentedString(interests)).append("\n");
-    sb.append("    volunteerInterest: ").append(toIndentedString(volunteerInterest)).append("\n");
+    sb.append("    volunteerInterests: ").append(toIndentedString(volunteerInterests)).append("\n");
     sb.append("}");
     return sb.toString();
   }
