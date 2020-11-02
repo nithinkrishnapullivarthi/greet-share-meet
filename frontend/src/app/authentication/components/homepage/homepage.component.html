@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div class="body">
+            <div >
+                <form class="stile" >
+                    <input type="text" placeholder="Search.." style="height: 30px; margin-right: 10px; width: 35%; opacity: 55%; border-radius: 10px;">
+                    <button mat-raised-button color="primary"style="padding-block: 2%">Search</button>
+                  </form>
+            </div>
+
+            <div class="tile" *ngFor="let card of cards">
+                <mat-card class = "mat-card" >
+                    <!--mdb-card-img [src]="card.img" alt="Card image cap">
+                    </mdb-card-img-->
+                    <mat-card-title>
+                        <h4>{{card.name}}</h4>
+                    </mat-card-title>
+                    
+                    <mat-card-text>
+                        {{card.description}}
+                    </mat-card-text>
+
+                    <br>
+                    <br>
+                    <mat-card-text>
+                        {{card.activities}}
+                    </mat-card-text>
+                    <br>
+                    <br>
+                    <mat-card-text>
+                        {{card.volunteer}}
+                    </mat-card-text>
+                    <br>
+                    <br>
+                    
+                    <button mat-raised-button color="primary" style="margin-left: 85%; margin-right: 10%;">{{card.buttonText}}</button>
+                </mat-card>
+            </div>
+                    
+        </div>
+    </body>
+</html>

@@ -21,12 +21,15 @@ export class AnnouncementComponent implements OnInit {
   
   ngOnInit(): void {
     this.announcementForm = this.form.group({
+      
       announcement: ['', [Validators.required,Validators.minLength(5)]],
       tags:[[],[Validators.required]]
     });
   }
   onAnnounce() {
+    console.log(Router.name);
     let announcementRequest = new AnnouncementRequest();
     announcementRequest= this.announcementForm.value;
+    alert('Announcement created successfully');
   }
 }
