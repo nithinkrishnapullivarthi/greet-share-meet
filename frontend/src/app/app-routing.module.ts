@@ -3,8 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { TimelineComponent } from './timeline/timeline.component';
-import {HomeComponent} from './home/home.component'
+import {HomeComponent} from './authentication/home/home.component'
 import { AnnouncementComponent } from './authentication/components/announcement/announcement.component';
+import { HomepageComponent } from './authentication/components/homepage/homepage.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,13 @@ const routes: Routes = [
   },
   {
     component: HomeComponent,
+    path: 'announcement',
+    component: AnnouncementComponent,
+    //canActivate: [AuthGuard]
+  },
+  {
+    path: 'homepage',
+    component: HomepageComponent,
     //canActivate: [AuthGuard]
   }, {
     path: '**',

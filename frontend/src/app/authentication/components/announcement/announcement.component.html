@@ -1,34 +1,30 @@
 <!DOCTYPE html>
 <html>
     <body>
-        <div class = "body">
             <div class="tile">
                 <form [formGroup]="announcementForm" (ngSubmit)="onAnnounce()" >
                     <div class="example-container">
                         <mat-form-field appearance="outline">
                             <mat-label>Select me</mat-label>
                             <mat-select  #tags formControlName="tags" multiple>
-                              <mat-option value="option">Music</mat-option>
-                              <mat-option value="option">Sports</mat-option>
-                              <mat-option value="option">Recreation</mat-option>
-                              <mat-option value="option">Study</mat-option>
-                              <mat-option value="option">Other</mat-option>
+                              <mat-option value="option">Guitar</mat-option>
+                              <mat-option value="option">Basketball</mat-option>
+                              <mat-option value="option">Machine Learning</mat-option>
+                              <mat-option value="option">Cricket</mat-option>
+                              <mat-option value="option">Swimming</mat-option>
                             </mat-select>
-                          </mat-form-field>
+                        </mat-form-field>
 
-                            <mat-form-field appearance="outline" class="text-area">
+                          <mat-form-field appearance="outline" class="text-area">
                                 <mat-label>Don't hesitate, say it out loud.</mat-label>
                                 <textarea matInput placeholder="Musical Event next Monday" class="with" formControlName="announcement" type="text"></textarea>
-                            </mat-form-field>
+                          </mat-form-field>
 
                           <div class="example-button-row" class="padding">
                             <button mat-raised-button color="primary" type="submit" (click)="onAnnounce()" [disabled]="announcementForm.invalid">Publish</button>
                           </div>
                       </div>
                 </form>
-
             </div>
-        </div>
-
     </body>
 </html>

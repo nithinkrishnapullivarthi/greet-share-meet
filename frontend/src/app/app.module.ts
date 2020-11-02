@@ -9,12 +9,17 @@ import { TimelineComponent } from './timeline/timeline.component';
 import { AnnouncementComponent } from './authentication/components/announcement/announcement.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import { NavbarComponent } from './navbar/navbar.component';
+import { HomepageComponent } from './authentication/components/homepage/homepage.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     TimelineComponent,
-    AnnouncementComponent
+    AnnouncementComponent,
+    NavbarComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
