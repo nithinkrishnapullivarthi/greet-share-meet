@@ -30,7 +30,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-21T14:20:59.893016-04:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-10-30T00:21:25.987437-04:00[America/New_York]")
 
 @Validated
 @Api(value = "meet-greet", description = "the meet-greet API")
@@ -93,7 +93,7 @@ public interface MeetGreetApi {
     }
 
 
-    @ApiOperation(value = "Retrieves particular student information", nickname = "getStudent", notes = "To particular student details", response = StudentResponseDTO.class, tags={  })
+    @ApiOperation(value = "Retrieves particular student information", nickname = "getStudent", notes = "To get articular student details", response = StudentResponseDTO.class, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "", response = StudentResponseDTO.class),
         @ApiResponse(code = 404, message = "Unknown error occured", response = Error.class),
@@ -131,6 +131,34 @@ public interface MeetGreetApi {
         method = RequestMethod.POST)
     default ResponseEntity<StudentResponseDTO> registerUser(@ApiParam(value = "Register student information" ,required=true )  @Valid @RequestBody StudentRequestDTO studentRequestDTO) {
         return getDelegate().registerUser(studentRequestDTO);
+    }
+
+
+    @ApiOperation(value = "", nickname = "updateStudentDetails", notes = "To update particular student details", response = StudentResponseDTO.class, tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "", response = StudentResponseDTO.class),
+        @ApiResponse(code = 404, message = "Unknown error occured", response = Error.class),
+        @ApiResponse(code = 200, message = "Unknown Error") })
+    @RequestMapping(value = "/meet-greet/students/{studentId}",
+        produces = { "application/json" }, 
+        consumes = { "application/json" },
+        method = RequestMethod.PUT)
+    default ResponseEntity<StudentResponseDTO> updateStudentDetails(@ApiParam(value = "",required=true) @PathVariable("studentId") Integer studentId,@ApiParam(value = "Update student information" ,required=true )  @Valid @RequestBody StudentRequestDTO studentRequestDTO) {
+        return getDelegate().updateStudentDetails(studentId, studentRequestDTO);
+    }
+
+
+    @ApiOperation(value = "", nickname = "updateStudentInterests", notes = "To update particular student interests", response = StudentResponseDTO.class, tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "", response = StudentResponseDTO.class),
+        @ApiResponse(code = 404, message = "Unknown error occured", response = Error.class),
+        @ApiResponse(code = 200, message = "Unknown Error") })
+    @RequestMapping(value = "/meet-greet/students/interests/{studentId}",
+        produces = { "application/json" }, 
+        consumes = { "application/json" },
+        method = RequestMethod.PUT)
+    default ResponseEntity<StudentResponseDTO> updateStudentInterests(@ApiParam(value = "",required=true) @PathVariable("studentId") Integer studentId,@ApiParam(value = "Update student interests" ,required=true )  @Valid @RequestBody StudentRequestDTO studentRequestDTO) {
+        return getDelegate().updateStudentInterests(studentId, studentRequestDTO);
     }
 
 

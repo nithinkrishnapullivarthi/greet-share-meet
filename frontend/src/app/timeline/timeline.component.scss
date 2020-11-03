@@ -1,0 +1,36 @@
+.title{
+  display: inline-flexbox;
+  max-width: calc(250px);
+  align-self: center;
+}
+
+.main{
+  height: 91.43%;
+  background-image: url('../../assets/images/blurbackground.jpg');
+  justify-content: center;
+  padding: 3rem 1rem 1rem 2rem;
+}
+.announcement-card {
+    display: inline-flexbox;
+    max-width: calc(100% - 450px);
+    align-self: flex-start;
+      margin-left: 100px;
+      padding-left: 25px;
+    
+    &:hover {
+        background: #F6F2F2;
+        color: #000000;
+      }
+      .container {
+        padding: 2px 16px;
+      }
+      
+
+  
+    }
+
+
+    
+      
+  
+  

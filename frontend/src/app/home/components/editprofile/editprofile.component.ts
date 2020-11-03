@@ -25,8 +25,6 @@ export class EditprofileComponent implements OnInit {
         email: [res.email, [Validators.required, Validators.email]],
         department: [res.department, Validators.required],
         contact: [res.contact, [Validators.required, Validators.pattern("[0-9]{10}"), Validators.maxLength(10)]],
-        username: new FormControl({ value: res.name, disabled: true }, [Validators.required, Validators.minLength(6)]),
-        password: ['XXXXXXXXX', [Validators.required, Validators.minLength(8)]]
       });
       this.loaded = true;
     });

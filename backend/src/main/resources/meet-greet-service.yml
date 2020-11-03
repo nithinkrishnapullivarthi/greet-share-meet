@@ -225,7 +225,7 @@ paths:
           description: "Unknown Error"
   "/meet-greet/students/{studentId}":
     get:
-      description: To particular student details
+      description: To get articular student details
       operationId: getStudent
       summary: Retrieves particular student information
       parameters:
@@ -238,6 +238,53 @@ paths:
         '200':
           $ref: '#/components/responses/SuccessfullStudentRetrieval'
         '404' :
+          $ref: '#/components/responses/Error'
+        default:
+          description: "Unknown Error"
+    put:
+      description: To update particular student details
+      operationId: updateStudentDetails
+      parameters:
+        - in: path
+          name: studentId
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        description: Update student information
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudentRequestDTO'
+      responses:
+        '200':
+          $ref: '#/components/responses/SuccessfullStudentRetrieval'
+        '404':
+          $ref: '#/components/responses/Error'
+        default:
+          description: "Unknown Error"
+  "/meet-greet/students/interests/{studentId}":
+    put:
+      description: To update particular student interests
+      operationId: updateStudentInterests
+      parameters:
+        - in: path
+          name: studentId
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        description: Update student interests
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudentRequestDTO'
+      responses:
+        '200':
+          $ref: '#/components/responses/SuccessfullStudentRetrieval'
+        '404':
           $ref: '#/components/responses/Error'
         default:
           description: "Unknown Error"
