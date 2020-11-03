@@ -5,15 +5,18 @@
         </mat-card-header>
         <form [formGroup]="registerForm">
             <div class="example-container">
+                <div class="flex-wrap">
+                    <div *ngIf="errorMessage" class="error-field">Username already exists</div>
+                </div>
                 <div class="flex-wrap-sec">
                     <mat-form-field appearance="outline" class="width-50">
                         <mat-icon matPrefix>face</mat-icon>
                         <mat-label>Name</mat-label>
                         <input matInput #name formControlName="name" placeholder="enter your name">
-                        <mat-error class="error-field" *ngIf="registerForm.controls.name.hasError('required')">
+                        <mat-error *ngIf="registerForm.controls.name.hasError('required')">
                             Name is a required field
                         </mat-error>
-                        <mat-error class="error-field" *ngIf="registerForm.controls.name.hasError('minlength')">
+                        <mat-error *ngIf="registerForm.controls.name.hasError('minlength')">
                             Name must be at least 6 characters long
                         </mat-error>
                     </mat-form-field>
@@ -21,7 +24,7 @@
                         <mat-icon matPrefix>school</mat-icon>
                         <mat-label>Department</mat-label>
                         <input matInput #department formControlName="department" placeholder="enter your department">
-                        <mat-error class="error-field" *ngIf="registerForm.controls.department.hasError('required')">
+                        <mat-error *ngIf="registerForm.controls.department.hasError('required')">
                             Department is a required field
                         </mat-error>
                     </mat-form-field>
@@ -29,10 +32,10 @@
                         <mat-icon matPrefix>email</mat-icon>
                         <mat-label>Email</mat-label>
                         <input matInput #email formControlName="email" type="email" placeholder="Ex. name@example.com">
-                        <mat-error class="error-field" *ngIf="registerForm.controls.email.hasError('required')">
+                        <mat-error *ngIf="registerForm.controls.email.hasError('required')">
                             Email address is a required field.
                         </mat-error>
-                        <mat-error class="error-field" *ngIf="registerForm.controls.email.hasError('email')">
+                        <mat-error *ngIf="registerForm.controls.email.hasError('email')">
                             Please enter a valid email address
                         </mat-error>
                     </mat-form-field>
@@ -41,10 +44,10 @@
                         <mat-label>Contact Number</mat-label>
                         <input #contactNumber type="tel" matInput formControlName="contact"
                             placeholder="555-555-1234">
-                        <mat-error class="error-field" *ngIf="registerForm.controls.contact.hasError('required')">
+                        <mat-error *ngIf="registerForm.controls.contact.hasError('required')">
                             Contact Number is a required field.
                         </mat-error>
-                        <mat-error class="error-field" *ngIf="registerForm.controls.contact.hasError('pattern')">
+                        <mat-error *ngIf="registerForm.controls.contact.hasError('pattern')">
                             Enter valid contact number.
                         </mat-error>
                     </mat-form-field>
@@ -53,10 +56,10 @@
                         <mat-label>Username</mat-label>
                         <input matInput placeholder="Enter your Username" #userName formControlName="username"
                             type="text">
-                        <mat-error class="error-field" *ngIf="registerForm.controls.username.hasError('required')">
+                        <mat-error *ngIf="registerForm.controls.username.hasError('required')">
                             Username is a required field
                         </mat-error>
-                        <mat-error class="error-field" *ngIf="registerForm.controls.username.hasError('minlength')">
+                        <mat-error *ngIf="registerForm.controls.username.hasError('minlength')">
                             Username must be at least 6 characters long
                         </mat-error>
                     </mat-form-field>
@@ -64,10 +67,10 @@
                         <mat-icon matPrefix>lock</mat-icon>
                         <mat-label>Password</mat-label>
                         <input matInput placeholder="Enter your password" formControlName="password" type="password">
-                        <mat-error class="error-field" *ngIf="registerForm.controls.password.hasError('required')">
+                        <mat-error *ngIf="registerForm.controls.password.hasError('required')">
                             Password is a required field
                         </mat-error>
-                        <mat-error class="error-field" *ngIf="registerForm.controls.password.hasError('minlength')">
+                        <mat-error *ngIf="registerForm.controls.password.hasError('minlength')">
                             Password must be at least 8 characters long
                         </mat-error>
                     </mat-form-field>
@@ -160,12 +163,13 @@
                             </mat-select-trigger>
                             <mat-option *ngFor="let item of volunteer_interests" [value]="item">{{item}}</mat-option>
                         </mat-select>
-                        <mat-error class="error-field"
+                        <mat-error
                             *ngIf="registerForm.controls.is_volunteer && registerForm.controls.volunteer_interests.hasError('required')">
                             Select atleast one
                         </mat-error>
                     </mat-form-field>
                 </div>
+                
                 <button mat-raised-button color="primary" type="submit" (click)="onRegister()"
                     [disabled]="registerForm.invalid||volunteer_interests.length<1">Register</button>
             </div>

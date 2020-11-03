@@ -23,12 +23,10 @@ export class AuthenticationService {
       }),
       catchError(error => this.handleError(error))
     );
-
   }
+  
   isUserLoggedIn() {
-    let user = sessionStorage.getItem('user');
-    console.log(!(user === null))
-    return (user === null)
+    return sessionStorage.getItem('user'); 
   }
   public registerUser(register :RegisterRequest):Observable<any>{
     return this.http.post<any>(environment.baseUrl+"/v1/meet-greet/students/registration",register).pipe(
@@ -37,10 +35,13 @@ export class AuthenticationService {
       catchError(error => this.handleError(error))
     )
   }
+
   private handleError(error: HttpErrorResponse) {
     return throwError(
       'Something bad happened; please try again later.');
   }
+
+  
   logOut() {
     sessionStorage.removeItem('user');
   }
