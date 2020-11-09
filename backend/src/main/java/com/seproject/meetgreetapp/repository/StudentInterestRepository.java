@@ -9,5 +9,6 @@ import java.util.List;
 public interface StudentInterestRepository extends JpaRepository<StudentInterest, Integer> {
     public List<StudentInterest> findByStudentId(Integer studentId);
     public List<StudentInterest> findByInterestIdIn(List<Integer> interestIds);
+    public void deleteByStudentId(Integer studentId);
 }
 

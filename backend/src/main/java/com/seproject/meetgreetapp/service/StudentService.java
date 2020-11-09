@@ -1,5 +1,6 @@
 package com.seproject.meetgreetapp.service;
 
+import com.seproject.meetgreetapp.StudentRequestDTO;
 import com.seproject.meetgreetapp.StudentResponseDTO;
 import com.seproject.meetgreetapp.model.Interest;
 import com.seproject.meetgreetapp.model.Student;
@@ -12,6 +13,8 @@ import com.seproject.meetgreetapp.repository.StudentVolunteerInterestRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -157,4 +160,52 @@ public class StudentService {
         return studentResponseDTO;
     }
 
+    public StudentResponseDTO updateStudentDetails(Integer studentId, StudentRequestDTO studentRequestDTO){
+        Optional<Student> studentEntity = studentRepository.findById(studentId);
+        Student student = null;
+        if(studentEntity.isPresent()){
+            student = studentEntity.get();
+            student.setContact(studentRequestDTO.getContact());
+            student.setDepartment(studentRequestDTO.getDepartment());
+            student.setEmail(studentRequestDTO.getEmail());
+            student.setName(studentRequestDTO.getName());
+            studentRepository.save(student);
+        }
+        return mapper.map(student,StudentResponseDTO.class);
+    }
+
+    @Transactional
+    public StudentResponseDTO updateStudentInterests(Integer studentId, StudentRequestDTO studentRequestDTO){
+        studentInterestRepository.deleteByStudentId(studentId);
+        studentVolunteerInterestRepository.deleteByStudentId(studentId);
+
+        List<String> interests = studentRequestDTO.getInterests();
+        List<StudentInterest> studentInterests = new ArrayList<>();
+
+        for(String interest: interests){
+            StudentInterest studentInterest = new StudentInterest();
+            studentInterest.setStudentId(studentId);
+            studentInterest.setInterestId(interestRepository.findByInterest(interest).getId());
+            studentInterests.add(studentInterest);
+        }
+        studentInterestRepository.saveAll(studentInterests);
+        
+        if(studentRequestDTO.getIsVolunteer()){
+            updateStudentVolunteerInterests(studentId, studentRequestDTO);
+        }
+        StudentResponseDTO studentResponseDTO =  mapper.map(studentRequestDTO, StudentResponseDTO.class);
+        return studentResponseDTO;
+    }
+
+    private void updateStudentVolunteerInterests(Integer studentId, StudentRequestDTO studentRequestDTO) {
+        List<String> volunteerInterests = studentRequestDTO.getVolunteerInterests();
+        List<StudentVolunteerInterest> studentVolunteerInterests = new ArrayList<>();
+        for(String interest: volunteerInterests){
+            StudentVolunteerInterest studentVolunteerInterest = new StudentVolunteerInterest();
+            studentVolunteerInterest.setStudentId(studentId);
+            studentVolunteerInterest.setInterestId(interestRepository.findByInterest(interest).getId());
+            studentVolunteerInterests.add(studentVolunteerInterest);
+        }
+        studentVolunteerInterestRepository.saveAll(studentVolunteerInterests);
+    }
 }

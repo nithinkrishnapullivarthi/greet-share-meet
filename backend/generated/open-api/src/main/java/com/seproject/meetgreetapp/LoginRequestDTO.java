@@ -14,6 +14,7 @@ import javax.validation.constraints.*;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-11-03T11:08:38.828-06:00[America/Chicago]")
 
+
 public class LoginRequestDTO   {
   @JsonProperty("username")
   private String username;

@@ -10,5 +10,6 @@ import java.util.Set;
 public interface StudentVolunteerInterestRepository extends JpaRepository<StudentVolunteerInterest, Integer> {
     public List<StudentVolunteerInterest> findByStudentId(Integer studentId);
     public List<StudentVolunteerInterest> findAllByStudentIdIn(Set<Integer> interestIds);
+    public void deleteByStudentId(Integer studentId);
 }
 

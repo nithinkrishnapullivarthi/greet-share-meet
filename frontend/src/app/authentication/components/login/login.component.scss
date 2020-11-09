@@ -71,15 +71,11 @@ button,a{
 .width-25{width: 20%;}
 
 .error-field{
-  color: rgb(255, 4, 4);
+  color: #ff0404;
   padding: 12px 9px;
-  margin: -10px auto 6px;
-  font-size: 13px;
+  margin: -17px auto -12px;
+  font-size: 14px;
   font-weight: 500;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 5px;
-  background-color: #FFE3DA;
   border-color: rgba(241, 97, 104, 0.2);
   width: fit-content;
 }

@@ -74,3 +74,13 @@ mat-grid-tile {
      height: unset;
   }
 }
+
+.error-field{
+  color: #ff0404;
+  padding: 12px 9px;
+  margin: 2px auto -12px;
+  font-size: 14px;
+  font-weight: 500;
+  border-color: rgba(241, 97, 104, 0.2);
+  width: fit-content;
+}
