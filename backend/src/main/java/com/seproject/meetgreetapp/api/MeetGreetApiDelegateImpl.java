@@ -1,10 +1,19 @@
 package com.seproject.meetgreetapp.api;
 
 import com.seproject.meetgreetapp.*;
+import com.seproject.meetgreetapp.AnnouncementRequestDTO;
+import com.seproject.meetgreetapp.AnnouncementResponseDTO;
 import com.seproject.meetgreetapp.Error;
+import com.seproject.meetgreetapp.LoginRequestDTO;
+import com.seproject.meetgreetapp.PairUpMatchesResponseDTO;
+import com.seproject.meetgreetapp.PairUpRequestDTO;
+import com.seproject.meetgreetapp.PairUpResponseDTO;
+import com.seproject.meetgreetapp.StudentRequestDTO;
+import com.seproject.meetgreetapp.StudentResponseDTO;
 import com.seproject.meetgreetapp.model.Student;
 import com.seproject.meetgreetapp.repository.StudentRepository;
 import com.seproject.meetgreetapp.service.AnnouncementService;
+import com.seproject.meetgreetapp.service.PairUpService;
 import com.seproject.meetgreetapp.service.RegistrationService;
 import com.seproject.meetgreetapp.service.StudentService;
 import org.modelmapper.ModelMapper;
@@ -18,7 +27,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate{
+public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate {
 
     @Autowired
     StudentRepository studentRepository;
@@ -35,6 +44,8 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate{
     @Autowired
     AnnouncementService announcementService;
 
+    @Autowired
+    PairUpService pairUpService;
     @Override
     public Optional<NativeWebRequest> getRequest() {
         return Optional.empty();
@@ -42,7 +53,7 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate{
 
     @Override
     public ResponseEntity<PairUpResponseDTO> createMatchmaking(PairUpRequestDTO pairUpRequestDTO) {
-        return null;
+        return new ResponseEntity(pairUpService.requestAMatch(pairUpRequestDTO), HttpStatus.CREATED);
     }
 
     @Override
@@ -63,7 +74,7 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate{
 
     @Override
     public ResponseEntity<StudentResponseDTO> getStudent(Integer studentId) {
-        return new ResponseEntity(studentService.getStudentDetails(studentId), HttpStatus.FOUND);
+        return new ResponseEntity(studentService.getStudentDetails(studentId), HttpStatus.OK);
     }
 
     @Override
@@ -73,7 +84,6 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate{
 
     @Override
     public ResponseEntity<StudentResponseDTO> registerUser(StudentRequestDTO studentRequestDTO) {
-
         if(studentRepository.findByUsername(studentRequestDTO.getUsername()) != null){
             Error error = new Error();
             error.setMessage("USERNAME_EXISTS");
@@ -90,14 +100,12 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate{
             error.setMessage("USER_NOT_FOUND");
             return new ResponseEntity(error,HttpStatus.OK);
         }
-
         Student student = studentRepository.findByUsernameAndPassword(loginRequestDTO.getUsername(),loginRequestDTO.getPassword());
         if(student == null){
             Error error = new Error();
             error.setMessage("INVALID_CREDENTIALS");
             return new ResponseEntity(error,HttpStatus.OK);
         }
-
         StudentResponseDTO studentResponseDTO =  mapper.map(student, StudentResponseDTO.class);
         return new ResponseEntity(studentResponseDTO, HttpStatus.OK);
     }
