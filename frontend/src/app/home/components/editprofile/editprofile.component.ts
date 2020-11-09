@@ -33,7 +33,7 @@ export class EditprofileComponent implements OnInit {
 
 
   onUpdate() {
-
+    
   }
 }
 
