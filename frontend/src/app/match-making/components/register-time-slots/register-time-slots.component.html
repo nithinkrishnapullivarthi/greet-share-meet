@@ -1,0 +1,61 @@
+<div class="main-body">
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar class="mat-card-header"></div>
+    </mat-card-header>
+    <form [formGroup]="registerTimeSlotsForm" (ngSubmit)="onRegisterTimeSlot()">
+      <mat-grid-list cols="1" rowHeight="500px" style="background-color:aquamarine;">
+        <mat-grid-tile>
+          <div class="example-container">
+            <label style="font-size: 18px; font-weight:500;">Select any one interest : </label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <mat-form-field appearence="fill" >
+              <mat-label>select one interest</mat-label>
+              <mat-select [(ngModel)]="selectedValue" name="interest" formControlName="interest">
+                <mat-option *ngFor="let interest of interests" [value]="interest.value">
+                  {{interest.viewValue}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="registerTimeSlotsForm.controls.interest.hasError('required')">
+                Select alteast one interest
+              </mat-error>
+            </mat-form-field>
+            <br>
+            <label style="font-size: 18px; font-weight:500;padding-right: 40px ;">Choose start date :
+            </label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <mat-form-field appearance="fill">
+              <mat-label>Choose a date</mat-label>
+              <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" formControlName="startDate">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="registerTimeSlotsForm.controls.startDate.hasError('required')">
+                Select start date
+              </mat-error>
+            </mat-form-field>
+            <br>
+            <label style="font-size: 18px; font-weight:500;padding-right: 55px ;">Choos end date :
+            </label>&nbsp;&nbsp;&nbsp;&nbsp;
+            <mat-form-field appearance="fill">
+              <mat-label>Choose a date</mat-label>
+              <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker1" formControlName="endDate">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+            <br>
+              <label for="stime" style="font-size: 18px; font-weight:500;padding-right:43px ;">Choose start time
+                :</label>&nbsp;&nbsp;&nbsp;&nbsp;
+              <input style="height: 50px;width: 100px;" type="time" id="stime" name="stime" formControlName="startTime">
+            <br>
+            <br>
+              <label for="stime" style="font-size: 18px; font-weight:500;padding-right:50px;">Choose end time
+                :</label>&nbsp;&nbsp;&nbsp;&nbsp;
+              <input style="height: 50px;width: 100px;" type="time" id="stime" name="stime" formControlName="endTime">
+            <br>
+            <br>
+            <button mat-raised-button color="primary" type="submit" (click)="onRegisterTimeSlot()"
+            [disabled]="registerTimeSlotsForm.invalid">Register</button>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </form>  
+  </mat-card>
+</div>
