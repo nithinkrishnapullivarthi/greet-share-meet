@@ -1,7 +1,9 @@
 package com.seproject.meetgreetapp.service;
 
+import com.seproject.meetgreetapp.StudentDetailResponseDTO;
 import com.seproject.meetgreetapp.StudentRequestDTO;
 import com.seproject.meetgreetapp.StudentResponseDTO;
+import com.seproject.meetgreetapp.VolunteerInterest;
 import com.seproject.meetgreetapp.model.Interest;
 import com.seproject.meetgreetapp.model.Student;
 import com.seproject.meetgreetapp.model.StudentInterest;
@@ -121,43 +123,44 @@ public class StudentService {
         return responseDTOList;
     }
 
-    public StudentResponseDTO getStudentDetails(Integer studentId){
+    public StudentDetailResponseDTO getStudentDetails(Integer studentId){
 
         List<StudentInterest> studentInterests = studentInterestRepository.findByStudentId(studentId);
         List<StudentVolunteerInterest> studentVolunteerInterests = studentVolunteerInterestRepository.findByStudentId(studentId);
         Optional<Student> studentDetails = studentRepository.findById(studentId);
-        StudentResponseDTO studentResponseDTO = null;
+        StudentDetailResponseDTO studentDetailResponseDTO = null;
         List<Interest> interests = interestRepository.findAll();
 
 
-        List<String> studentInterestList = new ArrayList<>();
+        List<com.seproject.meetgreetapp.Interest> studentInterestList = new ArrayList<>();
 
+        //Populate the student interests
         for(StudentInterest studentInterest: studentInterests){
             for(Interest interest: interests){
                 if(interest.getId() == studentInterest.getInterestId()){
-                    studentInterestList.add(interest.getInterest());
+                    studentInterestList.add(mapper.map(interest, com.seproject.meetgreetapp.Interest.class));
                 }
             }
         }
 
-        List<String> studentVolunteerInterestList = new ArrayList<>();
-
+        List<VolunteerInterest> studentVolunteerInterestList = new ArrayList<>();
+        //Populate the student volunteer interests
         for(StudentVolunteerInterest studentVolunteerInterest: studentVolunteerInterests){
             for(Interest interest: interests){
                 if(interest.getId() == studentVolunteerInterest.getInterestId()){
-                    studentVolunteerInterestList.add(interest.getInterest());
+                    studentVolunteerInterestList.add(mapper.map(interest, VolunteerInterest.class));
                 }
             }
         }
 
         if(studentDetails.isPresent()){
-            studentResponseDTO = mapper.map(studentDetails.get(), StudentResponseDTO.class);
+            studentDetailResponseDTO = mapper.map(studentDetails.get(), StudentDetailResponseDTO.class);
         }
-        studentResponseDTO.setInterests(studentInterestList);
-        if(studentResponseDTO.getIsVolunteer()){
-            studentResponseDTO.setVolunteerInterests(studentVolunteerInterestList);
+        studentDetailResponseDTO.setInterests(studentInterestList);
+        if(studentDetailResponseDTO.getIsVolunteer()){
+            studentDetailResponseDTO.setVolunteerInterests(studentVolunteerInterestList);
         }
-        return studentResponseDTO;
+        return studentDetailResponseDTO;
     }
 
     public StudentResponseDTO updateStudentDetails(Integer studentId, StudentRequestDTO studentRequestDTO){

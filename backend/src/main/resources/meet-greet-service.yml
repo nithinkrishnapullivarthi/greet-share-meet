@@ -52,6 +52,29 @@ components:
           type: array
           items:
             type: string
+    StudentDetailResponseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        department:
+          type: string
+        email:
+          type: string
+        is_volunteer:
+          type: boolean
+        contact:
+          type: string
+        interests:
+          type: array
+          items:
+            $ref: '#/components/schemas/Interest'
+        volunteer_interests:
+          type: array
+          items:
+            $ref: '#/components/schemas/VolunteerInterest'
     AnnouncementResponseDTO:
       type: object
       properties:
@@ -175,6 +198,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/StudentResponseDTO'
+    SuccessfullStudentDetailRetrieval:
+      description: " "
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StudentDetailResponseDTO'
     SuccessfulAnnouncement:
       description: " "
       content:
@@ -236,7 +265,7 @@ paths:
           required: true
       responses:
         '200':
-          $ref: '#/components/responses/SuccessfullStudentRetrieval'
+          $ref: '#/components/responses/SuccessfullStudentDetailRetrieval'
         '404' :
           $ref: '#/components/responses/Error'
         default:

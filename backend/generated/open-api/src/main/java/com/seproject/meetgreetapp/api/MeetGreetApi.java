@@ -12,6 +12,7 @@ import com.seproject.meetgreetapp.LoginRequestDTO;
 import com.seproject.meetgreetapp.PairUpMatchesResponseDTO;
 import com.seproject.meetgreetapp.PairUpRequestDTO;
 import com.seproject.meetgreetapp.PairUpResponseDTO;
+import com.seproject.meetgreetapp.StudentDetailResponseDTO;
 import com.seproject.meetgreetapp.StudentRequestDTO;
 import com.seproject.meetgreetapp.StudentResponseDTO;
 import io.swagger.annotations.*;
@@ -30,9 +31,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
-
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-11-03T11:08:38.828-06:00[America/Chicago]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-11-10T14:05:10.533932-05:00[America/New_York]")
 
 @Validated
 @Api(value = "meet-greet", description = "the meet-greet API")
@@ -95,15 +94,15 @@ public interface MeetGreetApi {
     }
 
 
-    @ApiOperation(value = "Retrieves particular student information", nickname = "getStudent", notes = "To get articular student details", response = StudentResponseDTO.class, tags={  })
+    @ApiOperation(value = "Retrieves particular student information", nickname = "getStudent", notes = "To get articular student details", response = StudentDetailResponseDTO.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "", response = StudentResponseDTO.class),
+        @ApiResponse(code = 200, message = "", response = StudentDetailResponseDTO.class),
         @ApiResponse(code = 404, message = "Unknown error occured", response = Error.class),
         @ApiResponse(code = 200, message = "Unknown Error") })
     @RequestMapping(value = "/meet-greet/students/{studentId}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<StudentResponseDTO> getStudent(@ApiParam(value = "",required=true) @PathVariable("studentId") Integer studentId) {
+    default ResponseEntity<StudentDetailResponseDTO> getStudent(@ApiParam(value = "",required=true) @PathVariable("studentId") Integer studentId) {
         return getDelegate().getStudent(studentId);
     }
 

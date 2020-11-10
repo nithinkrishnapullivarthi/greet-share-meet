@@ -3,6 +3,8 @@ package com.seproject.meetgreetapp;
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.seproject.meetgreetapp.Interest;
+import com.seproject.meetgreetapp.VolunteerInterest;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
@@ -12,11 +14,11 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * StudentResponseDTO
+ * StudentDetailResponseDTO
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-11-10T14:05:10.533932-05:00[America/New_York]")
 
-public class StudentResponseDTO   {
+public class StudentDetailResponseDTO   {
   @JsonProperty("id")
   private Integer id;
 
@@ -37,13 +39,13 @@ public class StudentResponseDTO   {
 
   @JsonProperty("interests")
   @Valid
-  private List<String> interests = null;
+  private List<Interest> interests = null;
 
   @JsonProperty("volunteer_interests")
   @Valid
-  private List<String> volunteerInterests = null;
+  private List<VolunteerInterest> volunteerInterests = null;
 
-  public StudentResponseDTO id(Integer id) {
+  public StudentDetailResponseDTO id(Integer id) {
     this.id = id;
     return this;
   }
@@ -63,7 +65,7 @@ public class StudentResponseDTO   {
     this.id = id;
   }
 
-  public StudentResponseDTO name(String name) {
+  public StudentDetailResponseDTO name(String name) {
     this.name = name;
     return this;
   }
@@ -83,7 +85,7 @@ public class StudentResponseDTO   {
     this.name = name;
   }
 
-  public StudentResponseDTO department(String department) {
+  public StudentDetailResponseDTO department(String department) {
     this.department = department;
     return this;
   }
@@ -103,7 +105,7 @@ public class StudentResponseDTO   {
     this.department = department;
   }
 
-  public StudentResponseDTO email(String email) {
+  public StudentDetailResponseDTO email(String email) {
     this.email = email;
     return this;
   }
@@ -123,7 +125,7 @@ public class StudentResponseDTO   {
     this.email = email;
   }
 
-  public StudentResponseDTO isVolunteer(Boolean isVolunteer) {
+  public StudentDetailResponseDTO isVolunteer(Boolean isVolunteer) {
     this.isVolunteer = isVolunteer;
     return this;
   }
@@ -143,7 +145,7 @@ public class StudentResponseDTO   {
     this.isVolunteer = isVolunteer;
   }
 
-  public StudentResponseDTO contact(String contact) {
+  public StudentDetailResponseDTO contact(String contact) {
     this.contact = contact;
     return this;
   }
@@ -163,12 +165,12 @@ public class StudentResponseDTO   {
     this.contact = contact;
   }
 
-  public StudentResponseDTO interests(List<String> interests) {
+  public StudentDetailResponseDTO interests(List<Interest> interests) {
     this.interests = interests;
     return this;
   }
 
-  public StudentResponseDTO addInterestsItem(String interestsItem) {
+  public StudentDetailResponseDTO addInterestsItem(Interest interestsItem) {
     if (this.interests == null) {
       this.interests = new ArrayList<>();
     }
@@ -182,21 +184,22 @@ public class StudentResponseDTO   {
   */
   @ApiModelProperty(value = "")
 
+  @Valid
 
-  public List<String> getInterests() {
+  public List<Interest> getInterests() {
     return interests;
   }
 
-  public void setInterests(List<String> interests) {
+  public void setInterests(List<Interest> interests) {
     this.interests = interests;
   }
 
-  public StudentResponseDTO volunteerInterests(List<String> volunteerInterests) {
+  public StudentDetailResponseDTO volunteerInterests(List<VolunteerInterest> volunteerInterests) {
     this.volunteerInterests = volunteerInterests;
     return this;
   }
 
-  public StudentResponseDTO addVolunteerInterestsItem(String volunteerInterestsItem) {
+  public StudentDetailResponseDTO addVolunteerInterestsItem(VolunteerInterest volunteerInterestsItem) {
     if (this.volunteerInterests == null) {
       this.volunteerInterests = new ArrayList<>();
     }
@@ -210,12 +213,13 @@ public class StudentResponseDTO   {
   */
   @ApiModelProperty(value = "")
 
+  @Valid
 
-  public List<String> getVolunteerInterests() {
+  public List<VolunteerInterest> getVolunteerInterests() {
     return volunteerInterests;
   }
 
-  public void setVolunteerInterests(List<String> volunteerInterests) {
+  public void setVolunteerInterests(List<VolunteerInterest> volunteerInterests) {
     this.volunteerInterests = volunteerInterests;
   }
 
@@ -228,15 +232,15 @@ public class StudentResponseDTO   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    StudentResponseDTO studentResponseDTO = (StudentResponseDTO) o;
-    return Objects.equals(this.id, studentResponseDTO.id) &&
-        Objects.equals(this.name, studentResponseDTO.name) &&
-        Objects.equals(this.department, studentResponseDTO.department) &&
-        Objects.equals(this.email, studentResponseDTO.email) &&
-        Objects.equals(this.isVolunteer, studentResponseDTO.isVolunteer) &&
-        Objects.equals(this.contact, studentResponseDTO.contact) &&
-        Objects.equals(this.interests, studentResponseDTO.interests) &&
-        Objects.equals(this.volunteerInterests, studentResponseDTO.volunteerInterests);
+    StudentDetailResponseDTO studentDetailResponseDTO = (StudentDetailResponseDTO) o;
+    return Objects.equals(this.id, studentDetailResponseDTO.id) &&
+        Objects.equals(this.name, studentDetailResponseDTO.name) &&
+        Objects.equals(this.department, studentDetailResponseDTO.department) &&
+        Objects.equals(this.email, studentDetailResponseDTO.email) &&
+        Objects.equals(this.isVolunteer, studentDetailResponseDTO.isVolunteer) &&
+        Objects.equals(this.contact, studentDetailResponseDTO.contact) &&
+        Objects.equals(this.interests, studentDetailResponseDTO.interests) &&
+        Objects.equals(this.volunteerInterests, studentDetailResponseDTO.volunteerInterests);
   }
 
   @Override
@@ -247,7 +251,7 @@ public class StudentResponseDTO   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class StudentResponseDTO {\n");
+    sb.append("class StudentDetailResponseDTO {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
