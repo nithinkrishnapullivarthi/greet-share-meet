@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {MatRadioChange} from '@angular/material/radio'
+import { HomeService } from '../../services/home.service';
 @Component({
   selector: 'app-addeditinterests',
   templateUrl: './addeditinterests.component.html',
@@ -16,30 +17,36 @@ export class AddeditinterestsComponent implements OnInit {
 
    
   public addeditinterestsForm: FormGroup;
-
+  errorMessage = null;
   volunteer_interests: string[] = [];
   selsports:string[]=[];
   selacad:string[]=[];
   selacti:string[]=[];
   selmus:string[]=[];
   showvolunteer: boolean = false;
-
+  loaded = false;
   constructor(private fb: FormBuilder,
+     private homeService: HomeService,
     private router: Router, 
   ) { }
 
   ngOnInit(): void {
-
-    this.addeditinterestsForm = this.fb.group({
-      is_volunteer: ['', Validators.required],
-      volunteer_interests:[{value: '', disabled:true},Validators.required],
-      sports: [],
-      academics:[],
-      activities:[],
-      musicalInstruments:[]
+    this.homeService.getUserInfo().subscribe(res => {
+      console.log(res);
+      console.log(res.volunteer_interests)
+      this.addeditinterestsForm = this.fb.group({
+        is_volunteer: ['' , Validators.required],
+        volunteer_interests:[[res.volunteer_interests],Validators.required],
+        sports: [[res.volunteer_interests]],
+        academics:[[res.volunteer_interests]],
+        activities:[[res.volunteer_interests]],
+        musicalInstruments:[[res.volunteer_interests]]
+        
+      });
+      this.loaded=true;
+      this.onFormChanges();
     });
-
-    this.onFormChanges();
+      
   }
 
   public onFormChanges() {

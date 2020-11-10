@@ -3,7 +3,7 @@
     <mat-card-header>
         <img src="assets/images/meetandgreetlogo.jpg" alt="" class="responsive">
     </mat-card-header>
-    <form [formGroup]="addeditinterestsForm">
+    <form *ngIf="loaded" [formGroup]="addeditinterestsForm">
         <div class="example-container">
             
             <div class="flex-wrap">
@@ -107,11 +107,6 @@
             [disabled]="addeditinterestsForm.invalid||volunteer_interests.length<1">Update</button>
         
         </div>
-
-
-
-
-
     </form>
 </mat-card>
 

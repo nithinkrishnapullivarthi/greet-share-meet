@@ -20,7 +20,7 @@ export class HomeService {
   }
   public updateUserProfile(register :RegisterRequest): Observable<any>{
     const user = JSON.parse(sessionStorage.getItem('user'));
-    return this.http.put<any>(environment.baseUrl+"/v1/meet-greet/students/", user.id +register).pipe(
+    return this.http.put<any>(environment.baseUrl+"/v1/meet-greet/students/"+ user.id,register).pipe(
       catchError(error => this.handleError(error))
     );
     
