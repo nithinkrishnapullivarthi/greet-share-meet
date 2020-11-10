@@ -1,0 +1,61 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.main-body{
+    
+    background-image: url('../../../../assets/images/blurbackground.jpg');
+    justify-content: center;
+    padding: 3rem 1rem 1rem 2rem;
+    background-image: no-repeat;
+    background-image: fixed;
+  }
+  mat-card{
+    width : 95%;
+    opacity: 0.8;
+    .mat-card-header {
+      background-image: url('../../../../assets/images/meetandgreetlogo.jpg');
+      height: 100px;
+      background-color: black;
+      background-repeat: repeat-y;
+      background-position: 30rem;
+      margin-bottom: 10px;
+      width:100%;
+     }
+    }
+    .main-mat{
+      padding: 2rem;
+      background-color:whitesmoke;
+      align-items: center;
+      flex-flow: column wrap;
+      display: flex;
+      
+      .card-1{
+        margin: 1rem 0rem 1rem 0rem;
+      width: 75%;
+      resize: none;
+      .ribbon{
+        text-align: center;
+        
+        background-color: darkolivegreen;
+        height: 40px;
+        width: 100%;
+        border-radius: .2rem;
+        margin-top: -15px;
+        .ribbon-text{
+          color: white;
+        font-size: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+        padding-top: 10px;
+        }
+      }
+.info{
+@media screen and (min-width: 601px) {
+    font-size: 14px;
+}
+
+@media screen and (max-width: 600px) {
+    font-size: 11px;
+      
+    }
+  }
+}
+    }
+    
