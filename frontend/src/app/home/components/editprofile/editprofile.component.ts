@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HomeService } from '../../services/home.service';
+import { RegisterRequest } from '../../../authentication/models';
 
 
 @Component({
@@ -33,7 +34,12 @@ export class EditprofileComponent implements OnInit {
 
 
   onUpdate() {
-    
+    let updateduser = new RegisterRequest();
+    console.log(updateduser);
+    this.homeService.updateUserProfile(updateduser).subscribe(res => {
+
+
+    })
   }
 }
 
