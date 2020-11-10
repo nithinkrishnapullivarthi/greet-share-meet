@@ -20,9 +20,8 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'timeline',
+    path: 'announcements',
     component:TimelineComponent,
-  
   },
   {
     path: '**',
