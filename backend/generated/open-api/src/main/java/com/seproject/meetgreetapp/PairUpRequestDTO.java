@@ -12,8 +12,7 @@ import javax.validation.constraints.*;
 /**
  * PairUpRequestDTO
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-11-10T14:05:10.533932-05:00[America/New_York]")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-11-10T18:48:06.388362-06:00[America/Chicago]")
 
 public class PairUpRequestDTO   {
   @JsonProperty("studentId")
