@@ -12,19 +12,20 @@ import { Router } from '@angular/router';
 export class AnnouncementComponent implements OnInit {
   public announcementForm: FormGroup;
   public navigationForm: FormGroup;
+  public interests : [""];
+  public id:number;
+  public userJson: any;
   constructor(private form: FormBuilder,
     private router: Router,
     private announcementservice: AuthenticationService
   ) { }
-public interests : string[];
- public id:number;
- public userJson: any;
+
 
 
   ngOnInit(): void {
       console.log('hello')
      let user = sessionStorage.getItem('user');
-     let inter : string[];
+     let inter :[""];
      this.userJson = JSON.parse(user);
      console.log('userjson in oninit',this.userJson);
      //this.interests = this.userJson.interest;
