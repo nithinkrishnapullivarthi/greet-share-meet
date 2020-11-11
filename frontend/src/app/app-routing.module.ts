@@ -21,7 +21,12 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'timeline',
+    path: 'matchmaking',
+    loadChildren: () => import('./match-making/match-making.module').then(m => m.MatchMakingModule)
+  
+  },
+  {
+    path: 'announcements',
     component:TimelineComponent,
   },
   {
