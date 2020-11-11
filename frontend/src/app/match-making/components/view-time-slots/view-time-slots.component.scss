@@ -6,19 +6,24 @@
     padding: 3rem 1rem 1rem 2rem;
     background-image: no-repeat;
     background-image: fixed;
+    background-position: center;
+    display: flex;
   }
   mat-card{
-    width : 95%;
-    opacity: 0.8;
+    width: 65%;
+    height: auto;
+    background: #ffffffa3;
+    .responsive{
+      max-width: 100%;
+      height: auto;
+    }
     .mat-card-header {
-      background-image: url('../../../../assets/images/meetandgreetlogo.jpg');
-      height: 100px;
-      background-color: black;
-      background-repeat: repeat-y;
-      background-position: 30rem;
-      margin-bottom: 10px;
-      width:100%;
-     }
+      flex-direction: row;
+      background: #191719;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
     }
     .main-mat{
       padding: 2rem;
