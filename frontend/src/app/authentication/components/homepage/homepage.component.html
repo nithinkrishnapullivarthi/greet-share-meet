@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div class="body">
+            <div >
+                <form class="stile" [formGroup]="searchForm">
+                    <input type="text" placeholder="Search.." style="height: 30px; margin-right: 10px; width: 35%; opacity: 55%; border-radius: 10px;" formControlName="searchParam">
+                    <!--button mat-raised-button color="primary"style="padding-block: 2%" (click)="onSearch()">Search</button-->
+                    <button mat-raised-button color="primary"style="padding-block: 2%">Search</button>
+                  </form>
+            </div>
+
+            <div class="tile" *ngFor="let card of cards">
+                <mat-card class = "mat-card" >
+                    <!--mdb-card-img [src]="card.img" alt="Card image cap">
+                    </mdb-card-img-->
+                    <mat-card-title>
+                      <h4> Name: {{card.name}}</h4>
+                    </mat-card-title>
+
+                    <mat-card-text>
+                        <h4>Contact: {{card.contact}}</h4>
+                    </mat-card-text>
+
+                    <mat-card-text>
+                      <h4>Email: {{card.email}}</h4>
+                    </mat-card-text>
+
+                    <mat-card-text>
+                     Interest: <mat-chip color="primary" selected>{{card.interests}}</mat-chip>
+                    </mat-card-text>
+
+                    <button mat-raised-button color="primary" style="margin-left: 85%; margin-right: 10%;">Connect</button>
+                </mat-card>
+            </div>
+
+        </div>
+    </body>
+</html>
