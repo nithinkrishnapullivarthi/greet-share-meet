@@ -16,20 +16,48 @@ export class AnnouncementComponent implements OnInit {
     private router: Router,
     private announcementservice: AuthenticationService
   ) { }
+public interests : [];
+ public id:number;
+ public userJson: any;
 
 
-  
   ngOnInit(): void {
+     let user = sessionStorage.getItem('user');
+     this.userJson = JSON.parse(user);
+     console.log(this.userJson);
+     //this.interests = this.userJson.interest;
+     //this.announcementservice.getLoggedUserDetails(this.userJson.id).subscribe
+     //
+
+         this.announcementservice.getLoggedUserDetails(this.userJson.id).subscribe(res => {
+            console.log('tried reaching here');
+            if(res){
+            this.interests = res.interests;
+            console.log('user interests', this.interests);
+            }
+         });
+
+     //
     this.announcementForm = this.form.group({
-      
       announcement: ['', [Validators.required,Validators.minLength(5)]],
-      tags:[[],[Validators.required]]
+      interest:[[],[Validators.required]]
     });
   }
   onAnnounce() {
+  alert('hello');
     console.log(Router.name);
+    console.log(this.announcementForm);
     let announcementRequest = new AnnouncementRequest();
-    announcementRequest= this.announcementForm.value;
-    alert('Announcement created successfully');
+    announcementRequest.studentId = this.userJson.id;
+    announcementRequest.announcement = this.announcementForm.value.announcement;
+    announcementRequest.interest = this.announcementForm.value.interest[0];
+    this.announcementservice.makeAnnouncement(announcementRequest).subscribe(res => {
+            console.log(res);
+           if(res){
+           console.log('id=',res);
+           }
+
+       });
   }
+
 }
