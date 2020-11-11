@@ -21,6 +21,7 @@ export class AuthenticationService {
       tap(response => {
         if (!(response.message)) {
           sessionStorage.setItem('user', JSON.stringify(response));
+          //sessionStorage.setItem('navflag', true);
         }
       }),
       catchError(error => this.handleError(error))
@@ -68,7 +69,7 @@ export class AuthenticationService {
   public getLoggedUserDetails(studentID: number): Observable<any>{
     return this.http.get<any>(environment.baseUrl + "/v1/meet-greet/students/"+studentID).pipe(
     tap(response =>{
-     console.log('response for student details=',  response);
+     console.log('logged user details=',  response);
           }),
           catchError(error => this.handleError(error))
         )

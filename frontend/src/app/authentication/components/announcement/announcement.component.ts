@@ -16,15 +16,17 @@ export class AnnouncementComponent implements OnInit {
     private router: Router,
     private announcementservice: AuthenticationService
   ) { }
-public interests : [];
+public interests : ['piano'];
  public id:number;
  public userJson: any;
 
 
   ngOnInit(): void {
+      console.log('hello')
      let user = sessionStorage.getItem('user');
+     let inter = []
      this.userJson = JSON.parse(user);
-     console.log(this.userJson);
+     console.log('userjson in oninit',this.userJson);
      //this.interests = this.userJson.interest;
      //this.announcementservice.getLoggedUserDetails(this.userJson.id).subscribe
      //
@@ -32,7 +34,15 @@ public interests : [];
          this.announcementservice.getLoggedUserDetails(this.userJson.id).subscribe(res => {
             console.log('tried reaching here');
             if(res){
-            this.interests = res.interests;
+            //this.interests = res.interests;
+
+            for(let item of  res.interests){
+
+            inter.push(item.interest);
+            console.log('item',inter);
+            }
+            this.interests = inter;
+            console.log('length=',Object.keys(this.interests).length)
             console.log('user interests', this.interests);
             }
          });
@@ -46,11 +56,11 @@ public interests : [];
   onAnnounce() {
   alert('hello');
     console.log(Router.name);
-    console.log(this.announcementForm);
+    console.log('announcementForm',this.announcementForm);
     let announcementRequest = new AnnouncementRequest();
     announcementRequest.studentId = this.userJson.id;
     announcementRequest.announcement = this.announcementForm.value.announcement;
-    announcementRequest.interest = this.announcementForm.value.interest[0];
+    announcementRequest.interest = this.announcementForm.value.interest;
     this.announcementservice.makeAnnouncement(announcementRequest).subscribe(res => {
             console.log(res);
            if(res){

@@ -5,7 +5,8 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { TimelineComponent } from './timeline/timeline.component';
 import { AnnouncementComponent } from './authentication/components/announcement/announcement.component';
 import { HomepageComponent } from './authentication/components/homepage/homepage.component';
-
+import { RegisterTimeSlotsComponent } from './match-making/components/register-time-slots/register-time-slots.component';
+import { ViewTimeSlotsComponent } from './match-making/components/view-time-slots/view-time-slots.component';
 const routes: Routes = [
   {
     path: '',
@@ -19,13 +20,8 @@ const routes: Routes = [
   {
     path: 'announcement',
     component: AnnouncementComponent,
-    //canActivate: [AuthGuard]
-  },
-  /*{
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
     canActivate: [AuthGuard]
-  },*/
+  },
   {
     path: 'timeline',
     component:TimelineComponent,
@@ -33,7 +29,17 @@ const routes: Routes = [
   {
     component: HomepageComponent,
     path: 'homepage',
-    //canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
+  },
+  {
+      component: RegisterTimeSlotsComponent,
+      path: 'register-time-slots',
+      canActivate: [AuthGuard]
+  },
+  {
+        component: ViewTimeSlotsComponent,
+        path: 'view-time-slots',
+        canActivate: [AuthGuard]
   },
  {
     path: '**',
