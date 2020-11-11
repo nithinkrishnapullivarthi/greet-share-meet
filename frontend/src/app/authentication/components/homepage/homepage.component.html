@@ -3,8 +3,9 @@
     <body>
         <div class="body">
             <div >
-                <form class="stile" >
-                    <input type="text" placeholder="Search.." style="height: 30px; margin-right: 10px; width: 35%; opacity: 55%; border-radius: 10px;">
+                <form class="stile" [formGroup]="searchForm">
+                    <input type="text" placeholder="Search.." style="height: 30px; margin-right: 10px; width: 35%; opacity: 55%; border-radius: 10px;" formControlName="searchParam">
+                    <!--button mat-raised-button color="primary"style="padding-block: 2%" (click)="onSearch()">Search</button-->
                     <button mat-raised-button color="primary"style="padding-block: 2%">Search</button>
                   </form>
             </div>
@@ -14,30 +15,25 @@
                     <!--mdb-card-img [src]="card.img" alt="Card image cap">
                     </mdb-card-img-->
                     <mat-card-title>
-                        <h4>{{card.name}}</h4>
+                      <h4> Name: {{card.name}}</h4>
                     </mat-card-title>
-                    
+
                     <mat-card-text>
-                        {{card.description}}
+                        <h4>Contact: {{card.contact}}</h4>
                     </mat-card-text>
 
-                    <br>
-                    <br>
                     <mat-card-text>
-                        {{card.activities}}
+                      <h4>Email: {{card.email}}</h4>
                     </mat-card-text>
-                    <br>
-                    <br>
+
                     <mat-card-text>
-                        {{card.volunteer}}
+                     Interest: <mat-chip color="primary" selected>{{card.interests}}</mat-chip>
                     </mat-card-text>
-                    <br>
-                    <br>
-                    
-                    <button mat-raised-button color="primary" style="margin-left: 85%; margin-right: 10%;">{{card.buttonText}}</button>
+
+                    <button mat-raised-button color="primary" style="margin-left: 85%; margin-right: 10%;">Connect</button>
                 </mat-card>
             </div>
-                    
+
         </div>
     </body>
 </html>

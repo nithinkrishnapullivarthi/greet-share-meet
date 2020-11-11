@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { TimelineComponent } from './timeline/timeline.component';
-import {HomeComponent} from './authentication/home/home.component'
 import { AnnouncementComponent } from './authentication/components/announcement/announcement.component';
 import { HomepageComponent } from './authentication/components/homepage/homepage.component';
 
@@ -22,30 +21,25 @@ const routes: Routes = [
     component: AnnouncementComponent,
     //canActivate: [AuthGuard]
   },
-  {
+  /*{
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
     canActivate: [AuthGuard]
-  },
+  },*/
   {
-    path: 'announcements',
+    path: 'timeline',
     component:TimelineComponent,
   },
   {
-    component: HomeComponent,
-    path: 'announcement',
-    component: AnnouncementComponent,
+    component: HomepageComponent,
+    path: 'homepage',
     //canActivate: [AuthGuard]
   },
-  {
-    path: 'homepage',
-    component: HomepageComponent,
-    //canActivate: [AuthGuard]
-  }, {
+ {
     path: '**',
     component: PageNotFoundComponent
   },
-   
+
 ];
 
 @NgModule({

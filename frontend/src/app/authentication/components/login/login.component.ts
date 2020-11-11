@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     loginrequest = this.loginForm.value;
     this.loginservice.loginAuthentication(loginrequest).subscribe(res => {
       if ((!res.hasOwnProperty('message'))) {
-        this.router.navigate(['home']);
+        this.router.navigate(['homepage']);
       } else {
           if(res.message=="USER_NOT_FOUND")
             console.log(res.message)
