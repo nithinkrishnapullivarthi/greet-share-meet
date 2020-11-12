@@ -1,18 +1,15 @@
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 .main-body{
     
     background-image: url('../../../../assets/images/blurbackground.jpg');
     justify-content: center;
     padding: 3rem 1rem 1rem 2rem;
-    background-image: no-repeat;
-    background-image: fixed;
-    background-position: center;
     display: flex;
   }
   mat-card{
     width: 65%;
     height: auto;
-    background: #ffffffa3;
+    font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+
     .responsive{
       max-width: 100%;
       height: auto;
@@ -27,10 +24,11 @@
     }
     .main-mat{
       padding: 2rem;
-      background-color:whitesmoke;
+      background-color: rgba(238, 229, 229, 0.8);
       align-items: center;
       flex-flow: column wrap;
       display: flex;
+
       
       .card-1{
         margin: 1rem 0rem 1rem 0rem;
@@ -52,12 +50,12 @@
         }
       }
 .info{
-@media screen and (min-width: 601px) {
-    font-size: 14px;
+@media screen and (min-width: 751px) {
+    font-size: 13px;
 }
 
-@media screen and (max-width: 600px) {
-    font-size: 11px;
+@media screen and (max-width: 750px) {
+    font-size: 8px;
       
     }
   }

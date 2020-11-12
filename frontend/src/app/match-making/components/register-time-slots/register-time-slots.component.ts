@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms'
 import { Router } from '@angular/router';
+import { HomeService } from '../../../home/services/home.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register-time-slots.component.html',
@@ -10,8 +11,11 @@ import { Router } from '@angular/router';
 export class RegisterTimeSlotsComponent implements OnInit {
   
   minDate = new Date();
-  maxDate = new Date(2021, 0, 1);
+  maxDate = new Date(2022, 0, 1);
   
+  miDate = new Date();
+  maDate = new Date(2022, 0, 1);
+
   selectedValue: string;
   public registerTimeSlotsForm : FormGroup;
 
@@ -21,11 +25,13 @@ export class RegisterTimeSlotsComponent implements OnInit {
     {value: 'PublicActivities', viewValue: 'Running'},
     {value: 'MusicalInstruments', viewValue: 'Guitar'},
   ];;
-  constructor(private fb: FormBuilder,private router: Router){
+  constructor(private fb: FormBuilder,private router: Router,private homeService: HomeService,){
 
   }
 
   ngOnInit(): void {
+    this.homeService.getUserInfo().subscribe(res => {
+      console.log(res.interests);
     this.registerTimeSlotsForm=this.fb.group({
       interest:['',Validators.required],
       startDate:['',Validators.required],
@@ -34,7 +40,7 @@ export class RegisterTimeSlotsComponent implements OnInit {
       endTime:['',Validators.required]
 
     });
-
+  });
   }
   onRegisterTimeSlot(){
     
