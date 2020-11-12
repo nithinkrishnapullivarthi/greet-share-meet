@@ -12,6 +12,9 @@ public class Interest {
     @Column(name="interest")
     private String interest;
 
+    @Column(name="category")
+    private String category;
+
     private Interest(){}
 
     public int getId() {
@@ -28,5 +31,13 @@ public class Interest {
 
     public void setInterest(String interest) {
         this.interest = interest;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

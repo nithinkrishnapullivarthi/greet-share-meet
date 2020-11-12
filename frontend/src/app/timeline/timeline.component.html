@@ -1,0 +1,30 @@
+<style>
+  body{
+    background-color: coral;
+  }
+  h1{
+    align-self: center;
+    font-size: 125%;
+    color: brown;
+    margin-left: 500px;
+  }
+  mat-card-title {
+    font-size: 200%;
+  }
+  mat-card-content{
+    margin-left: 15px
+  }
+ 
+  </style>
+
+<div class="main">
+   <div class="center">
+       <mat-card class="announcement-card" *ngIf="announcements.length==0">
+            <p>No announcements found related to you interests</p>
+       </mat-card>
+       <mat-card class="announcement-card" *ngFor="let announcement of announcements">
+          <mat-card-subtitle>Interest : {{announcement.interest}}</mat-card-subtitle>
+          <mat-card-content>{{announcement.announcement}}</mat-card-content> 
+       </mat-card>
+   </div>
+</div>

@@ -1,12 +1,12 @@
 {
     "gowtham": {
-        "userName": "gowtham",
+        "username": "gowtham",
         "password": "gowtham",
         "age": "",
         "isActive": false
     },
     "sruthi": {
-        "userName": "sruthi",
+        "username": "sruthi",
         "password": "sruthi",
         "age": "",
         "isActive": true

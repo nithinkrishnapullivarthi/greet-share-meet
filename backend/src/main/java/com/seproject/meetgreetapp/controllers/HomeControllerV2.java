@@ -14,14 +14,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-public class HomeController {
+public class HomeControllerV2 {
 
-    @Autowired
-    InterestRepository repository;
+    /*@Autowired
+    InterestRepository repository;*/
 
     @GetMapping("/interests")
     public ResponseEntity<List<Interest>> showHomePage(){
-        List<Interest> interests = repository.findAll();
+        List<Interest> interests = new ArrayList<>();
+
         return ResponseEntity.ok(interests);
     }
 }

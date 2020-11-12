@@ -1,56 +1,81 @@
 .mainbody{
-  background-color: beige;
-  }
-  .login-form{
-    background-image: url('../../../../assets/images/blurbackground.jpg');
-    display: flex;
+  background-image: url('../../../../assets/images/blurbackground.jpg');
     justify-content: center;
+    background-position: center;
+    display: flex;
     align-items: center;
-    max-width: 100%;
     height: 100vh;
-    background-color: blueviolet;
-  }
-  mat-card{
-    min-width: 470px;
+}
+mat-card{
+  width: 40%;
+  height: auto;
+  background: #ffffffa3; 
+  border-radius: 0.2rem;
+  .responsive{
+    max-width: 100%;
     height: auto;
-    padding: 4rem;
-    vertical-align: middle;
-    border-radius: 0rem;
-    .mat-card-header {
-      background-color: black;
-      background-image: url('../../../../assets/images/meetandgreetlogo.jpg');
-      height: 95px;
-      margin-bottom: 2rem;
-  
-     }
-     
-     .error-field{
-       color: red;
-       font-size: 14px;
-       font-weight: bold;
-       height: 14px;
-       padding: 1rem;
-       margin-left: 11rem;
-     }
   }
-  button,a{
-    min-width: 150px;
-    border-radius: 0.2em;
-    width: 97%;
-    padding:1% !important;
-    background-color: #3f51b5;
-    font-size: 1.2em;
-    color: #fff !important;
+  .mat-card-header {
+    flex-direction: row;
+    background: #191719;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img{
+      width: inherit;
+      height: auto;
+    }
+}
   }
-  .example-form {
-    min-width: 150px;
-    max-width: 470px;
-    width: 100%;
-    
+  ::ng-deep .mat-card-header-text {
+    margin: 0px !important;
   }
-  .example-full-width {
-    width: 100%;
-  }
+button,a{
+  border-radius: 0.2em;
+  padding:1% !important;
+  background-color: #3f51b5;
+  font-size: 1.2em;
+  color: #fff !important;
+  min-width: 120px;
+  margin: 10px 0px;
+}
+.flex-wrap-sec{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  margin: 15px 0;
   
-  
-  
+}
+.flex-wrap{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  font-size: 30px;
+  line-height: 1.2;
+  margin: 14px 0px 10px;
+  font-family: "Arial Black", Gadget, sans-serif;
+}
+.mat-form-field{
+  min-width: 120px;
+  margin: 0px 20px;
+}
+.width-50{
+  width: 36%;
+
+}
+.ml-1{margin-left: .5%;}
+.ml-2{margin-left: 2%;}
+.width-100{width: 80%;}
+.width-25{width: 20%;}
+
+.error-field{
+  color: #ff0404;
+  padding: 12px 9px;
+  margin: -17px auto -12px;
+  font-size: 14px;
+  font-weight: 500;
+  border-color: rgba(241, 97, 104, 0.2);
+  width: fit-content;
+}
