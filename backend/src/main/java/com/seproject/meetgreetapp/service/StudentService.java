@@ -1,9 +1,6 @@
 package com.seproject.meetgreetapp.service;
 
-import com.seproject.meetgreetapp.StudentDetailResponseDTO;
-import com.seproject.meetgreetapp.StudentRequestDTO;
-import com.seproject.meetgreetapp.StudentResponseDTO;
-import com.seproject.meetgreetapp.VolunteerInterest;
+import com.seproject.meetgreetapp.*;
 import com.seproject.meetgreetapp.model.Interest;
 import com.seproject.meetgreetapp.model.Student;
 import com.seproject.meetgreetapp.model.StudentInterest;
@@ -88,6 +85,12 @@ public class StudentService {
         return studentToVolunteerInterestMapping;
     }
 
+    public StudentPersonalDetailResponseDTO getStudentPersonalDetails(Integer studentId){
+        Optional<Student> studentOptional = studentRepository.findById(studentId);
+        Student student = studentOptional.get();
+        return mapper.map(student,StudentPersonalDetailResponseDTO.class);
+    }
+
     private List<StudentResponseDTO> mapToResponseDTOList(List<Student> students, Map<Integer, List<Integer>> studentToInterestMapping,Map<Integer, List<Integer>> studentToVolunteerInterestMapping ){
         List<StudentResponseDTO> responseDTOList = new ArrayList<>();
         List<Interest> interests = interestRepository.findAll();
@@ -163,18 +166,18 @@ public class StudentService {
         return studentDetailResponseDTO;
     }
 
-    public StudentResponseDTO updateStudentDetails(Integer studentId, StudentRequestDTO studentRequestDTO){
+    public StudentPersonalDetailResponseDTO updateStudentDetails(Integer studentId, StudentPersonalDetailRequestDTO studentPersonalDetailRequestDTO){
         Optional<Student> studentEntity = studentRepository.findById(studentId);
         Student student = null;
         if(studentEntity.isPresent()){
             student = studentEntity.get();
-            student.setContact(studentRequestDTO.getContact());
-            student.setDepartment(studentRequestDTO.getDepartment());
-            student.setEmail(studentRequestDTO.getEmail());
-            student.setName(studentRequestDTO.getName());
+            student.setContact(studentPersonalDetailRequestDTO.getContact());
+            student.setDepartment(studentPersonalDetailRequestDTO.getDepartment());
+            student.setEmail(studentPersonalDetailRequestDTO.getEmail());
+            student.setName(studentPersonalDetailRequestDTO.getName());
             studentRepository.save(student);
         }
-        return mapper.map(student,StudentResponseDTO.class);
+        return mapper.map(student,StudentPersonalDetailResponseDTO.class);
     }
 
     @Transactional
