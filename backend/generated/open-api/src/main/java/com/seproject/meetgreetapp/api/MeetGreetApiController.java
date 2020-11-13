@@ -3,7 +3,7 @@ package com.seproject.meetgreetapp.api;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-11-10T14:05:10.533932-05:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-11-13T11:35:19.543595-05:00[America/New_York]")
 
 @Controller
 @RequestMapping("${openapi.scenarioManager.base-path:/v1}")

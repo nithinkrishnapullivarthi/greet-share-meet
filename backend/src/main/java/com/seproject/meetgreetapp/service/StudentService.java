@@ -1,9 +1,6 @@
 package com.seproject.meetgreetapp.service;
 
-import com.seproject.meetgreetapp.StudentDetailResponseDTO;
-import com.seproject.meetgreetapp.StudentRequestDTO;
-import com.seproject.meetgreetapp.StudentResponseDTO;
-import com.seproject.meetgreetapp.VolunteerInterest;
+import com.seproject.meetgreetapp.*;
 import com.seproject.meetgreetapp.model.Interest;
 import com.seproject.meetgreetapp.model.Student;
 import com.seproject.meetgreetapp.model.StudentInterest;
@@ -12,6 +9,7 @@ import com.seproject.meetgreetapp.repository.InterestRepository;
 import com.seproject.meetgreetapp.repository.StudentInterestRepository;
 import com.seproject.meetgreetapp.repository.StudentRepository;
 import com.seproject.meetgreetapp.repository.StudentVolunteerInterestRepository;
+import io.swagger.models.auth.In;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -161,6 +159,47 @@ public class StudentService {
             studentDetailResponseDTO.setVolunteerInterests(studentVolunteerInterestList);
         }
         return studentDetailResponseDTO;
+    }
+
+    public InterestsResponseDTO getStudentInterests(Integer studentId){
+        Optional<Student> studentDetails = studentRepository.findById(studentId);
+        List<StudentInterest> studentInterests = studentInterestRepository.findByStudentId(studentId);
+        List<StudentVolunteerInterest> studentVolunteerInterests = studentVolunteerInterestRepository.findByStudentId(studentId);
+        List<Interest> interests = interestRepository.findAll();
+
+
+
+        List<com.seproject.meetgreetapp.Interest> studentInterestList = new ArrayList<>();
+
+        //Populate the student interests
+        for(StudentInterest studentInterest: studentInterests){
+            for(Interest interest: interests){
+                if(interest.getId() == studentInterest.getInterestId()){
+                    studentInterestList.add(mapper.map(interest, com.seproject.meetgreetapp.Interest.class));
+                }
+            }
+        }
+
+        List<VolunteerInterest> studentVolunteerInterestList = new ArrayList<>();
+        //Populate the student volunteer interests
+        for(StudentVolunteerInterest studentVolunteerInterest: studentVolunteerInterests){
+            for(Interest interest: interests){
+                if(interest.getId() == studentVolunteerInterest.getInterestId()){
+                    studentVolunteerInterestList.add(mapper.map(interest, VolunteerInterest.class));
+                }
+            }
+        }
+
+        InterestsResponseDTO interestsResponseDTO = new InterestsResponseDTO();
+
+        if(studentDetails.isPresent()){
+            interestsResponseDTO.setIsVolunteer(studentDetails.get().getIsVolunteer());
+        }
+        interestsResponseDTO.setInterests(studentInterestList);
+        if(interestsResponseDTO.getIsVolunteer()){
+            interestsResponseDTO.setVolunteerInterests(studentVolunteerInterestList);
+        }
+        return interestsResponseDTO;
     }
 
     public StudentResponseDTO updateStudentDetails(Integer studentId, StudentRequestDTO studentRequestDTO){

@@ -75,6 +75,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VolunteerInterest'
+    InterestsResponseDTO:
+      type: object
+      properties:
+        is_volunteer:
+          type: boolean
+        interests:
+          type: array
+          items:
+            $ref: '#/components/schemas/Interest'
+        volunteer_interests:
+          type: array
+          items:
+            $ref: '#/components/schemas/VolunteerInterest'
     AnnouncementResponseDTO:
       type: object
       properties:
@@ -204,6 +217,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/StudentDetailResponseDTO'
+    SuccessfullStudentInterestsRetrieval:
+      description: " "
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InterestsResponseDTO'
     SuccessfulAnnouncement:
       description: " "
       content:
@@ -313,6 +332,23 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/SuccessfullStudentRetrieval'
+        '404':
+          $ref: '#/components/responses/Error'
+        default:
+          description: "Unknown Error"
+    get:
+      description: To get articular student interests
+      operationId: getStudentInterests
+      summary: Retrieves particular student interests
+      parameters:
+        - in: path
+          name: studentId
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/SuccessfullStudentInterestsRetrieval'
         '404':
           $ref: '#/components/responses/Error'
         default:
