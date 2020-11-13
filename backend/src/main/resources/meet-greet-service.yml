@@ -190,6 +190,19 @@ components:
           type: string
         password:
           type: string
+    InterestsResponseDTO:
+      type: object
+      properties:
+        is_volunteer:
+          type: boolean
+        interests:
+          type: array
+          items:
+            $ref: '#/components/schemas/Interest'
+        volunteer_interests:
+          type: array
+          items:
+            $ref: '#/components/schemas/VolunteerInterest'
     ListStudentResponseDTO:
       type: array
       items:
@@ -260,6 +273,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ListPairUpMatchesResponseDTO'
+    SuccessfullStudentInterestsRetrieval:
+      description: " "
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InterestsResponseDTO'
     Error:
       description: Unknown error occured
       content:
@@ -346,6 +365,23 @@ paths:
           description: "Unknown Error"
 
   "/meet-greet/students/interests/{studentId}":
+    get:
+      description: To get articular student interests
+      operationId: getStudentInterests
+      summary: Retrieves particular student interests
+      parameters:
+        - in: path
+          name: studentId
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/SuccessfullStudentInterestsRetrieval'
+        '404':
+          $ref: '#/components/responses/Error'
+        default:
+          description: "Unknown Error"
     put:
       description: To update particular student interests
       operationId: updateStudentInterests
