@@ -8,6 +8,7 @@ package com.seproject.meetgreetapp.api;
 import com.seproject.meetgreetapp.AnnouncementRequestDTO;
 import com.seproject.meetgreetapp.AnnouncementResponseDTO;
 import com.seproject.meetgreetapp.Error;
+import com.seproject.meetgreetapp.InterestsResponseDTO;
 import com.seproject.meetgreetapp.LoginRequestDTO;
 import com.seproject.meetgreetapp.PairUpMatchesResponseDTO;
 import com.seproject.meetgreetapp.PairUpRequestDTO;
@@ -33,7 +34,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-11-13T14:21:04.569223-05:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-11-13T14:53:53.001239-05:00[America/New_York]")
 
 @Validated
 @Api(value = "meet-greet", description = "the meet-greet API")
@@ -106,6 +107,19 @@ public interface MeetGreetApi {
         method = RequestMethod.GET)
     default ResponseEntity<StudentDetailResponseDTO> getStudent(@ApiParam(value = "",required=true) @PathVariable("studentId") Integer studentId) {
         return getDelegate().getStudent(studentId);
+    }
+
+
+    @ApiOperation(value = "Retrieves particular student interests", nickname = "getStudentInterests", notes = "To get articular student interests", response = InterestsResponseDTO.class, tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "", response = InterestsResponseDTO.class),
+        @ApiResponse(code = 404, message = "Unknown error occured", response = Error.class),
+        @ApiResponse(code = 200, message = "Unknown Error") })
+    @RequestMapping(value = "/meet-greet/students/interests/{studentId}",
+        produces = { "application/json" }, 
+        method = RequestMethod.GET)
+    default ResponseEntity<InterestsResponseDTO> getStudentInterests(@ApiParam(value = "",required=true) @PathVariable("studentId") Integer studentId) {
+        return getDelegate().getStudentInterests(studentId);
     }
 
 

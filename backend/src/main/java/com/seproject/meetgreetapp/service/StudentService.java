@@ -214,4 +214,43 @@ public class StudentService {
         }
         studentVolunteerInterestRepository.saveAll(studentVolunteerInterests);
     }
+
+    public InterestsResponseDTO getStudentInterests(Integer studentId){
+        Optional<Student> studentDetails = studentRepository.findById(studentId);
+        List<StudentInterest> studentInterests = studentInterestRepository.findByStudentId(studentId);
+        List<StudentVolunteerInterest> studentVolunteerInterests = studentVolunteerInterestRepository.findByStudentId(studentId);
+        List<Interest> interests = interestRepository.findAll();
+
+        List<com.seproject.meetgreetapp.Interest> studentInterestList = new ArrayList<>();
+
+        //Populate the student interests
+        for(StudentInterest studentInterest: studentInterests){
+            for(Interest interest: interests){
+                if(interest.getId() == studentInterest.getInterestId()){
+                    studentInterestList.add(mapper.map(interest, com.seproject.meetgreetapp.Interest.class));
+                }
+            }
+        }
+
+        List<VolunteerInterest> studentVolunteerInterestList = new ArrayList<>();
+        //Populate the student volunteer interests
+        for(StudentVolunteerInterest studentVolunteerInterest: studentVolunteerInterests){
+            for(Interest interest: interests){
+                if(interest.getId() == studentVolunteerInterest.getInterestId()){
+                    studentVolunteerInterestList.add(mapper.map(interest, VolunteerInterest.class));
+                }
+            }
+        }
+
+        InterestsResponseDTO interestsResponseDTO = new InterestsResponseDTO();
+
+        if(studentDetails.isPresent()){
+            interestsResponseDTO.setIsVolunteer(studentDetails.get().getIsVolunteer());
+        }
+        interestsResponseDTO.setInterests(studentInterestList);
+        if(interestsResponseDTO.getIsVolunteer()){
+            interestsResponseDTO.setVolunteerInterests(studentVolunteerInterestList);
+        }
+        return interestsResponseDTO;
+    }
 }
