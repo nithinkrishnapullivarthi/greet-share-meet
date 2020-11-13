@@ -93,8 +93,8 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate {
     }
 
     @Override
-    public ResponseEntity<StudentResponseDTO> updateStudentInterests(Integer studentId,StudentRequestDTO studentRequestDTO) {
-        return new ResponseEntity(studentService.updateStudentInterests(studentId,studentRequestDTO),HttpStatus.OK);
+    public ResponseEntity<InterestsResponseDTO> updateStudentInterests(Integer studentId,InterestsRequestDTO interestsRequestDTO) {
+        return new ResponseEntity(studentService.updateStudentInterests(studentId,interestsRequestDTO),HttpStatus.OK);
     }
 
     @Override

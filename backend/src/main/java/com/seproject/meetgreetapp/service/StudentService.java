@@ -181,35 +181,36 @@ public class StudentService {
     }
 
     @Transactional
-    public StudentResponseDTO updateStudentInterests(Integer studentId, StudentRequestDTO studentRequestDTO){
+    public InterestsResponseDTO updateStudentInterests(Integer studentId, InterestsRequestDTO interestsRequestDTO){
         studentInterestRepository.deleteByStudentId(studentId);
         studentVolunteerInterestRepository.deleteByStudentId(studentId);
 
-        List<String> interests = studentRequestDTO.getInterests();
         List<StudentInterest> studentInterests = new ArrayList<>();
-
-        for(String interest: interests){
+        for(com.seproject.meetgreetapp.Interest interest : interestsRequestDTO.getInterests()){
             StudentInterest studentInterest = new StudentInterest();
             studentInterest.setStudentId(studentId);
-            studentInterest.setInterestId(interestRepository.findByInterest(interest).getId());
+            studentInterest.setInterestId(interestRepository.findByInterest(interest.getInterest()).getId());
             studentInterests.add(studentInterest);
         }
+
         studentInterestRepository.saveAll(studentInterests);
         
-        if(studentRequestDTO.getIsVolunteer()){
-            updateStudentVolunteerInterests(studentId, studentRequestDTO);
+        if(interestsRequestDTO.getIsVolunteer()){
+            updateStudentVolunteerInterests(studentId, interestsRequestDTO);
         }
-        StudentResponseDTO studentResponseDTO =  mapper.map(studentRequestDTO, StudentResponseDTO.class);
-        return studentResponseDTO;
+        Student studentEntity = studentRepository.findById(studentId).get();
+        studentEntity.setIsVolunteer(interestsRequestDTO.getIsVolunteer());
+        studentRepository.save(studentEntity);
+        InterestsResponseDTO interestsResponseDTO =  mapper.map(interestsRequestDTO, InterestsResponseDTO.class);
+        return interestsResponseDTO;
     }
 
-    private void updateStudentVolunteerInterests(Integer studentId, StudentRequestDTO studentRequestDTO) {
-        List<String> volunteerInterests = studentRequestDTO.getVolunteerInterests();
+    private void updateStudentVolunteerInterests(Integer studentId, InterestsRequestDTO interestsRequestDTO) {
         List<StudentVolunteerInterest> studentVolunteerInterests = new ArrayList<>();
-        for(String interest: volunteerInterests){
+        for(VolunteerInterest interest: interestsRequestDTO.getVolunteerInterests()){
             StudentVolunteerInterest studentVolunteerInterest = new StudentVolunteerInterest();
             studentVolunteerInterest.setStudentId(studentId);
-            studentVolunteerInterest.setInterestId(interestRepository.findByInterest(interest).getId());
+            studentVolunteerInterest.setInterestId(interestRepository.findByInterest(interest.getInterest()).getId());
             studentVolunteerInterests.add(studentVolunteerInterest);
         }
         studentVolunteerInterestRepository.saveAll(studentVolunteerInterests);

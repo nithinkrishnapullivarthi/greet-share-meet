@@ -14,11 +14,11 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * InterestsResponseDTO
+ * InterestsRequestDTO
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-11-13T15:25:12.604668-05:00[America/New_York]")
 
-public class InterestsResponseDTO   {
+public class InterestsRequestDTO   {
   @JsonProperty("is_volunteer")
   private Boolean isVolunteer;
 
@@ -30,7 +30,7 @@ public class InterestsResponseDTO   {
   @Valid
   private List<VolunteerInterest> volunteerInterests = null;
 
-  public InterestsResponseDTO isVolunteer(Boolean isVolunteer) {
+  public InterestsRequestDTO isVolunteer(Boolean isVolunteer) {
     this.isVolunteer = isVolunteer;
     return this;
   }
@@ -50,12 +50,12 @@ public class InterestsResponseDTO   {
     this.isVolunteer = isVolunteer;
   }
 
-  public InterestsResponseDTO interests(List<Interest> interests) {
+  public InterestsRequestDTO interests(List<Interest> interests) {
     this.interests = interests;
     return this;
   }
 
-  public InterestsResponseDTO addInterestsItem(Interest interestsItem) {
+  public InterestsRequestDTO addInterestsItem(Interest interestsItem) {
     if (this.interests == null) {
       this.interests = new ArrayList<>();
     }
@@ -79,12 +79,12 @@ public class InterestsResponseDTO   {
     this.interests = interests;
   }
 
-  public InterestsResponseDTO volunteerInterests(List<VolunteerInterest> volunteerInterests) {
+  public InterestsRequestDTO volunteerInterests(List<VolunteerInterest> volunteerInterests) {
     this.volunteerInterests = volunteerInterests;
     return this;
   }
 
-  public InterestsResponseDTO addVolunteerInterestsItem(VolunteerInterest volunteerInterestsItem) {
+  public InterestsRequestDTO addVolunteerInterestsItem(VolunteerInterest volunteerInterestsItem) {
     if (this.volunteerInterests == null) {
       this.volunteerInterests = new ArrayList<>();
     }
@@ -117,10 +117,10 @@ public class InterestsResponseDTO   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InterestsResponseDTO interestsResponseDTO = (InterestsResponseDTO) o;
-    return Objects.equals(this.isVolunteer, interestsResponseDTO.isVolunteer) &&
-        Objects.equals(this.interests, interestsResponseDTO.interests) &&
-        Objects.equals(this.volunteerInterests, interestsResponseDTO.volunteerInterests);
+    InterestsRequestDTO interestsRequestDTO = (InterestsRequestDTO) o;
+    return Objects.equals(this.isVolunteer, interestsRequestDTO.isVolunteer) &&
+        Objects.equals(this.interests, interestsRequestDTO.interests) &&
+        Objects.equals(this.volunteerInterests, interestsRequestDTO.volunteerInterests);
   }
 
   @Override
@@ -131,7 +131,7 @@ public class InterestsResponseDTO   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InterestsResponseDTO {\n");
+    sb.append("class InterestsRequestDTO {\n");
     
     sb.append("    isVolunteer: ").append(toIndentedString(isVolunteer)).append("\n");
     sb.append("    interests: ").append(toIndentedString(interests)).append("\n");
