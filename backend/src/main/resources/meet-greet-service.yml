@@ -75,6 +75,32 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VolunteerInterest'
+    StudentPersonalDetailRequestDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        department:
+          type: string
+        email:
+          type: string
+        contact:
+          type: string
+    StudentPersonalDetailResponseDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        department:
+          type: string
+        email:
+          type: string
+        contact:
+          type: string
     AnnouncementResponseDTO:
       type: object
       properties:
@@ -204,6 +230,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/StudentDetailResponseDTO'
+    SuccessfullStudentPersonalDetailRetrieval:
+      description: " "
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/StudentPersonalDetailResponseDTO'
     SuccessfulAnnouncement:
       description: " "
       content:
@@ -270,8 +302,27 @@ paths:
           $ref: '#/components/responses/Error'
         default:
           description: "Unknown Error"
+
+  "/meet-greet/students/personal-details/{studentId}":
+    get:
+      description: To get particular student personal details
+      operationId: getStudentPersonalDetails
+      summary: Retrieves particular student personal details only (interests are not retreived)
+      parameters:
+        - in: path
+          name: studentId
+          schema:
+            type: integer
+          required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/SuccessfullStudentPersonalDetailRetrieval'
+        '404':
+          $ref: '#/components/responses/Error'
+        default:
+          description: "Unknown Error"
     put:
-      description: To update particular student details
+      description: To update particular student personal details
       operationId: updateStudentDetails
       parameters:
         - in: path
@@ -285,14 +336,15 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/StudentRequestDTO'
+              $ref: '#/components/schemas/StudentPersonalDetailRequestDTO'
       responses:
         '200':
-          $ref: '#/components/responses/SuccessfullStudentRetrieval'
+          $ref: '#/components/responses/SuccessfullStudentPersonalDetailRetrieval'
         '404':
           $ref: '#/components/responses/Error'
         default:
           description: "Unknown Error"
+
   "/meet-greet/students/interests/{studentId}":
     put:
       description: To update particular student interests
