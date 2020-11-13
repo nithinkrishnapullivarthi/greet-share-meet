@@ -25,7 +25,13 @@ export class HomeService {
     );
     
   }
-
+  public updateUserInerests(register: RegisterRequest):Observable<any>{
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    console.log(user.id,register);
+    return this.http.put<any>(environment.baseUrl+"/v1/meet-greet/students/interests/"+ user.id,register).pipe(
+      catchError(error => this.handleError(error))
+    );
+  }
   private handleError(error: HttpErrorResponse) {
     return throwError(
       'Something bad happened; please try again later.');
