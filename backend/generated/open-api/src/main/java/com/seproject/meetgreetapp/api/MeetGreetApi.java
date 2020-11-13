@@ -8,6 +8,7 @@ package com.seproject.meetgreetapp.api;
 import com.seproject.meetgreetapp.AnnouncementRequestDTO;
 import com.seproject.meetgreetapp.AnnouncementResponseDTO;
 import com.seproject.meetgreetapp.Error;
+import com.seproject.meetgreetapp.InterestsRequestDTO;
 import com.seproject.meetgreetapp.InterestsResponseDTO;
 import com.seproject.meetgreetapp.LoginRequestDTO;
 import com.seproject.meetgreetapp.PairUpMatchesResponseDTO;
@@ -34,7 +35,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-11-13T14:53:53.001239-05:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-11-13T15:25:12.604668-05:00[America/New_York]")
 
 @Validated
 @Api(value = "meet-greet", description = "the meet-greet API")
@@ -178,17 +179,17 @@ public interface MeetGreetApi {
     }
 
 
-    @ApiOperation(value = "", nickname = "updateStudentInterests", notes = "To update particular student interests", response = StudentResponseDTO.class, tags={  })
+    @ApiOperation(value = "", nickname = "updateStudentInterests", notes = "To update particular student interests", response = InterestsResponseDTO.class, tags={  })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "", response = StudentResponseDTO.class),
+        @ApiResponse(code = 200, message = "", response = InterestsResponseDTO.class),
         @ApiResponse(code = 404, message = "Unknown error occured", response = Error.class),
         @ApiResponse(code = 200, message = "Unknown Error") })
     @RequestMapping(value = "/meet-greet/students/interests/{studentId}",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.PUT)
-    default ResponseEntity<StudentResponseDTO> updateStudentInterests(@ApiParam(value = "",required=true) @PathVariable("studentId") Integer studentId,@ApiParam(value = "Update student interests" ,required=true )  @Valid @RequestBody StudentRequestDTO studentRequestDTO) {
-        return getDelegate().updateStudentInterests(studentId, studentRequestDTO);
+    default ResponseEntity<InterestsResponseDTO> updateStudentInterests(@ApiParam(value = "",required=true) @PathVariable("studentId") Integer studentId,@ApiParam(value = "Update student interests" ,required=true )  @Valid @RequestBody InterestsRequestDTO interestsRequestDTO) {
+        return getDelegate().updateStudentInterests(studentId, interestsRequestDTO);
     }
 
 

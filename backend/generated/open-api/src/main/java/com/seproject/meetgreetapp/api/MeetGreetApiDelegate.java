@@ -3,6 +3,7 @@ package com.seproject.meetgreetapp.api;
 import com.seproject.meetgreetapp.AnnouncementRequestDTO;
 import com.seproject.meetgreetapp.AnnouncementResponseDTO;
 import com.seproject.meetgreetapp.Error;
+import com.seproject.meetgreetapp.InterestsRequestDTO;
 import com.seproject.meetgreetapp.InterestsResponseDTO;
 import com.seproject.meetgreetapp.LoginRequestDTO;
 import com.seproject.meetgreetapp.PairUpMatchesResponseDTO;
@@ -28,7 +29,7 @@ import java.util.Optional;
  * A delegate to be called by the {@link MeetGreetApiController}}.
  * Implement this interface with a {@link org.springframework.stereotype.Service} annotated class.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-11-13T14:53:53.001239-05:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-11-13T15:25:12.604668-05:00[America/New_York]")
 
 public interface MeetGreetApiDelegate {
 
@@ -210,12 +211,12 @@ public interface MeetGreetApiDelegate {
     /**
      * @see MeetGreetApi#updateStudentInterests
      */
-    default ResponseEntity<StudentResponseDTO> updateStudentInterests(Integer studentId,
-        StudentRequestDTO studentRequestDTO) {
+    default ResponseEntity<InterestsResponseDTO> updateStudentInterests(Integer studentId,
+        InterestsRequestDTO interestsRequestDTO) {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"is_volunteer\" : true, \"contact\" : \"contact\", \"name\" : \"name\", \"id\" : 0, \"department\" : \"department\", \"interests\" : [ \"interests\", \"interests\" ], \"email\" : \"email\", \"volunteer_interests\" : [ \"volunteer_interests\", \"volunteer_interests\" ] }";
+                    String exampleString = "{ \"is_volunteer\" : true, \"interests\" : [ { \"interest\" : \"interest\", \"id\" : 6, \"category\" : \"category\" }, { \"interest\" : \"interest\", \"id\" : 6, \"category\" : \"category\" } ], \"volunteer_interests\" : [ { \"interest\" : \"interest\", \"id\" : 1, \"category\" : \"category\" }, { \"interest\" : \"interest\", \"id\" : 1, \"category\" : \"category\" } ] }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

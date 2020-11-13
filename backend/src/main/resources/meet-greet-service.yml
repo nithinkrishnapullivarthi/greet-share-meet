@@ -203,6 +203,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VolunteerInterest'
+    InterestsRequestDTO:
+      type: object
+      properties:
+        is_volunteer:
+          type: boolean
+        interests:
+          type: array
+          items:
+            $ref: '#/components/schemas/Interest'
+        volunteer_interests:
+          type: array
+          items:
+            $ref: '#/components/schemas/VolunteerInterest'
     ListStudentResponseDTO:
       type: array
       items:
@@ -397,10 +410,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/StudentRequestDTO'
+              $ref: '#/components/schemas/InterestsRequestDTO'
       responses:
         '200':
-          $ref: '#/components/responses/SuccessfullStudentRetrieval'
+          $ref: '#/components/responses/SuccessfullStudentInterestsRetrieval'
         '404':
           $ref: '#/components/responses/Error'
         default:
