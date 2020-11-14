@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class AnnouncementComponent implements OnInit {
   public announcementForm: FormGroup;
   public navigationForm: FormGroup;
-  public interests : [""];
+  public interests = [];
   public id:number;
   public userJson: any;
   constructor(private form: FormBuilder,
@@ -25,7 +25,7 @@ export class AnnouncementComponent implements OnInit {
   ngOnInit(): void {
       console.log('hello')
      let user = sessionStorage.getItem('user');
-     let inter :[""];
+     let inter =[];
      this.userJson = JSON.parse(user);
      console.log('userjson in oninit',this.userJson);
      //this.interests = this.userJson.interest;
@@ -61,7 +61,8 @@ export class AnnouncementComponent implements OnInit {
     let announcementRequest = new AnnouncementRequest();
     announcementRequest.studentId = this.userJson.id;
     announcementRequest.announcement = this.announcementForm.value.announcement;
-    announcementRequest.interest = this.announcementForm.value.interest;
+    announcementRequest.interest = this.announcementForm.value.interest[0];
+    console.log('Announcement request',announcementRequest);
     this.announcementservice.makeAnnouncement(announcementRequest).subscribe(res => {
             console.log(res);
            if(res){

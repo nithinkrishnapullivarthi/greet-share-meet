@@ -21,6 +21,7 @@ export class HomepageComponent implements OnInit {
    
    searchParam:string = "";
    public cards: any;
+   public cardsDummy: any;
    public userJson: any =[];
   ngOnInit(): void {
              this.searchForm = this.fb.group({
@@ -31,7 +32,8 @@ export class HomepageComponent implements OnInit {
          console.log('this is userjson',this.userJson.id);
              this.homeservice.getStudents(this.userJson.id).subscribe(res => {
                 if(res){
-                this.cards = res;
+                this.cardsDummy = res;
+                this.cards = this.cardsDummy
                 }
              });
   }
@@ -40,19 +42,36 @@ export class HomepageComponent implements OnInit {
 
   //alert('onSearch');
     let searchVal = this.searchForm.value.searchParam;
+    let varval:any;
     if(searchVal == ""){
-        this.homeservice.getStudents(this.userJson.id).subscribe(res => {
-        if(res){
-        this.cards = res;
-        console.log('tupe of cards', typeof(this.cards))
-        }
-       });
+      this.cards = this.cardsDummy;
     }
     else{
+      this.cards = this.cardsDummy;
       for(let i of this.cards){
+        for(let j of i.interests)
+        {
+          console.log(j.toLowerCase());
+          if(j.toLowerCase() == searchVal.toLowerCase())
+          {
+            varval = {
+              id: i.id,
+              name: i.name,
+              department: i.department,
+              email:i.email,
+              is_volunteer:i.is_volunteer,
+              contact:i.contact,
+              interests:i.interests,
+              volunteer_interests:i.volunteer_interests
+            };
+            searchResults:searchResults.push(varval);
+            continue;
+          }
+        }
+        console.log('value of I =', i);
         if(i.name.toLowerCase() == searchVal.toLowerCase()){
         //this.searchResults.push(i);
-        let varval = {
+         varval = {
           id: i.id,
           name: i.name,
           department: i.department,
