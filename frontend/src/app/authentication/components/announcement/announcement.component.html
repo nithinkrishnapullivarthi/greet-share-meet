@@ -21,14 +21,17 @@
                           <mat-option value={{interest}}>{{interest}}</mat-option>
                           </div>
                         </mat-select>
+                        <mat-error *ngIf="announcementForm.controls.interest.hasError('required')">
+                          Atleaset one interest is required
+                        </mat-error>
                       </mat-form-field>
 
                           <mat-form-field appearance="outline" class="text-area">
                                 <mat-label>Don't hesitate, say it out loud.</mat-label>
                                 <textarea matInput placeholder="Musical Event next Monday" class="with" formControlName="announcement" type="text"></textarea>
-                            <mat-error *ngIf="announcementForm.controls.announcement.hasError('minlength')">
-                              Announcement must be atleast 5 characters
-                            </mat-error>
+                                <mat-error *ngIf="announcementForm.controls.announcement">
+                                  Announcement must be atleast 5 characters
+                                </mat-error>
                           </mat-form-field>
 
                           <div class="example-button-row" class="padding">

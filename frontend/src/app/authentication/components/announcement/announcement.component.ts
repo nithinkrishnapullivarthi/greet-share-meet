@@ -28,9 +28,6 @@ export class AnnouncementComponent implements OnInit {
      let inter =[];
      this.userJson = JSON.parse(user);
      console.log('userjson in oninit',this.userJson);
-     //this.interests = this.userJson.interest;
-     //this.announcementservice.getLoggedUserDetails(this.userJson.id).subscribe
-     //
 
          this.announcementservice.getLoggedUserDetails(this.userJson.id).subscribe(res => {
             console.log('tried reaching here');
@@ -48,7 +45,6 @@ export class AnnouncementComponent implements OnInit {
             }
          });
 
-     //
     this.announcementForm = this.form.group({
       announcement: ['', [Validators.required,Validators.minLength(5)]],
       interest:[[],[Validators.required]]
