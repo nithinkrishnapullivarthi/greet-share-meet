@@ -17,6 +17,8 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatSnackBarModule} from '@angular/material/snack-bar'
 import { Observable } from 'rxjs';
 @NgModule({
   declarations: [PageNotFoundComponent],
@@ -42,6 +44,8 @@ import { Observable } from 'rxjs';
     MatNativeDateModule,
     MatMomentDateModule,
     FlexLayoutModule,
+    MatChipsModule,
+    MatSnackBarModule
   ]
 })
 export class SharedModule { }

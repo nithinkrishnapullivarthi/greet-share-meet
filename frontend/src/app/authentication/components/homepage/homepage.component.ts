@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AuthenticationService } from '../../services/authentication.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -13,7 +14,8 @@ export class HomepageComponent implements OnInit {
 
   constructor(private homeservice:AuthenticationService,
               private fb: FormBuilder,
-              private router: Router, ) {
+              private router: Router,
+              private _snackBar: MatSnackBar ) {
 
    }
    public searchForm: FormGroup;
@@ -37,6 +39,13 @@ export class HomepageComponent implements OnInit {
                 }
              });
   }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
   onSearch(){
     let searchResults: Object[] = [];
 

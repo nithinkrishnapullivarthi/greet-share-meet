@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {AnnouncementRequest} from '../../models/announce.model'
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-announcement',
   templateUrl: './announcement.component.html',
@@ -17,13 +18,13 @@ export class AnnouncementComponent implements OnInit {
   public userJson: any;
   constructor(private form: FormBuilder,
     private router: Router,
-    private announcementservice: AuthenticationService
+    private announcementservice: AuthenticationService,
+    private _snackBar: MatSnackBar
   ) { }
 
 
 
   ngOnInit(): void {
-      console.log('hello')
      let user = sessionStorage.getItem('user');
      let inter =[];
      this.userJson = JSON.parse(user);
@@ -50,8 +51,15 @@ export class AnnouncementComponent implements OnInit {
       interest:[[],[Validators.required]]
     });
   }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
+
   onAnnounce() {
-  alert('hello');
     console.log(Router.name);
     console.log('announcementForm',this.announcementForm);
     let announcementRequest = new AnnouncementRequest();

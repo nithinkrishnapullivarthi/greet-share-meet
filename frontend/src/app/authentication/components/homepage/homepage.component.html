@@ -15,22 +15,45 @@
                     <!--mdb-card-img [src]="card.img" alt="Card image cap">
                     </mdb-card-img-->
                     <mat-card-title>
-                      <h4> Name: {{card.name}}</h4>
+                      <div style="font-size: 20px;">
+                        Name: {{card.name}}
+                      </div>
                     </mat-card-title>
 
                     <mat-card-text>
-                        <h4>Contact: {{card.contact}}</h4>
+                        <div style="  display: flex; justify-content: space-between; margin-right: 4%; font-size: 15px;">
+                            <div style=" display: inline-flex;">
+                                Contact: {{card.contact}}
+                            </div>
+                            <div style=" display: inline-flex;">
+                                Email: {{card.email}}
+                            </div>
+                        </div>
+                         
                     </mat-card-text>
+
+                    <!--mat-card-text>
+                      
+                    </mat-card-text-->
 
                     <mat-card-text>
-                      <h4>Email: {{card.email}}</h4>
+                        <mat-chip-list >
+                            <div *ngFor = "let i of card.interests">
+                                <mat-chip color="primary" selected style="box-shadow: 2.5px 2.5 px #b4a8a8; margin-top: 15px;">{{i}}</mat-chip>   
+                             </div>
+                          </mat-chip-list>
+                    
                     </mat-card-text>
-
                     <mat-card-text>
-                     Interest: <mat-chip color="primary" selected>{{card.interests}}</mat-chip>
+                        <mat-chip-list >
+                            <div *ngFor = "let i of card.volunteer_interests">
+                                <mat-chip color="accent" selected style="box-shadow: 2.5px 2.5 px #b4a8a8; margin-top: 15px;">{{i}}</mat-chip>   
+                             </div>
+                          </mat-chip-list>
+                    
                     </mat-card-text>
 
-                    <button mat-raised-button color="primary" style="margin-left: 85%; margin-right: 10%;">Connect</button>
+                    <button mat-raised-button color="primary"  (click)="openSnackBar('Successfully Connected with ' + card.name, 'x')" style="margin-left: 85%; margin-right: 10%; ">Connect</button>
                 </mat-card>
             </div>
 
