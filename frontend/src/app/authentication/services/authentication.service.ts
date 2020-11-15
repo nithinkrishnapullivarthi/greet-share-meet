@@ -7,10 +7,18 @@ import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { environment } from 'src/environments/environment';
 import { catchError, map, tap } from 'rxjs/operators'
+import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
+
+  private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+  get isLoggedIn() {
+    return this.loggedIn.asObservable();
+  }
+
   constructor(private http: HttpClient) {
 
   }
@@ -22,6 +30,7 @@ export class AuthenticationService {
         if (!(response.message)) {
           sessionStorage.setItem('user', JSON.stringify(response));
           //sessionStorage.setItem('navflag', true);
+          this.loggedIn.next(true);
         }
       }),
       catchError(error => this.handleError(error))
