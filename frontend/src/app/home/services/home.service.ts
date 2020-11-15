@@ -5,7 +5,8 @@ import { catchError, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { RegisterRequest } from '../../authentication/models';
 import { UpdateInterest } from '../models/updateinterest.model';
-import {UpdateProfile} from '../models/updateprofile.model'
+import {UpdateProfile} from '../models/updateprofile.model';
+import {RegisterTimeSlots} from '../../match-making/models/registertimeslots.model';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,13 @@ export class HomeService {
     return this.http.get<any>(environment.baseUrl + "/v1/meet-greet/students/interests/" + user.id).pipe(
       catchError(error => this.handleError(error))
     );
+  }
+
+  public registerUserTimeSlot(timeslot :RegisterTimeSlots): Observable<any>{
+    return this.http.post<any>(environment.baseUrl+"/v1/meet-greet/students/pairup",timeslot).pipe(
+      catchError(error => this.handleError(error))
+    );
+    
   }
   public updateUserInerests(update: UpdateInterest):Observable<any>{
     const user = JSON.parse(sessionStorage.getItem('user'));
