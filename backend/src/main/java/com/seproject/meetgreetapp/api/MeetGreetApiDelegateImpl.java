@@ -69,7 +69,7 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate {
 
     @Override
     public ResponseEntity<List<PairUpMatchesResponseDTO>> getMatches(Integer studentId) {
-        return null;
+        return new ResponseEntity(pairUpService.getAllMatchingAnnouncemnets(studentId), HttpStatus.OK);
     }
 
     @Override

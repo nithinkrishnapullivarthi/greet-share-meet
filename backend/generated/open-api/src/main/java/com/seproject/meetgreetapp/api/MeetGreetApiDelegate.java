@@ -29,7 +29,7 @@ import java.util.Optional;
  * A delegate to be called by the {@link MeetGreetApiController}}.
  * Implement this interface with a {@link org.springframework.stereotype.Service} annotated class.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-11-13T15:25:12.604668-05:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-11-14T13:58:03.650-06:00[America/Chicago]")
 
 public interface MeetGreetApiDelegate {
 
@@ -95,7 +95,7 @@ public interface MeetGreetApiDelegate {
         getRequest().ifPresent(request -> {
             for (MediaType mediaType: MediaType.parseMediaTypes(request.getHeader("Accept"))) {
                 if (mediaType.isCompatibleWith(MediaType.valueOf("application/json"))) {
-                    String exampleString = "{ \"interest\" : \"interest\", \"contact\" : \"contact\", \"startDateAndTime\" : \"startDateAndTime\", \"name\" : \"name\", \"endDateAndTime\" : \"endDateAndTime\", \"email\" : \"email\" }";
+                    String exampleString = "{ \"startDateTime\" : \"startDateTime\", \"interest\" : \"interest\", \"contact\" : \"contact\", \"name\" : \"name\", \"endDateTime\" : \"endDateTime\", \"email\" : \"email\" }";
                     ApiUtil.setExampleResponse(request, "application/json", exampleString);
                     break;
                 }

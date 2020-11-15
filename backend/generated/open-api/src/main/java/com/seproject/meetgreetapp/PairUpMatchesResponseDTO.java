@@ -12,7 +12,7 @@ import javax.validation.constraints.*;
 /**
  * PairUpMatchesResponseDTO
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-11-13T15:25:12.604668-05:00[America/New_York]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-11-14T13:58:03.650-06:00[America/Chicago]")
 
 public class PairUpMatchesResponseDTO   {
   @JsonProperty("name")
@@ -27,11 +27,11 @@ public class PairUpMatchesResponseDTO   {
   @JsonProperty("interest")
   private String interest;
 
-  @JsonProperty("startDateAndTime")
-  private String startDateAndTime;
+  @JsonProperty("startDateTime")
+  private String startDateTime;
 
-  @JsonProperty("endDateAndTime")
-  private String endDateAndTime;
+  @JsonProperty("endDateTime")
+  private String endDateTime;
 
   public PairUpMatchesResponseDTO name(String name) {
     this.name = name;
@@ -113,44 +113,44 @@ public class PairUpMatchesResponseDTO   {
     this.interest = interest;
   }
 
-  public PairUpMatchesResponseDTO startDateAndTime(String startDateAndTime) {
-    this.startDateAndTime = startDateAndTime;
+  public PairUpMatchesResponseDTO startDateTime(String startDateTime) {
+    this.startDateTime = startDateTime;
     return this;
   }
 
   /**
-   * Get startDateAndTime
-   * @return startDateAndTime
+   * Get startDateTime
+   * @return startDateTime
   */
   @ApiModelProperty(value = "")
 
 
-  public String getStartDateAndTime() {
-    return startDateAndTime;
+  public String getStartDateTime() {
+    return startDateTime;
   }
 
-  public void setStartDateAndTime(String startDateAndTime) {
-    this.startDateAndTime = startDateAndTime;
+  public void setStartDateTime(String startDateTime) {
+    this.startDateTime = startDateTime;
   }
 
-  public PairUpMatchesResponseDTO endDateAndTime(String endDateAndTime) {
-    this.endDateAndTime = endDateAndTime;
+  public PairUpMatchesResponseDTO endDateTime(String endDateTime) {
+    this.endDateTime = endDateTime;
     return this;
   }
 
   /**
-   * Get endDateAndTime
-   * @return endDateAndTime
+   * Get endDateTime
+   * @return endDateTime
   */
   @ApiModelProperty(value = "")
 
 
-  public String getEndDateAndTime() {
-    return endDateAndTime;
+  public String getEndDateTime() {
+    return endDateTime;
   }
 
-  public void setEndDateAndTime(String endDateAndTime) {
-    this.endDateAndTime = endDateAndTime;
+  public void setEndDateTime(String endDateTime) {
+    this.endDateTime = endDateTime;
   }
 
 
@@ -167,13 +167,13 @@ public class PairUpMatchesResponseDTO   {
         Objects.equals(this.contact, pairUpMatchesResponseDTO.contact) &&
         Objects.equals(this.email, pairUpMatchesResponseDTO.email) &&
         Objects.equals(this.interest, pairUpMatchesResponseDTO.interest) &&
-        Objects.equals(this.startDateAndTime, pairUpMatchesResponseDTO.startDateAndTime) &&
-        Objects.equals(this.endDateAndTime, pairUpMatchesResponseDTO.endDateAndTime);
+        Objects.equals(this.startDateTime, pairUpMatchesResponseDTO.startDateTime) &&
+        Objects.equals(this.endDateTime, pairUpMatchesResponseDTO.endDateTime);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, contact, email, interest, startDateAndTime, endDateAndTime);
+    return Objects.hash(name, contact, email, interest, startDateTime, endDateTime);
   }
 
   @Override
@@ -185,8 +185,8 @@ public class PairUpMatchesResponseDTO   {
     sb.append("    contact: ").append(toIndentedString(contact)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    interest: ").append(toIndentedString(interest)).append("\n");
-    sb.append("    startDateAndTime: ").append(toIndentedString(startDateAndTime)).append("\n");
-    sb.append("    endDateAndTime: ").append(toIndentedString(endDateAndTime)).append("\n");
+    sb.append("    startDateTime: ").append(toIndentedString(startDateTime)).append("\n");
+    sb.append("    endDateTime: ").append(toIndentedString(endDateTime)).append("\n");
     sb.append("}");
     return sb.toString();
   }
