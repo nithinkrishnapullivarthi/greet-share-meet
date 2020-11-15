@@ -81,9 +81,9 @@
                 </div>
                 <div class="radio-class">
                     <mat-radio-group (change)="onRadioChange($event, 'is_volunteer')"
-                        aria-labelledby="example-radio-group-label" formControlName="is_volunteer">
-                        <mat-radio-button value="true" [disabled] ="isDisabled1">Yes</mat-radio-button>&nbsp;
-                        <mat-radio-button value="false" [disabled] ="isDisabled2"> No</mat-radio-button>
+                        aria-labelledby="example-radio-group-label" formControlName="is_volunteer" [(ngModel)]="isVolunteer">
+                        <mat-radio-button value="true">Yes</mat-radio-button>&nbsp;
+                        <mat-radio-button value="false"> No</mat-radio-button>
                     </mat-radio-group>
                 </div>
                 <mat-form-field appearance="outline" class="width-25">
