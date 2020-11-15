@@ -26,10 +26,12 @@ export class AddeditinterestsComponent implements OnInit {
   selacti: string[] = [];
   selmus: string[] = [];
   showvolunteer: boolean = false;
+  volunteerInterestsSet= new Set<string>();  
+  isVolunteer: string;
   loaded = false;
   $event = MatRadioChange;
   updateuserinterest: UpdateInterest;
-  pre_volunteer_interests: string[]=[];
+  pre_volunteer_interests= new Set<string>();
   constructor(private fb: FormBuilder,
     private homeService: HomeService,
     private router: Router,
@@ -39,25 +41,32 @@ export class AddeditinterestsComponent implements OnInit {
     this.homeService.getUserInterests().subscribe(res => {
       console.log(res);
       console.log(res.volunteer_interests)
+      this.isVolunteer = res.is_volunteer.toString();
       if (res.is_volunteer) {
         for (let i = 0; i < res.interests.length; i++) {
           let rows = res.interests[i];
           if(rows["category"]=="Sports")
             this.selsports.push(rows["interest"]);
+          if(rows["category"]=="Musical Instruments")
+            this.selmus.push(rows["interest"]);
+          if(rows["category"]=="Other Activities")
+            this.selacti.push(rows["interest"]);
+          if(rows["category"]=="Academics")
+            this.selacad.push(rows["interest"]);
         }
         for (let i = 0; i < res.volunteer_interests.length; i++) {
           let volint = res.volunteer_interests[i];
-          this.pre_volunteer_interests.push(volint["interest"]);
+          this.pre_volunteer_interests.add(volint["interest"]);
         }
       }
       this.addeditinterestsForm = this.fb.group({
 
-        is_volunteer: [{ value: res.is_volunteer, }, Validators.required],
-        volunteer_interests: [this.pre_volunteer_interests, Validators.required],
+        is_volunteer: [Validators.required],
+        volunteer_interests: [Array.from(this.pre_volunteer_interests),Validators.required],
         sports: [this.selsports],
-        academics: [],
-        activities: [],
-        musicalInstruments: []
+        academics: [this.selacad],
+        activities: [this.selacti],
+        musicalInstruments: [this.selmus]
 
       });
       this.loaded = true;
@@ -78,14 +87,18 @@ export class AddeditinterestsComponent implements OnInit {
         this.selacad = [...res.academics];
       }
       if (res.activities) {
-
         this.selacti = [...res.activities];
       }
       if (res.musicalInstruments) {
 
         this.selmus = [...res.musicalInstruments];
       }
-      this.volunteer_interests = [...this.selsports, ...this.selacad, ...this.selacti, ...this.selmus,...this.pre_volunteer_interests]
+      this.pre_volunteer_interests = new Set<string>();
+      this.selsports.forEach(item => this.pre_volunteer_interests.add(item));
+      this.selacad.forEach(item => this.pre_volunteer_interests.add(item));
+      this.selacti.forEach(item => this.pre_volunteer_interests.add(item));
+      this.selmus.forEach(item => this.pre_volunteer_interests.add(item));
+      this.volunteer_interests = Array.from(this.pre_volunteer_interests);
     });
   }
 
