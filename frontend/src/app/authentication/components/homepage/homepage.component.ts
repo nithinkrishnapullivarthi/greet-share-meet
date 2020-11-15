@@ -100,7 +100,7 @@ export class HomepageComponent implements OnInit {
         this.cards=searchResults;
       }
       else{
-        alert('No such users found')
+        this.cards =[];
       }
     }
   }

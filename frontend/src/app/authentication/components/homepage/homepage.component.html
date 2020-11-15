@@ -1,7 +1,16 @@
 <!DOCTYPE html>
 <html>
-    <body>
         <div class="body">
+            <div style = "margin-top: 0; height: 20%; align-content: center;" *ngIf="cards.length==0">
+                <mat-card class = "tile"  style="margin-top: 0%;">
+                    <mat-card-text>
+                        <p>No Users Found</p>
+                    </mat-card-text>         
+               </mat-card>
+            </div>
+
+           
+           <div *ngIf="cards.length>0">
             <div >
                 <form class="stile" [formGroup]="searchForm">
                     <input type="text" placeholder="Search.." style="height: 30px; margin-right: 10px; width: 35%; opacity: 55%; border-radius: 10px;" formControlName="searchParam">
@@ -10,10 +19,10 @@
                   </form>
             </div>
 
+            
+
             <div class="tile" *ngFor="let card of cards">
                 <mat-card class = "mat-card" >
-                    <!--mdb-card-img [src]="card.img" alt="Card image cap">
-                    </mdb-card-img-->
                     <mat-card-title>
                       <div style="font-size: 20px;">
                         Name: {{card.name}}
@@ -32,10 +41,6 @@
                          
                     </mat-card-text>
 
-                    <!--mat-card-text>
-                      
-                    </mat-card-text-->
-
                     <mat-card-text>
                         <mat-chip-list >
                             <div *ngFor = "let i of card.interests">
@@ -53,10 +58,11 @@
                     
                     </mat-card-text>
 
-                    <button mat-raised-button color="primary"  (click)="openSnackBar('Successfully Connected with ' + card.name, 'x')" style="margin-left: 85%; margin-right: 10%; ">Connect</button>
+                    <button mat-raised-button color="primary"  (click)="openSnackBar('Successfully Connected with ' + card.name, 'x')" style="margin-left: 85%; margin-right: 10%; margin-top: 2%;">Connect</button>
                 </mat-card>
             </div>
 
+           </div>
+           
         </div>
-    </body>
 </html>
