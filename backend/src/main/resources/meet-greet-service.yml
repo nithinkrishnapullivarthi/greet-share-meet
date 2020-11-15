@@ -121,9 +121,9 @@ components:
           type: string
         interest:
           type: string
-        startDateAndTime:
+        startDateTime:
           type: string
-        endDateAndTime:
+        endDateTime:
           type: string
     StudentRequestDTO:
       type: object
