@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatRadioChange } from '@angular/material/radio'
 import { HomeService } from '../../services/home.service';
 import { RegisterRequest } from '../../../authentication/models';
 import { UpdateInterest } from '../../models/updateinterest.model'
+import { UpdateInterestsRequest } from '../../models/updateInterestsRequest.model';
+import { Interest } from '../../models/interest.model';
 @Component({
   selector: 'app-addeditinterests',
   templateUrl: './addeditinterests.component.html',
@@ -26,10 +28,11 @@ export class AddeditinterestsComponent implements OnInit {
   selacti: string[] = [];
   selmus: string[] = [];
   showvolunteer: boolean = false;
-  volunteerInterestsSet= new Set<string>();  
+  volunteerInterestsSet= new Set<string>();
   isVolunteer: string;
   loaded = false;
   $event = MatRadioChange;
+  updateInterestRequest = new UpdateInterestsRequest();
   updateuserinterest: UpdateInterest;
   pre_volunteer_interests= new Set<string>();
   constructor(private fb: FormBuilder,
@@ -80,6 +83,8 @@ export class AddeditinterestsComponent implements OnInit {
   public onFormChanges() {
 
     this.addeditinterestsForm.valueChanges.subscribe(res => {
+
+      this.updateRequestObject(res);
       if (res.sports) {
         this.selsports = [...res.sports];
       }
@@ -102,6 +107,64 @@ export class AddeditinterestsComponent implements OnInit {
     });
   }
 
+  updateRequestObject(res : any){
+    let interests = new Array<Interest>();
+    let volunteer_interests = new Array<Interest>();
+    for (let i = 0; i < res.sports.length; i++) {
+      let inter = new Interest;
+      inter.category = "Sports";
+      inter.interest = res.sports[i];
+      interests.push(inter);
+    }
+    for (let i = 0; i < res.musicalInstruments.length; i++) {
+      let inter = new Interest;
+      inter.category = "Musical Instruments";
+      inter.interest = res.musicalInstruments[i];
+      interests.push(inter);
+    }
+    for (let i = 0; i < res.activities.length; i++) {
+      let inter = new Interest;
+      inter.category = "Other Activities";
+      inter.interest = res.activities[i];
+      interests.push(inter);
+    }
+    for (let i = 0; i < res.academics.length; i++) {
+      let inter = new Interest;
+      inter.category = "Academics";
+      inter.interest = res.academics[i];
+      interests.push(inter);
+    }
+    for (let i = 0; i < res.volunteer_interests.length; i++) {
+      if(res.academics.indexOf(res.volunteer_interests[i]) > -1){
+        let inter = new Interest;
+        inter.category = "Academics";
+        inter.interest = res.volunteer_interests[i];
+        volunteer_interests.push(inter);
+      }
+      if(res.activities.indexOf(res.volunteer_interests[i]) > -1){
+        let inter = new Interest;
+        inter.category = "Other Activities";
+        inter.interest = res.volunteer_interests[i];
+        volunteer_interests.push(inter);
+      }
+      if(res.musicalInstruments.indexOf(res.volunteer_interests[i]) > -1){
+        let inter = new Interest;
+        inter.category = "Musical Instruments";
+        inter.interest = res.volunteer_interests[i];
+        volunteer_interests.push(inter);
+      }
+      if(res.sports.indexOf(res.volunteer_interests[i]) > -1){
+        let inter = new Interest;
+        inter.category = "Sports";
+        inter.interest = res.volunteer_interests[i];
+        volunteer_interests.push(inter);
+      }
+    }
+    this.updateInterestRequest.is_volunteer = res.is_volunteer;
+    this.updateInterestRequest.interests = interests;
+    this.updateInterestRequest.volunteer_interests = volunteer_interests;
+  }
+
   onRadioChange($event: MatRadioChange, controlName: string | null) {
     if (controlName == 'is_volunteer') {
       if ($event.value == 'true') {
@@ -116,14 +179,12 @@ export class AddeditinterestsComponent implements OnInit {
   }
 
   onUpdate() {
-    let updateduserinterest = this.updateuserinterest;
-    updateduserinterest.interests = this.volunteer_interests;
-    this.homeService.updateUserInerests(updateduserinterest).subscribe(res => {
+    this.homeService.updateUserInerests(this.updateInterestRequest).subscribe(res => {
       if (!res) {
         this.errorMessage = "Some thing bad happened. Please try again later";
       }
       else {
-        this.router.navigate(['home']);
+        this.router.navigate(['homepage']);
       }
     })
   }
