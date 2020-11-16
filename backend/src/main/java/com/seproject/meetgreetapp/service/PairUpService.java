@@ -4,13 +4,8 @@ import com.seproject.meetgreetapp.AnnouncementResponseDTO;
 import com.seproject.meetgreetapp.PairUpMatchesResponseDTO;
 import com.seproject.meetgreetapp.PairUpRequestDTO;
 import com.seproject.meetgreetapp.PairUpResponseDTO;
-import com.seproject.meetgreetapp.model.Announcement;
-import com.seproject.meetgreetapp.model.PairUp;
-import com.seproject.meetgreetapp.model.Student;
-import com.seproject.meetgreetapp.repository.AnnouncementRepository;
-import com.seproject.meetgreetapp.repository.InterestRepository;
-import com.seproject.meetgreetapp.repository.PairUpRepository;
-import com.seproject.meetgreetapp.repository.StudentRepository;
+import com.seproject.meetgreetapp.model.*;
+import com.seproject.meetgreetapp.repository.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +35,9 @@ public class PairUpService {
     @Autowired
     StudentRepository studentRepository;
 
+    @Autowired
+    StudentInterestRepository studentInterestRepository;
+
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
     Date getParsedDate(String dateAndTime) throws  ParseException
@@ -68,12 +66,15 @@ public class PairUpService {
         return response;
     }
 
-    public List<PairUpMatchesResponseDTO> getAllMatchingAnnouncemnets(Integer studentId)
+    public List<PairUpMatchesResponseDTO> getAllMatchingPairups(Integer studentId)
     {
-        List<PairUp>  allPairUpRecords = pairUpRepository.findAll();
+        List<StudentInterest> listOfStudentsInterests = studentInterestRepository.findByStudentId(studentId);
+        List<Integer> interestIds = listOfStudentsInterests.stream().map(x-> x.getInterestId()).collect(Collectors.toList());
+        List<Interest> interestDetails = interestRepository.findAllById(interestIds);
 
+        List<PairUp>  allPairUpRecords = pairUpRepository.findAll();
         List<PairUp>  loggedInStudentPairUps = allPairUpRecords.stream().filter(x -> x.getStudentId().equals(studentId)).collect(Collectors.toList());
-        List<String> studentInterests = loggedInStudentPairUps.stream().map(x -> x.getInterest()).collect(Collectors.toList());
+        List<String> studentInterests = interestDetails.stream().map(x -> x.getInterest()).collect(Collectors.toList());
         allPairUpRecords = allPairUpRecords.stream().filter(x -> studentInterests.contains(x.getInterest())).collect(Collectors.toList());
 
         allPairUpRecords = allPairUpRecords.stream().filter(x -> filterPairUpRecords(loggedInStudentPairUps, x, studentId)).collect(Collectors.toList());
