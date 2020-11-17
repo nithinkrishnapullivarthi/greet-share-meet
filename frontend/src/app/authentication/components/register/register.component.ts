@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import {MatRadioChange} from '@angular/material/radio'
 import {RegisterRequest} from '../../models/register.model'
@@ -9,6 +9,7 @@ import { AuthenticationService } from '../../services/authentication.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
+
 export class RegisterComponent implements OnInit {
 
   sportsList: string[] = ['Tennis', 'Football', 'Soccer', 'Badminton', 'Basketball'];
@@ -24,6 +25,7 @@ export class RegisterComponent implements OnInit {
   selacti:string[]=[];
   selmus:string[]=[];
   showvolunteer: boolean = false;
+  department = new FormControl('',[Validators.required]);
   constructor(private fb: FormBuilder,
     private router: Router, 
     private registerservice: AuthenticationService) { }
@@ -42,10 +44,12 @@ export class RegisterComponent implements OnInit {
       academics:[],
       activities:[],
       musicalInstruments:[]
+  
     });
 
     this.onFormChanges();
   }
+  
   public onFormChanges() {
     
     this.registerForm.valueChanges.subscribe(res => {
@@ -89,5 +93,8 @@ export class RegisterComponent implements OnInit {
       }
     });
   }
-}
+  private validateusername(){
 
+  }
+  
+}

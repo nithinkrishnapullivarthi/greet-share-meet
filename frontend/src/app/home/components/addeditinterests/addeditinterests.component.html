@@ -7,6 +7,9 @@
         <div class="example-container">
             
             <div class="flex-wrap">
+                <div *ngIf="errorMessage" class="error-field">
+                    <div *ngIf="errorMessage">{{errorMessage}}</div>
+                  </div>
                 <h2>Select your interests!</h2><sub style="color: red;">*</sub>
             </div>
             <div class="flex-wrap-sec">
@@ -78,7 +81,7 @@
                 </div>
                 <div class="radio-class">
                     <mat-radio-group (change)="onRadioChange($event, 'is_volunteer')"
-                        aria-labelledby="example-radio-group-label" formControlName="is_volunteer">
+                        aria-labelledby="example-radio-group-label" formControlName="is_volunteer" [(ngModel)]="isVolunteer">
                         <mat-radio-button value="true">Yes</mat-radio-button>&nbsp;
                         <mat-radio-button value="false"> No</mat-radio-button>
                     </mat-radio-group>

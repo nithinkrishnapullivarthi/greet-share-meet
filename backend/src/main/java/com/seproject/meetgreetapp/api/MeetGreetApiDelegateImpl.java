@@ -69,7 +69,7 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate {
 
     @Override
     public ResponseEntity<List<PairUpMatchesResponseDTO>> getMatches(Integer studentId) {
-        return null;
+        return new ResponseEntity(pairUpService.getAllMatchingPairups(studentId), HttpStatus.OK);
     }
 
     @Override
@@ -78,13 +78,23 @@ public class MeetGreetApiDelegateImpl implements MeetGreetApiDelegate {
     }
 
     @Override
-    public ResponseEntity<StudentResponseDTO> updateStudentDetails(Integer studentId,StudentRequestDTO studentRequestDTO) {
+    public ResponseEntity<StudentPersonalDetailResponseDTO> updateStudentDetails(Integer studentId,StudentPersonalDetailRequestDTO studentRequestDTO) {
         return new ResponseEntity(studentService.updateStudentDetails(studentId,studentRequestDTO),HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<StudentResponseDTO> updateStudentInterests(Integer studentId,StudentRequestDTO studentRequestDTO) {
-        return new ResponseEntity(studentService.updateStudentInterests(studentId,studentRequestDTO),HttpStatus.OK);
+    public ResponseEntity<StudentPersonalDetailResponseDTO> getStudentPersonalDetails(Integer studentId) {
+        return new ResponseEntity(studentService.getStudentPersonalDetails(studentId),HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<InterestsResponseDTO> getStudentInterests(Integer studentId) {
+        return new ResponseEntity(studentService.getStudentInterests(studentId),HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<InterestsResponseDTO> updateStudentInterests(Integer studentId,InterestsRequestDTO interestsRequestDTO) {
+        return new ResponseEntity(studentService.updateStudentInterests(studentId,interestsRequestDTO),HttpStatus.OK);
     }
 
     @Override

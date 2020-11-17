@@ -1,9 +1,6 @@
 package com.seproject.meetgreetapp.service;
 
-import com.seproject.meetgreetapp.StudentDetailResponseDTO;
-import com.seproject.meetgreetapp.StudentRequestDTO;
-import com.seproject.meetgreetapp.StudentResponseDTO;
-import com.seproject.meetgreetapp.VolunteerInterest;
+import com.seproject.meetgreetapp.*;
 import com.seproject.meetgreetapp.model.Interest;
 import com.seproject.meetgreetapp.model.Student;
 import com.seproject.meetgreetapp.model.StudentInterest;
@@ -88,6 +85,12 @@ public class StudentService {
         return studentToVolunteerInterestMapping;
     }
 
+    public StudentPersonalDetailResponseDTO getStudentPersonalDetails(Integer studentId){
+        Optional<Student> studentOptional = studentRepository.findById(studentId);
+        Student student = studentOptional.get();
+        return mapper.map(student,StudentPersonalDetailResponseDTO.class);
+    }
+
     private List<StudentResponseDTO> mapToResponseDTOList(List<Student> students, Map<Integer, List<Integer>> studentToInterestMapping,Map<Integer, List<Integer>> studentToVolunteerInterestMapping ){
         List<StudentResponseDTO> responseDTOList = new ArrayList<>();
         List<Interest> interests = interestRepository.findAll();
@@ -163,52 +166,92 @@ public class StudentService {
         return studentDetailResponseDTO;
     }
 
-    public StudentResponseDTO updateStudentDetails(Integer studentId, StudentRequestDTO studentRequestDTO){
+    public StudentPersonalDetailResponseDTO updateStudentDetails(Integer studentId, StudentPersonalDetailRequestDTO studentPersonalDetailRequestDTO){
         Optional<Student> studentEntity = studentRepository.findById(studentId);
         Student student = null;
         if(studentEntity.isPresent()){
             student = studentEntity.get();
-            student.setContact(studentRequestDTO.getContact());
-            student.setDepartment(studentRequestDTO.getDepartment());
-            student.setEmail(studentRequestDTO.getEmail());
-            student.setName(studentRequestDTO.getName());
+            student.setContact(studentPersonalDetailRequestDTO.getContact());
+            student.setDepartment(studentPersonalDetailRequestDTO.getDepartment());
+            student.setEmail(studentPersonalDetailRequestDTO.getEmail());
+            student.setName(studentPersonalDetailRequestDTO.getName());
             studentRepository.save(student);
         }
-        return mapper.map(student,StudentResponseDTO.class);
+        return mapper.map(student,StudentPersonalDetailResponseDTO.class);
     }
 
     @Transactional
-    public StudentResponseDTO updateStudentInterests(Integer studentId, StudentRequestDTO studentRequestDTO){
+    public InterestsResponseDTO updateStudentInterests(Integer studentId, InterestsRequestDTO interestsRequestDTO){
         studentInterestRepository.deleteByStudentId(studentId);
         studentVolunteerInterestRepository.deleteByStudentId(studentId);
 
-        List<String> interests = studentRequestDTO.getInterests();
         List<StudentInterest> studentInterests = new ArrayList<>();
-
-        for(String interest: interests){
+        for(com.seproject.meetgreetapp.Interest interest : interestsRequestDTO.getInterests()){
             StudentInterest studentInterest = new StudentInterest();
             studentInterest.setStudentId(studentId);
-            studentInterest.setInterestId(interestRepository.findByInterest(interest).getId());
+            studentInterest.setInterestId(interestRepository.findByInterest(interest.getInterest()).getId());
             studentInterests.add(studentInterest);
         }
+
         studentInterestRepository.saveAll(studentInterests);
         
-        if(studentRequestDTO.getIsVolunteer()){
-            updateStudentVolunteerInterests(studentId, studentRequestDTO);
+        if(interestsRequestDTO.getIsVolunteer()){
+            updateStudentVolunteerInterests(studentId, interestsRequestDTO);
         }
-        StudentResponseDTO studentResponseDTO =  mapper.map(studentRequestDTO, StudentResponseDTO.class);
-        return studentResponseDTO;
+        Student studentEntity = studentRepository.findById(studentId).get();
+        studentEntity.setIsVolunteer(interestsRequestDTO.getIsVolunteer());
+        studentRepository.save(studentEntity);
+        InterestsResponseDTO interestsResponseDTO =  mapper.map(interestsRequestDTO, InterestsResponseDTO.class);
+        return interestsResponseDTO;
     }
 
-    private void updateStudentVolunteerInterests(Integer studentId, StudentRequestDTO studentRequestDTO) {
-        List<String> volunteerInterests = studentRequestDTO.getVolunteerInterests();
+    private void updateStudentVolunteerInterests(Integer studentId, InterestsRequestDTO interestsRequestDTO) {
         List<StudentVolunteerInterest> studentVolunteerInterests = new ArrayList<>();
-        for(String interest: volunteerInterests){
+        for(VolunteerInterest interest: interestsRequestDTO.getVolunteerInterests()){
             StudentVolunteerInterest studentVolunteerInterest = new StudentVolunteerInterest();
             studentVolunteerInterest.setStudentId(studentId);
-            studentVolunteerInterest.setInterestId(interestRepository.findByInterest(interest).getId());
+            studentVolunteerInterest.setInterestId(interestRepository.findByInterest(interest.getInterest()).getId());
             studentVolunteerInterests.add(studentVolunteerInterest);
         }
         studentVolunteerInterestRepository.saveAll(studentVolunteerInterests);
+    }
+
+    public InterestsResponseDTO getStudentInterests(Integer studentId){
+        Optional<Student> studentDetails = studentRepository.findById(studentId);
+        List<StudentInterest> studentInterests = studentInterestRepository.findByStudentId(studentId);
+        List<StudentVolunteerInterest> studentVolunteerInterests = studentVolunteerInterestRepository.findByStudentId(studentId);
+        List<Interest> interests = interestRepository.findAll();
+
+        List<com.seproject.meetgreetapp.Interest> studentInterestList = new ArrayList<>();
+
+        //Populate the student interests
+        for(StudentInterest studentInterest: studentInterests){
+            for(Interest interest: interests){
+                if(interest.getId() == studentInterest.getInterestId()){
+                    studentInterestList.add(mapper.map(interest, com.seproject.meetgreetapp.Interest.class));
+                }
+            }
+        }
+
+        List<VolunteerInterest> studentVolunteerInterestList = new ArrayList<>();
+        //Populate the student volunteer interests
+        for(StudentVolunteerInterest studentVolunteerInterest: studentVolunteerInterests){
+            for(Interest interest: interests){
+                if(interest.getId() == studentVolunteerInterest.getInterestId()){
+                    studentVolunteerInterestList.add(mapper.map(interest, VolunteerInterest.class));
+                }
+            }
+        }
+
+        InterestsResponseDTO interestsResponseDTO = new InterestsResponseDTO();
+
+        if(studentDetails.isPresent()){
+            interestsResponseDTO.setIsVolunteer(studentDetails.get().getIsVolunteer());
+        }
+        interestsResponseDTO.setInterests(studentInterestList);
+        if(interestsResponseDTO.getIsVolunteer()){
+            interestsResponseDTO.setVolunteerInterests(studentVolunteerInterestList);
+        }
+        return interestsResponseDTO;
     }
 }

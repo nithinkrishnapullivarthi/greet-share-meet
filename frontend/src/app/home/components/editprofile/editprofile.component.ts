@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { HomeService } from '../../services/home.service';
 import { RegisterRequest } from '../../../authentication/models';
+import { UpdateProfile } from '../../models/updateprofile.model';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class EditprofileComponent implements OnInit {
 
   public editprofileForm: FormGroup;
   loaded = false;
-  updateuser: RegisterRequest;
+  updateuser: UpdateProfile;
   errorMessage =null;
 
   constructor(private fb: FormBuilder,
@@ -22,7 +23,7 @@ export class EditprofileComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.homeService.getUserInfo().subscribe(res => {
+    this.homeService.getUserProfile().subscribe(res => {
       this.editprofileForm = this.fb.group({
         name: [res.name, [Validators.required, Validators.minLength(3)]],
         email: [res.email, [Validators.required, Validators.email]],
@@ -49,7 +50,7 @@ export class EditprofileComponent implements OnInit {
         this.errorMessage = "Some thing bad happened. Please try again later";
       }
       else{
-        this.router.navigate(['home']);
+        this.router.navigate(['homepage']);
       }
     })
   }

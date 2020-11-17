@@ -3,22 +3,21 @@ import { HttpService } from 'src/app/shared/services/http.service';
 import { LoginRequest } from '../models';
 import {AnnouncementRequest} from '../models';
 import { RegisterRequest } from '../models';
-import { Observable, throwError } from 'rxjs';
+//import { PairupRequest } from 'src/app/match-making/models';
+import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http'
 import { environment } from 'src/environments/environment';
-import { catchError, map, tap } from 'rxjs/operators'
-import { BehaviorSubject } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
   get isLoggedIn() {
-    return this.loggedIn.asObservable();
-  }
-
+      return this.loggedIn.asObservable();
+    }
   constructor(private http: HttpClient) {
 
   }
@@ -28,6 +27,7 @@ export class AuthenticationService {
     return this.http.post<any>(environment.baseUrl + "/v1/meet-greet/students/login", request).pipe(
       tap(response => {
         if (!(response.message)) {
+          this.loggedIn.next(true);
           sessionStorage.setItem('user', JSON.stringify(response));
           //sessionStorage.setItem('navflag', true);
           this.loggedIn.next(true);
@@ -83,5 +83,13 @@ export class AuthenticationService {
           catchError(error => this.handleError(error))
         )
   }
+
+ /* public registerTimeslots(pairupRequest :PairupRequest):Observable<any>{
+      return this.http.post<any>(environment.baseUrl+"/v1/meet-greet/students/pairup",pairupRequest).pipe(
+        tap(response =>{
+        }),
+        catchError(error => this.handleError(error))
+      )
+    }*/
 
 }
