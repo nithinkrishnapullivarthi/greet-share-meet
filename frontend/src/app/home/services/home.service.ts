@@ -48,7 +48,18 @@ export class HomeService {
     );
     
   }
+<<<<<<< HEAD
   public updateUserInerests(update: UpdateInterestsRequest):Observable<any>{
+=======
+  public getUserTimeSlot(): Observable<any>{
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    return this.http.get<any>(environment.baseUrl+"/v1/meet-greet/students/pairup?studentId="+ user.id).pipe(
+      catchError(error => this.handleError(error))
+    );
+    
+  }
+  public updateUserInerests(update: UpdateInterest):Observable<any>{
+>>>>>>> integration and validation of view time slots
     const user = JSON.parse(sessionStorage.getItem('user'));
     console.log(user.id,update);
     return this.http.put<any>(environment.baseUrl+"/v1/meet-greet/students/interests/"+ user.id,update).pipe(

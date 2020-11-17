@@ -1,57 +1,53 @@
-<div class="main-body">
-  <mat-card class='main-mat'>
-  <mat-card-header>
-    <img src="assets/images/meetandgreetlogo.jpg" alt="" class="responsive">
-  </mat-card-header>
-<meta name="viewport" content="width=device-width, initial-scale=1">      
-<mat-card class="card-1">
-    <div *ngFor="let details of details1" class="info">
-      <div class="ribbon"><div class="ribbon-text"><p>{{details.sdate}} - {{details.edate}}</p></div></div>
-      <pre>Name : {{details.name}}          Interest : {{details.interest}}</pre>
-      <pre>Start Date : {{details.sdate}}   End Date : {{details.edate}}</pre>
-      <pre>Start Time : {{details.stime}}     End Time : {{details.etime}}</pre>
-      <pre>Email : {{details.email}}</pre>
-    <button mat-raised-button color="primary" style="float: right;">Connect</button>
-    </div>
-</mat-card> 
-<br>
-<mat-card class="card-1">
-  <div *ngFor="let details of details1" class="info">
-    <div class="ribbon"><div class="ribbon-text"><p>{{details.sdate}} - {{details.edate}}</p></div></div>
-      <pre>Name : {{details.name}}          Interest : {{details.interest}}</pre>
-    <pre>Start Date : {{details.sdate}}   End Date : {{details.edate}}</pre>
-    <pre>Start Time : {{details.stime}}     End Time : {{details.etime}}</pre>
-    <pre>Email : {{details.email}}</pre>
-    <button mat-raised-button color="primary" style="float: right;">Connect</button>
 
-  </div>
-</mat-card> 
-<br>
-<mat-card class="card-1">
-  <div *ngFor="let details of details1" class="info">
-    <div class="ribbon"><div class="ribbon-text"><p>{{details.sdate}} - {{details.edate}}</p></div></div>
-    <pre>Name : {{details.name}}          Interest : {{details.interest}}</pre>
-    <pre>Start Date : {{details.sdate}}   End Date : {{details.edate}}</pre>
-    <pre>Start Time : {{details.stime}}     End Time : {{details.etime}}</pre>
-    <pre>Email : {{details.email}}</pre>
-    <button mat-raised-button color="primary" style="float: right;">Connect</button>
+<!DOCTYPE html>
+<html>
+    <body>
+        <div class="body">
+         
+          <mat-card class="user-card" *ngIf="usercards==0">
+            <p>No matching slots found</p>
+       </mat-card>
 
-  </div>
-</mat-card> 
-<br> 
-<mat-card class="card-1">
-  <div *ngFor="let details of details1" class="info">
-    <div class="ribbon"><div class="ribbon-text"><p>{{details.sdate}} - {{details.edate}}</p></div></div>
-    <pre>Name : {{details.name}}          Interest : {{details.interest}}</pre>
-    <pre>Start Date : {{details.sdate}}   End Date : {{details.edate}}</pre>
-    <pre>Start Time : {{details.stime}}     End Time : {{details.etime}}</pre>
-    <pre>Email : {{details.email}}</pre>
-    <button mat-raised-button color="primary" style="float: right;">Connect</button>
+            <div class="tile" *ngFor="let usercard of usercards">
+              <mat-card class = "textcard" >
+    
+                <mat-card class="user-card" *ngIf="usercards.length==0">
+                  <p>No matching slots found</p>
+             </mat-card>
 
-  </div>
-</mat-card> 
-</mat-card>
-</div>
+                <mat-card-title>
+                  <h4> Name: {{usercard.name}}</h4>
+                </mat-card-title>
+          
+                <mat-card-text>
+                  <h4>Contact: {{usercard.contact}}</h4>
+                </mat-card-text>
+               
+          
+                <mat-card-text>
+                  <h4>Email: {{usercard.email}}</h4>
+                </mat-card-text>
+          
+                <mat-card-text>
+                 <h4>Interest: {{usercard.interest}}</h4>
+                </mat-card-text>
+          
+                <mat-card-text>
+                  <h4>Start date & time: {{usercard.startDateTime}}</h4>
+                </mat-card-text>
+          
+                <mat-card-text>
+                  <h4>End date & time: {{usercard.endDateTime}}</h4>
+                </mat-card-text>
+          
+                <button mat-raised-button color="primary" style="margin-left: 85%; margin-right: 10%;">Connect</button>
+            </mat-card>
+            </div>
+
+        </div>
+    </body>
+</html>
+
 
 
 

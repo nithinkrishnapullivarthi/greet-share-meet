@@ -1,66 +1,69 @@
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
-.main-body{
-    
-    background-image: url('../../../../assets/images/blurbackground.jpg');
-    justify-content: center;
-    padding: 3rem 1rem 1rem 2rem;
-    background-image: no-repeat;
-    background-image: fixed;
-    background-position: center;
-    display: flex;
+.body {
+  background: url('../../../../assets/images/blurbackground.jpg')center;
+  background-attachment: fixed;
+  background-repeat: repeat-y;
+  min-height: 100%;
+  background-position: 0% 40%;
+  height: auto;
+  justify-content: center;
+  padding-bottom: 20px;
   }
-  mat-card{
-    width: 65%;
-    height: auto;
-    background: #ffffffa3;
-    .responsive{
-      max-width: 100%;
-      height: auto;
-    }
-    .mat-card-header {
-      flex-direction: row;
-      background: #191719;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-  }
-    }
-    .main-mat{
-      padding: 2rem;
-      background-color:whitesmoke;
-      align-items: center;
-      flex-flow: column wrap;
-      display: flex;
-      
-      .card-1{
-        margin: 1rem 0rem 1rem 0rem;
-      width: 75%;
-      resize: none;
-      .ribbon{
-        text-align: center;
-        
-        background-color: darkolivegreen;
-        height: 40px;
-        width: 100%;
-        border-radius: .2rem;
-        margin-top: -15px;
-        .ribbon-text{
-          color: white;
-        font-size: 15px;
-        font-family: Arial, Helvetica, sans-serif;
-        padding-top: 10px;
-        }
-      }
-.info{
-@media screen and (min-width: 601px) {
-    font-size: 14px;
-}
 
-@media screen and (max-width: 600px) {
-    font-size: 11px;
-      
-    }
+
+  .tile
+  {
+    display:inline-block;
+    background-color: none;
+    position:relative;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1%;
   }
-}
+
+  .mat-card{
+      height: 10%;
+      width: 40%;
+      margin-left: 30%;
+      margin-right: 30%;
+      margin-top: 2%;
+      opacity: 70%;
+  }
+
+  form.example input[type=text] {
+      padding: 10px;
+      font-size: 17px;
+      border: 1px solid grey;
+      float: left;
+      width: 80%;
+      background: #f1f1f1;
+      padding-bottom: 2%;
     }
-    
+
+    .textcard{
+      padding-top: 50;
+      
+  }
+
+    .body .stile
+    {
+      display:inline-block;
+    background-color: none;
+    position:relative;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1%;
+
+    }
+  
+    .alert {
+      padding: 20px;
+      background-color: #f44336; /* Red */
+      color: white;
+      margin-bottom: 15px;
+    }
