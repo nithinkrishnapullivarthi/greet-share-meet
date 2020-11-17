@@ -14,13 +14,14 @@ export class RegisterTimeSlotsComponent implements OnInit {
   minDate = new Date();
   maxDate = new Date(2022, 0, 1);
   
-  miDate = new Date();
+  miDate = new Date(this.minDate);
   maDate = new Date(2022, 0, 1);
   
   
   timeslot : RegisterTimeSlots;
   selectedValue: string;
   errorMessage =null;
+  
 
   public registerTimeSlotsForm : FormGroup;
   loaded = false;
@@ -77,7 +78,9 @@ export class RegisterTimeSlotsComponent implements OnInit {
         this.errorMessage = "Some thing bad happened. Please try again later";
       }
       else{
-        this.router.navigate(['homepage']);
+        
+        alert("Your time slots are registered successfully, to find a match click on view time slots ");
+        this.router.navigate(['matchmaking/viewtimeslots']);
       }
     })
    

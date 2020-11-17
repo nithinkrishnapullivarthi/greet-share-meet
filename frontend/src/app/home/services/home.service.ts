@@ -48,6 +48,14 @@ export class HomeService {
     );
     
   }
+  public getUserTimeSlot(): Observable<any>{
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    return this.http.get<any>(environment.baseUrl+"/v1/meet-greet/students/pairup?studentId="+ user.id).pipe(
+      catchError(error => this.handleError(error))
+    );
+    
+  }
+
   public updateUserInerests(update: UpdateInterestsRequest):Observable<any>{
     const user = JSON.parse(sessionStorage.getItem('user'));
     console.log(user.id,update);
