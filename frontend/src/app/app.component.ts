@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
 import { AuthenticationService } from 'src/app/authentication/services/authentication.service';
 @Component({
@@ -6,9 +6,9 @@ import { AuthenticationService } from 'src/app/authentication/services/authentic
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'frontend';
+export class AppComponent implements OnInit {
   isLoggedIn$: Observable<boolean>;
+  title = 'frontend';
     constructor(private authService: AuthenticationService ) { }
 
     ngOnInit(): void {

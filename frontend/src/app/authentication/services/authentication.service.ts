@@ -30,6 +30,7 @@ export class AuthenticationService {
           this.loggedIn.next(true);
           sessionStorage.setItem('user', JSON.stringify(response));
           //sessionStorage.setItem('navflag', true);
+          this.loggedIn.next(true);
         }
       }),
       catchError(error => this.handleError(error))

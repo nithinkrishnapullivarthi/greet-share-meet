@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {AnnouncementRequest} from '../../models/announce.model'
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-announcement',
   templateUrl: './announcement.component.html',
@@ -12,25 +13,22 @@ import { Router } from '@angular/router';
 export class AnnouncementComponent implements OnInit {
   public announcementForm: FormGroup;
   public navigationForm: FormGroup;
-  public interests : [""];
+  public interests = [];
   public id:number;
   public userJson: any;
   constructor(private form: FormBuilder,
     private router: Router,
-    private announcementservice: AuthenticationService
+    private announcementservice: AuthenticationService,
+    private _snackBar: MatSnackBar
   ) { }
 
 
 
   ngOnInit(): void {
-      console.log('hello')
      let user = sessionStorage.getItem('user');
-     let inter :[""];
+     let inter =[];
      this.userJson = JSON.parse(user);
      console.log('userjson in oninit',this.userJson);
-     //this.interests = this.userJson.interest;
-     //this.announcementservice.getLoggedUserDetails(this.userJson.id).subscribe
-     //
 
          this.announcementservice.getLoggedUserDetails(this.userJson.id).subscribe(res => {
             console.log('tried reaching here');
@@ -48,20 +46,27 @@ export class AnnouncementComponent implements OnInit {
             }
          });
 
-     //
     this.announcementForm = this.form.group({
       announcement: ['', [Validators.required,Validators.minLength(5)]],
       interest:[[],[Validators.required]]
     });
   }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
+
+
   onAnnounce() {
-  alert('hello');
     console.log(Router.name);
     console.log('announcementForm',this.announcementForm);
     let announcementRequest = new AnnouncementRequest();
     announcementRequest.studentId = this.userJson.id;
     announcementRequest.announcement = this.announcementForm.value.announcement;
-    announcementRequest.interest = this.announcementForm.value.interest;
+    announcementRequest.interest = this.announcementForm.value.interest[0];
+    console.log('Announcement request',announcementRequest);
     this.announcementservice.makeAnnouncement(announcementRequest).subscribe(res => {
             console.log(res);
            if(res){
