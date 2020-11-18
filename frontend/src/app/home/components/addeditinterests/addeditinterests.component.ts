@@ -46,21 +46,21 @@ export class AddeditinterestsComponent implements OnInit {
       console.log(res.volunteer_interests)
       this.isVolunteer = res.is_volunteer.toString();
       if (res.is_volunteer) {
-        for (let i = 0; i < res.interests.length; i++) {
-          let rows = res.interests[i];
-          if(rows["category"]=="Sports")
-            this.selsports.push(rows["interest"]);
-          if(rows["category"]=="Musical Instruments")
-            this.selmus.push(rows["interest"]);
-          if(rows["category"]=="Other Activities")
-            this.selacti.push(rows["interest"]);
-          if(rows["category"]=="Academics")
-            this.selacad.push(rows["interest"]);
-        }
         for (let i = 0; i < res.volunteer_interests.length; i++) {
           let volint = res.volunteer_interests[i];
           this.pre_volunteer_interests.add(volint["interest"]);
         }
+      }
+      for (let i = 0; i < res.interests.length; i++) {
+        let rows = res.interests[i];
+        if(rows["category"]=="Sports")
+          this.selsports.push(rows["interest"]);
+        if(rows["category"]=="Musical Instruments")
+          this.selmus.push(rows["interest"]);
+        if(rows["category"]=="Other Activities")
+          this.selacti.push(rows["interest"]);
+        if(rows["category"]=="Academics")
+          this.selacad.push(rows["interest"]);
       }
       this.addeditinterestsForm = this.fb.group({
 
@@ -72,6 +72,12 @@ export class AddeditinterestsComponent implements OnInit {
         musicalInstruments: [this.selmus]
 
       });
+      if (res.is_volunteer==true) {
+        this.addeditinterestsForm.get('volunteer_interests').enable();
+      }
+      else {
+        this.addeditinterestsForm.get('volunteer_interests').disable();
+      }
       this.loaded = true;
       console.log(res);
       this.updateuserinterest = res;
@@ -134,36 +140,39 @@ export class AddeditinterestsComponent implements OnInit {
       inter.interest = res.academics[i];
       interests.push(inter);
     }
-    for (let i = 0; i < res.volunteer_interests.length; i++) {
-      if(res.academics.indexOf(res.volunteer_interests[i]) > -1){
-        let inter = new Interest;
-        inter.category = "Academics";
-        inter.interest = res.volunteer_interests[i];
-        volunteer_interests.push(inter);
+    if(res.volunteer_interests!=undefined){
+      for (let i = 0; i < res.volunteer_interests.length; i++) {
+        if(res.academics.indexOf(res.volunteer_interests[i]) > -1){
+          let inter = new Interest;
+          inter.category = "Academics";
+          inter.interest = res.volunteer_interests[i];
+          volunteer_interests.push(inter);
+        }
+        if(res.activities.indexOf(res.volunteer_interests[i]) > -1){
+          let inter = new Interest;
+          inter.category = "Other Activities";
+          inter.interest = res.volunteer_interests[i];
+          volunteer_interests.push(inter);
+        }
+        if(res.musicalInstruments.indexOf(res.volunteer_interests[i]) > -1){
+          let inter = new Interest;
+          inter.category = "Musical Instruments";
+          inter.interest = res.volunteer_interests[i];
+          volunteer_interests.push(inter);
+        }
+        if(res.sports.indexOf(res.volunteer_interests[i]) > -1){
+          let inter = new Interest;
+          inter.category = "Sports";
+          inter.interest = res.volunteer_interests[i];
+          volunteer_interests.push(inter);
+        }
       }
-      if(res.activities.indexOf(res.volunteer_interests[i]) > -1){
-        let inter = new Interest;
-        inter.category = "Other Activities";
-        inter.interest = res.volunteer_interests[i];
-        volunteer_interests.push(inter);
-      }
-      if(res.musicalInstruments.indexOf(res.volunteer_interests[i]) > -1){
-        let inter = new Interest;
-        inter.category = "Musical Instruments";
-        inter.interest = res.volunteer_interests[i];
-        volunteer_interests.push(inter);
-      }
-      if(res.sports.indexOf(res.volunteer_interests[i]) > -1){
-        let inter = new Interest;
-        inter.category = "Sports";
-        inter.interest = res.volunteer_interests[i];
-        volunteer_interests.push(inter);
-      }
+      this.updateInterestRequest.is_volunteer = res.is_volunteer;
+      this.updateInterestRequest.interests = interests;
+      this.updateInterestRequest.volunteer_interests = volunteer_interests;
     }
-    this.updateInterestRequest.is_volunteer = res.is_volunteer;
-    this.updateInterestRequest.interests = interests;
-    this.updateInterestRequest.volunteer_interests = volunteer_interests;
-  }
+    }
+    
 
   onRadioChange($event: MatRadioChange, controlName: string | null) {
     if (controlName == 'is_volunteer') {
