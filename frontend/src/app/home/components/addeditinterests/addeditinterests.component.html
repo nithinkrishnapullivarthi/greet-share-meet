@@ -1,7 +1,7 @@
 <div class="main-body">
 <mat-card>
     <mat-card-header>
-        <img src="assets/images/meetandgreetlogo.jpg" alt="" class="responsive">
+       
     </mat-card-header>
     <form *ngIf="loaded" [formGroup]="addeditinterestsForm">
         <div class="example-container">
@@ -10,7 +10,7 @@
                 <div *ngIf="errorMessage" class="error-field">
                     <div *ngIf="errorMessage">{{errorMessage}}</div>
                   </div>
-                <h2>Select your interests!</h2><sub style="color: red;">*</sub>
+                <h2>Edit your interests!</h2><sub style="color: red;">*</sub>
             </div>
             <div class="flex-wrap-sec">
                 <mat-form-field appearance="outline" class="width-25">
