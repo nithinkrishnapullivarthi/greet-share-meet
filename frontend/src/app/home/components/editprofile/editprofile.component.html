@@ -2,10 +2,6 @@
 
     <mat-card>
 
-        <mat-card-header>
-            <img src="assets/images/meetandgreetlogo.jpg" alt="" class="responsive">
-        </mat-card-header>
-
         <form *ngIf="loaded" [formGroup]="editprofileForm">
             <div class="example-container">
 
@@ -13,6 +9,9 @@
                     <div *ngIf="errorMessage" class="error-field">
                         <div *ngIf="errorMessage">{{errorMessage}}</div>
                       </div>
+                      <h2>Edit your Profile!</h2>
+                </div>
+                <div class="flex-wrap-sec">
                     <mat-form-field appearance="outline" class="width-50">
                         <mat-icon matPrefix>face</mat-icon>
                         <mat-label>Name</mat-label>
