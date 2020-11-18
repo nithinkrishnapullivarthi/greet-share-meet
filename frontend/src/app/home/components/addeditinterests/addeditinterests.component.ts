@@ -167,10 +167,10 @@ export class AddeditinterestsComponent implements OnInit {
           volunteer_interests.push(inter);
         }
       }
+    }
       this.updateInterestRequest.is_volunteer = res.is_volunteer;
       this.updateInterestRequest.interests = interests;
       this.updateInterestRequest.volunteer_interests = volunteer_interests;
-    }
     }
     
 
