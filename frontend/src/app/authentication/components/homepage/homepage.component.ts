@@ -26,6 +26,7 @@ export class HomepageComponent implements OnInit {
    public cardsDummy: any;
    public userJson: any =[];
   ngOnInit(): void {
+             this.cards=[]; 
              this.searchForm = this.fb.group({
                searchParam:['']
              });

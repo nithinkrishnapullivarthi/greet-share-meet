@@ -40,7 +40,14 @@
                         </div>
                          
                     </mat-card-text>
-
+                    <mat-card-text>
+                        <div style="  display: flex; justify-content: space-between; margin-right: 4%; font-size: 15px;">
+                            <div style=" display: inline-flex;">
+                                Department: {{card.department}}
+                            </div>
+                        </div>
+                         
+                    </mat-card-text>
                     <mat-card-text>
                         <mat-chip-list >
                             <div *ngFor = "let i of card.interests">
