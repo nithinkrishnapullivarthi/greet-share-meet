@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import {MatRadioChange} from '@angular/material/radio'
 import {RegisterRequest} from '../../models/register.model'
 import { AuthenticationService } from '../../services/authentication.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -28,7 +29,7 @@ export class RegisterComponent implements OnInit {
   department = new FormControl('',[Validators.required]);
   constructor(private fb: FormBuilder,
     private router: Router, 
-    private registerservice: AuthenticationService) { }
+    private registerservice: AuthenticationService,private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -80,12 +81,18 @@ export class RegisterComponent implements OnInit {
       }
     }
   }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
   onRegister() {
     let regRequest = new RegisterRequest();
     regRequest= this.registerForm.value;
     regRequest.interests=this.volunteer_interests;
     this.registerservice.registerUser(regRequest).subscribe(res=>{
       if ((!res.hasOwnProperty('message'))) {
+        this.openSnackBar('Registered Successfully!', 'x')
         this.router.navigate(['authentication/login']);
       } else {
           if(res.message=="USERNAME_EXISTS")
