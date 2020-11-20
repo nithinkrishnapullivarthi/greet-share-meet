@@ -16,15 +16,18 @@
                 </div>
               </div>
                <div class = "dropdown">
-                <li  routerLink="">Profile</li>
+                <li> <mat-icon style="padding: 0px 16px;">menu</mat-icon></li>
                 <div class="dropdown-content">
                   <li routerLink="home/editprofile">Edit Profile</li>
                   <li routerLink="home/addeditinterests">Edit interest</li>
                 </div>
               </div>
-              
+              <div class = "dropdown">
+               <li routerLink="authentication/login" (click)="logout()">Logout</li>
+              </div>
             </div>
-          </div>
+            
+          </div>  
 
     </body>
 
