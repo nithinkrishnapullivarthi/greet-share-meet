@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -20,7 +21,6 @@ export class HomepageComponent implements OnInit {
    }
    public searchForm: FormGroup;
    
-   
    searchParam:string = "";
    public cards: any;
    public cardsDummy: any;
@@ -32,7 +32,6 @@ export class HomepageComponent implements OnInit {
              });
          let user = sessionStorage.getItem('user');
          this.userJson = JSON.parse(user);
-         console.log('this is userjson',this.userJson.id);
              this.homeservice.getStudents(this.userJson.id).subscribe(res => {
                 if(res){
                 this.cardsDummy = res;
@@ -53,15 +52,34 @@ export class HomepageComponent implements OnInit {
   //alert('onSearch');
     let searchVal = this.searchForm.value.searchParam;
     let varval:any;
+    let searchlen:number  = searchVal.length;
     if(searchVal == ""){
       this.cards = this.cardsDummy;
     }
     else{
       this.cards = this.cardsDummy;
       for(let i of this.cards){
+
         for(let j of i.interests)
         {
-          console.log(j.toLowerCase());
+          if(j.substring(0,searchlen).toLowerCase() == searchVal.substring(0,searchlen).toLowerCase() && j.toLowerCase()!=searchVal.toLowerCase())
+          {
+            varval = {
+              id: i.id,
+              name: i.name,
+              department: i.department,
+              email:i.email,
+              is_volunteer:i.is_volunteer,
+              contact:i.contact,
+              interests:i.interests,
+              volunteer_interests:i.volunteer_interests
+            };
+            searchResults:searchResults.push(varval);
+            continue;
+          }
+        }
+        for(let j of i.interests)
+        {
           if(j.toLowerCase() == searchVal.toLowerCase())
           {
             varval = {
@@ -78,24 +96,44 @@ export class HomepageComponent implements OnInit {
             continue;
           }
         }
-        console.log('value of I =', i);
-        if(i.name.toLowerCase() == searchVal.toLowerCase()){
-        //this.searchResults.push(i);
-         varval = {
-          id: i.id,
-          name: i.name,
-          department: i.department,
-          email:i.email,
-          is_volunteer:i.is_volunteer,
-          contact:i.contact,
-          interests:i.interests,
-          volunteer_interests:i.volunteer_interests
-        };
-        console.log(varval);
-        searchResults:searchResults.push(varval);
-        console.log('values of i: ',typeof(i));
-        }
+
+
+        if(i.name.substring(0,searchlen).toLowerCase() == searchVal.substring(0,searchlen).toLowerCase() && i.name.toLowerCase()!= searchVal.toLowerCase()){
+          //this.searchResults.push(i);
+           varval = {
+            id: i.id,
+            name: i.name,
+            department: i.department,
+            email:i.email,
+            is_volunteer:i.is_volunteer,
+            contact:i.contact,
+            interests:i.interests,
+            volunteer_interests:i.volunteer_interests
+          };
+          searchResults:searchResults.push(varval);
+          
+          }
+
+          if(i.name.toLowerCase() == searchVal.toLowerCase()){
+          //this.searchResults.push(i);
+           varval = {
+            id: i.id,
+            name: i.name,
+            department: i.department,
+            email:i.email,
+            is_volunteer:i.is_volunteer,
+            contact:i.contact,
+            interests:i.interests,
+            volunteer_interests:i.volunteer_interests
+          };
+          searchResults:searchResults.push(varval);
+          console.log(typeof(searchResults));
+
+          }
+
+
       }
+
       if(searchResults.length!=0)
       {
         this.cards=searchResults;

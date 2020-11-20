@@ -65,7 +65,7 @@ export class AnnouncementComponent implements OnInit {
     let announcementRequest = new AnnouncementRequest();
     announcementRequest.studentId = this.userJson.id;
     announcementRequest.announcement = this.announcementForm.value.announcement;
-    announcementRequest.interest = this.announcementForm.value.interest[0];
+    announcementRequest.interest = this.announcementForm.value.interest;
     console.log('Announcement request',announcementRequest);
     this.announcementservice.makeAnnouncement(announcementRequest).subscribe(res => {
             console.log(res);
