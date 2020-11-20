@@ -73,6 +73,7 @@ export class AuthenticationService {
 
   logOut() {
     sessionStorage.removeItem('user');
+    this.loggedIn.next(false);
   }
 
   public getLoggedUserDetails(studentID: number): Observable<any>{

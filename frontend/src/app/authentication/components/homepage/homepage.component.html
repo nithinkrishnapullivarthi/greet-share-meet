@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
         <div class="body">
-            <div style = "margin-top: 0; height: 20%; align-content: center;" *ngIf="cards.length==0">
+            <div style = "margin-top: 0; height: 20%; align-content: center;" *ngIf="cards && cards.length==0">
                 <mat-card class = "tile"  style="margin-top: 0%;">
                     <mat-card-text>
                         <p>No Users Found</p>
@@ -10,11 +10,11 @@
             </div>
 
            
-           <div *ngIf="cards.length>0">
+           <div *ngIf="cards && cards.length>0">
             <div >
                 <form class="stile" [formGroup]="searchForm">
                     <input type="text" placeholder="Search.." style="height: 30px; margin-right: 10px; width: 35%; opacity: 55%; border-radius: 10px;" formControlName="searchParam">
-                    <button mat-raised-button color="primary"style="padding-block: 2%" (click)="onSearch()">Search</button>
+                    <button mat-raised-button color="primary" (click)="onSearch()">Search</button>
                     <!--button mat-raised-button color="primary"style="padding-block: 2%">Search</button-->
                   </form>
             </div>
