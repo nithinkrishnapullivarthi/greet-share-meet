@@ -1,42 +1,13 @@
 <!DOCTYPE html>
 <html>
     <body>
-            <!--div class="tile">
-                <form [formGroup]="announcementForm" (ngSubmit)="onAnnounce()" >
-                    <div class="example-container">
-                      <mat-form-field appearance="outline">
-                        <mat-label>Select me</mat-label>
-                        <mat-select  #interest formControlName="interest">
-                          <div  *ngFor="let interest of interests">
-                          <mat-option value={{interest}}>{{interest}}</mat-option>
-                          </div>
-                        </mat-select>
-                        <mat-error *ngIf="announcementForm.controls.interest.hasError('required')">
-                          Select one interest
-                        </mat-error>
-                      </mat-form-field>
-
-                          <mat-form-field appearance="outline" class="text-area">
-                                <mat-label>Don't hesitate, say it out loud.</mat-label>
-                                <textarea matInput placeholder="Musical Event next Monday" class="with" formControlName="announcement" type="text"></textarea>
-                                <mat-error *ngIf="announcementForm.controls.announcement">
-                                  Announcement must be atleast 5 characters
-                                </mat-error>
-                          </mat-form-field>
-
-                          <div class="example-button-row" class="padding">
-                            <button mat-raised-button color="primary"  (click)="openSnackBar('Announcement created!', 'x')" [disabled]="announcementForm.invalid">Publish</button>
-                          </div>
-                      </div>
-                </form>
-            </div-->
             <div style="display: inline-flex; flex-direction: column; width: auto; height: auto;  margin-top: 5%;">
               <mat-card style="opacity: 85%; border-radius: 2%;">
                 <form [formGroup]="announcementForm" (ngSubmit)="onAnnounce()" >
                 <div>
 
                   <mat-form-field appearance="outline">
-                    <mat-label>Select me</mat-label>
+                    <mat-label>Select Interest</mat-label>
                     <mat-select  #interest formControlName="interest">
                       <div  *ngFor="let interest of interests">
                       <mat-option value={{interest}}>{{interest}}</mat-option>

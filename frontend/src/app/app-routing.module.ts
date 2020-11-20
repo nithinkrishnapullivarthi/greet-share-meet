@@ -22,12 +22,14 @@ const routes: Routes = [
   },
   {
     path: 'matchmaking',
-    loadChildren: () => import('./match-making/match-making.module').then(m => m.MatchMakingModule)
+    loadChildren: () => import('./match-making/match-making.module').then(m => m.MatchMakingModule),
+    canActivate: [AuthGuard]
   
   },
   {
     path: 'announcements',
     component:TimelineComponent,
+    canActivate: [AuthGuard]
   },
   {
     component: HomepageComponent,

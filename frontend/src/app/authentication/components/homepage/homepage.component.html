@@ -8,7 +8,7 @@
                     <!--button mat-raised-button color="primary"style="padding-block: 2%">Search</button-->
                   </form>
             </div>
-            <div style = "margin-top: 0; height: 20%; align-content: center;" *ngIf="cards.length==0">
+            <div style = "margin-top: 0; height: 20%; align-content: center;" *ngIf="cards && cards.length==0">
                 <mat-card class = "tile"  style="margin-top: 0%;">
                     <mat-card-text>
                         <p>No Users Found With Matching Name/Interest</p>
@@ -17,7 +17,8 @@
             </div>
 
            
-           <div *ngIf="cards.length>0">
+
+           <div *ngIf="cards && cards.length>0">
             <div class="tile" *ngFor="let card of cards">
                 <mat-card class = "mat-card" >
                     <mat-card-title>
