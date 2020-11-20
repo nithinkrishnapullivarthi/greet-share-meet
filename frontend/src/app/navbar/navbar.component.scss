@@ -50,7 +50,7 @@
         }
 
 
-     .body .menu-bar li:focus{
+     .body .menu-bar li:focus  {
             outline: none;
             color: rgb(94, 39, 245);
             font-family: sans-serif;
@@ -71,7 +71,7 @@
                 left:0;
                 height:100%;
                 width: 100%;
-                z-index:-1;
+                z-index:99;
                 transition: .2s;
                 border-radius: 25px;
             }

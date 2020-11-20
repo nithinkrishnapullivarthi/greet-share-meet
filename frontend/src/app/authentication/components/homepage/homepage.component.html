@@ -3,7 +3,7 @@
         <div class="body">
             <div style="margin-bottom: 1%;">
                 <form class="stile" [formGroup]="searchForm">
-                    <input type="text" placeholder="Search using Name or Interest..." style="height: 30px; margin-right: 10px; width: 35%; opacity: 55%; border-radius: 5px; outline: none;" formControlName="searchParam">
+                    <input type="text" placeholder="Search using Name or Interest..." style="height: 30px; margin-right: 10px; width: 35%; opacity: 55%; border-radius: 5px; outline: none; z-index: 20;" formControlName="searchParam">
                     <button mat-raised-button color="primary"style="padding-block: 2%" (click)="onSearch()" [disabled]="searchForm.value.searchParam.length < 3 && searchForm.value.searchParam.length != 0">Search</button>
                     <!--button mat-raised-button color="primary"style="padding-block: 2%">Search</button-->
                   </form>
