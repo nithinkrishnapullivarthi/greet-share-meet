@@ -71,6 +71,7 @@ export class AnnouncementComponent implements OnInit {
             console.log(res);
            if(res){
            console.log('id=',res);
+           this.router.navigate(['homepage']);
            }
 
        });

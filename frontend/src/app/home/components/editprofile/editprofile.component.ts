@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HomeService } from '../../services/home.service';
-import { RegisterRequest } from '../../../authentication/models';
-import { UpdateProfile } from '../../models/updateprofile.model';
 
+import { UpdateProfile } from '../../models/updateprofile.model';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-editprofile',
@@ -20,7 +20,7 @@ export class EditprofileComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private homeService: HomeService,
-    private router: Router) { }
+    private router: Router,private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.homeService.getUserProfile().subscribe(res => {
@@ -35,7 +35,11 @@ export class EditprofileComponent implements OnInit {
     });
 
   }
-
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 
   onUpdate() {
    
@@ -50,6 +54,7 @@ export class EditprofileComponent implements OnInit {
         this.errorMessage = "Some thing bad happened. Please try again later";
       }
       else{
+        this.openSnackBar('Profile updated Successfully!', 'x')
         this.router.navigate(['homepage']);
       }
     })

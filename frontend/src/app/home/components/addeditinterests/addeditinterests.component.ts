@@ -7,6 +7,7 @@ import { RegisterRequest } from '../../../authentication/models';
 import { UpdateInterest } from '../../models/updateinterest.model'
 import { UpdateInterestsRequest } from '../../models/updateInterestsRequest.model';
 import { Interest } from '../../models/interest.model';
+import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-addeditinterests',
   templateUrl: './addeditinterests.component.html',
@@ -37,7 +38,7 @@ export class AddeditinterestsComponent implements OnInit {
   pre_volunteer_interests= new Set<string>();
   constructor(private fb: FormBuilder,
     private homeService: HomeService,
-    private router: Router,
+    private router: Router,private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -186,13 +187,18 @@ export class AddeditinterestsComponent implements OnInit {
       }
     }
   }
-
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
   onUpdate() {
     this.homeService.updateUserInerests(this.updateInterestRequest).subscribe(res => {
       if (!res) {
         this.errorMessage = "Some thing bad happened. Please try again later";
       }
       else {
+        this.openSnackBar('Interests updated Successfully!', 'x')
         this.router.navigate(['homepage']);
       }
     })
