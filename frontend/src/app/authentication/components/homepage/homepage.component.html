@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+    <body>
         <div class="body">
             <div style="margin-bottom: 1%;">
                 <form class="stile" [formGroup]="searchForm">
@@ -26,7 +27,7 @@
                             <div style="font-size: 20px;">
                                 Name: {{card.name}}
                             </div>
-                            <div style="margin-right: 1%;">
+                            <div style="margin-right: 1%;" *ngIf = "card.volunteer_interests">
                                 <mat-chip-list  >
                                     <mat-chip color="accent" selected style="margin-right: 4%;"> Volunteer</mat-chip>   
                                 </mat-chip-list>
@@ -79,4 +80,6 @@
            </div>
            
         </div>
+    </body>
+
 </html>
