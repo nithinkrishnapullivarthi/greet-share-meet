@@ -9,7 +9,7 @@
               <li  routerLink="announcements">Timeline</li>
 
               <div class = "dropdown">
-                <li  routerLink="announcement">Make a Match</li>
+                <li>Make a Match</li>
                 <div class="dropdown-content">
                   <li routerLink="matchmaking/registertimeslots">Register Slot</li>
                   <li routerLink="matchmaking/viewtimeslots">View Slot</li>
@@ -20,10 +20,8 @@
                 <div class="dropdown-content">
                   <li routerLink="home/editprofile">Edit Profile</li>
                   <li routerLink="home/addeditinterests">Edit interest</li>
+                  <li routerLink="authentication/login" (click)="logout()">Logout</li>
                 </div>
-              </div>
-              <div class = "dropdown">
-               <li routerLink="authentication/login" (click)="logout()">Logout</li>
               </div>
             </div>
             
