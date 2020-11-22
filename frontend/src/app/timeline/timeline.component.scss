@@ -2,11 +2,9 @@
 .main-body{
   background-image: url('../../assets/images/blurbackground.jpg');
   justify-content: center;
-  
   display: flex;
   align-items: flex-start;
-  height: 100%;
-  min-height: 573px;
+  height: 100vh;
 }
 
 mat-card{
