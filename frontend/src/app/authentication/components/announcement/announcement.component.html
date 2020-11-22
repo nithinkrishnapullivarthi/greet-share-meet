@@ -5,7 +5,7 @@
         <div class="flex-wrap">
           <mat-form-field appearance="outline" class="drop">
             <mat-label>Select me</mat-label>
-            <mat-select #interest formControlName="interest" multiple>
+            <mat-select #interest formControlName="interest">
               <div *ngFor="let interest of interests">
                 <mat-option value={{interest}}>{{interest}}</mat-option>
               </div>
