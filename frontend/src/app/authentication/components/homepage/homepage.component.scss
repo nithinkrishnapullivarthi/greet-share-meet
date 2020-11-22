@@ -1,66 +1,80 @@
 
-.body {
-    background: url('../../../../assets/images/blurbackground.jpg')center;
-    background-attachment: fixed;
-    background-repeat: repeat-y;
-    min-height: 100%;
-    background-position: 0% 40%;
+/*.body {
+  background: url('../../../../assets/images/blurbackground.jpg')center;
+  background-attachment: fixed;
+  background-repeat: repeat-y;
+  background-position: 0% 40%;
+  justify-content: center;
+  padding-bottom: 20px;
+  }*/
+  body, html {
     height: 100%;
-    min-height: 555px;
+    margin: 0;
+
+    background: url('../../../../assets/images/blurbackground.jpg')center;
+  }
+  
+  .body{
+
+    /* Full height */
+    height: 100%; 
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+
+  .tile
+  {
+    display:inline-block;
+    background-color: none;
+    position:relative;
+    height: auto;
+    display: flex;
+    flex-direction: row;
     justify-content: center;
-    padding-bottom: 20px;
+    align-items: center;
+    padding-top: 1%;
+  }
+
+  .mat-card{
+      height: 10%;
+      width: 40%;
+      margin-left: 30%;
+      margin-right: 30%;
+      margin-top: 2%;
+      opacity: 75%;
+  }
+
+  form.example input[type=text] {
+      padding: 10px;
+      font-size: 17px;
+      border: 1px solid grey;
+      float: left;
+      width: 80%;
+      background: #f1f1f1;
+      padding-bottom: 2%;
     }
 
-
-    .tile
+    .body .stile
     {
       display:inline-block;
-      background-color: none;
-      position:relative;
-      height: auto;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      padding-top: 1%;
+    background-color: none;
+    position:relative;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1%;
+
     }
-
-    .mat-card{
-        height: 10%;
-        width: 40%;
-        margin-left: 30%;
-        margin-right: 30%;
-        top: 30px;
-        opacity: 75%;
+  
+    .alert {
+      padding: 20px;
+      background-color: #f44336; /* Red */
+      color: white;
+      margin-bottom: 15px;
     }
-
-    form.example input[type=text] {
-        padding: 10px;
-        font-size: 17px;
-        border: 1px solid grey;
-        float: left;
-        width: 80%;
-        background: #f1f1f1;
-        padding-bottom: 2%;
-      }
-
-      .body .stile
-      {
-        display:inline-block;
-      background-color: none;
-      position:relative;
-      height: auto;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      padding-top: 1%;
-
-      }
-    
-      .alert {
-        padding: 20px;
-        background-color: #f44336; /* Red */
-        color: white;
-        margin-bottom: 15px;
-      }
