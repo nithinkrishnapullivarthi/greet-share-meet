@@ -1,5 +1,6 @@
 
 /*.body {
+
   background: url('../../../../assets/images/blurbackground.jpg')center;
   background-attachment: fixed;
   background-repeat: repeat-y;
@@ -7,22 +8,21 @@
   justify-content: center;
   padding-bottom: 20px;
   }*/
-  body, html {
-    height: 100%;
-    margin: 0;
-
+  
+  .container{
     background: url('../../../../assets/images/blurbackground.jpg')center;
-  }
   
-  .body{
-
-    /* Full height */
-    height: 100%; 
-  
-    /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+  }
+  .body{
+    background: url('../../../../assets/images/blurbackground.jpg')center;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100%;
   }
 
 
