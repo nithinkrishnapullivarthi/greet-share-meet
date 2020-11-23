@@ -51,7 +51,7 @@ public class PairUpService {
         try{
             Date startDateTIme =  getParsedDate(startTime);
             Date endDateTime = getParsedDate(endTime);
-            sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+            //sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
             startTime = sdf.format(startDateTIme);
             endTime = sdf.format(endDateTime);
         }
@@ -61,6 +61,7 @@ public class PairUpService {
         pairUpRequestDTO.setStartDateTime(startTime);
         pairUpRequestDTO.setEndDateTime(endTime);
         PairUp mappedPairUp = mapper.map(pairUpRequestDTO, PairUp.class);
+        mappedPairUp.setId(null);
         PairUp pairUp = pairUpRepository.save(mappedPairUp);
         PairUpResponseDTO response = mapper.map(pairUp, PairUpResponseDTO.class);
         return response;
