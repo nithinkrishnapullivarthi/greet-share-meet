@@ -10,7 +10,6 @@
   flex-direction: column;
   }
 
-
   mat-card{
     min-width: 600px;
     background: #ffffffa3;
@@ -20,7 +19,46 @@
       height: auto;
     }
   }
+
+  .tile
+  {
+    display:inline-block;
+    background-color: none;
+    position:relative;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1%;
+  }
+
+  form.example input[type=text] {
+      padding: 10px;
+      font-size: 17px;
+      border: 1px solid grey;
+      float: left;
+      width: 80%;
+      background: #f1f1f1;
+      padding-bottom: 2%;
+
+    }
     .textcard{
       margin-top: 20px;
       
   }
+
+    .body .stile
+    {
+      display:inline-block;
+    background-color: none;
+    position:relative;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1%;
+    }
+
+

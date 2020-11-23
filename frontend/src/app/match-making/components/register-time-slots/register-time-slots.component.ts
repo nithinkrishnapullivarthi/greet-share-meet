@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms'
 import { Router } from '@angular/router';
 import {RegisterTimeSlots} from '../../models/registertimeslots.model';
 import { HomeService } from '../../../home/services/home.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-register',
   templateUrl: './register-time-slots.component.html',
@@ -27,7 +28,7 @@ export class RegisterTimeSlotsComponent implements OnInit {
   loaded = false;
   userInterests:string[]=[];
   interests:string[]= [];
-  constructor(private fb: FormBuilder,private router: Router,private homeService: HomeService,){
+  constructor(private fb: FormBuilder,private router: Router,private homeService: HomeService,private _snackBar: MatSnackBar ){
 
   }
 
@@ -62,12 +63,21 @@ export class RegisterTimeSlotsComponent implements OnInit {
       let eTime = (res.endTime);
       this.timeslot.interest=this.registerTimeSlotsForm.controls.interests.value;
       console.log(this.timeslot.interest);
+      if(sDate!=null && sDate!=undefined)
+      {
+        this.miDate=res.startDate;
+      }
       this.timeslot.startDateTime=sDate+" "+sTime;
       console.log(this.timeslot.startDateTime);
       this.timeslot.endDateTime=eDate+" "+eTime;
       console.log(this.timeslot.endDateTime);
       
      
+    });
+  }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 5000,
     });
   }
   
@@ -78,9 +88,7 @@ export class RegisterTimeSlotsComponent implements OnInit {
         this.errorMessage = "Some thing bad happened. Please try again later";
       }
       else{
-        
-        alert("Your time slots are registered successfully, to find a match click on view time slots ");
-        this.router.navigate(['matchmaking/viewtimeslots']);
+        this.router.navigate(['matchmaking/viewtimeslots' ]);
       }
     })
    
