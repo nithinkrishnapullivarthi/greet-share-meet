@@ -13,15 +13,13 @@ This web application helps students to greet,meet and share common interests
 3. cd greet-share-meet/frontend
 4. `npm install` - This command installs all dependent node modules required to run the angular app
 5. `ng serve` - This command launches the angular app on Port 4200
-6. Visit `http://localhost:4200/`. You should see, `frontend app is running!` in UI.
+6. Visit `http://localhost:4200/`. You should see the login page.
 
 # How to setup backend springboot app
 
-1. Install MySQL database. Make sure that you are able to start mysql and connect to the database.
-2. Pull the latest changes in the greet-share-meet repository using `git pull`.
-3. Import the backend project as maven project in to IDE of your choice (Use Intellij or eclipse)
-4. Click on File -> Project Structure. 
-5. On the left side, click on Project Settings -> Modules.
-6. In the project structure, right click on the folder java in the path generated/open-api/src/main/java. select sources and click on Apply button. (Check the screenshot of Project structure in the root folder)
-7. Excute the command `mvn spring-boot:run`. This should start the spring boot application.
+1. Install MySQL database. Make sure that you are able to start mysql.
+2. Create database using command `create database meet_greet;`
+3. Change `spring.datasource.username` field value to database username and `spring.datasource.password` field value to database username in `src/main/resources/application.properties` file.
+4. Import the backend project as maven project in to IDE of your choice (Use Intellij or eclipse)
+5. Excute the command `mvn spring-boot:run`. This should start the spring boot application.
 
