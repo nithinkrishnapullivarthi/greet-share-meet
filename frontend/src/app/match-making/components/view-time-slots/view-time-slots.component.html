@@ -1,15 +1,13 @@
 
 <!DOCTYPE html>
 <html>
-    <body>
         <div class="body">
          
           <mat-card class="user-card" *ngIf="usercards==0">
             <p>No matching slots found</p>
        </mat-card>
 
-            <div class="tile" *ngFor="let usercard of usercards">
-              <mat-card class = "textcard" >
+              <mat-card class = "textcard" *ngFor="let usercard of usercards">
     
                 <mat-card class="user-card" *ngIf="usercards.length==0">
                   <p>No matching slots found</p>
@@ -42,10 +40,8 @@
           
                 <button mat-raised-button color="primary" style="margin-left: 85%; margin-right: 10%;">Connect</button>
             </mat-card>
-            </div>
 
         </div>
-    </body>
 </html>
 
 

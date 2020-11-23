@@ -1,70 +1,26 @@
 .body {
   background: url('../../../../assets/images/blurbackground.jpg')center;
-  justify-content: center;
-  background-position: unset;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: repeat-y;
+  background-size: cover;
+  min-height: 100%;
   display: flex;
-  align-items: flex-start;
-  height: 100vh;
+  align-items: center;
+  flex-direction: column;
   }
 
-
-  .tile
-  {
-    display:inline-block;
-    background-color: none;
-    position:relative;
-    height: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding-top: 1%;
-  }
 
   mat-card{
     min-width: 600px;
     background: #ffffffa3;
-    top: 50px;
-    margin-bottom:20px ;
     border-radius: 0.4rem;
     .responsive{
       max-width: 100%;
       height: auto;
     }
   }
-
-  form.example input[type=text] {
-      padding: 10px;
-      font-size: 17px;
-      border: 1px solid grey;
-      float: left;
-      width: 80%;
-      background: #f1f1f1;
-      padding-bottom: 2%;
-    }
-
     .textcard{
-      padding-top: 50;
+      margin-top: 20px;
       
   }
-
-    .body .stile
-    {
-      display:inline-block;
-    background-color: none;
-    position:relative;
-    height: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding-top: 1%;
-
-    }
-  
-    .alert {
-      padding: 20px;
-      background-color: #f44336; /* Red */
-      color: white;
-      margin-bottom: 15px;
-    }
