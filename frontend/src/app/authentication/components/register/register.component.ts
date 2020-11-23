@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
   public registerForm: FormGroup;
   errorMessage = null;
   volunteer_interests: string[] = [];
+  selected_volunteer_interests: string[] = [];
   selsports:string[]=[];
   selacad:string[]=[];
   selacti:string[]=[];
@@ -40,7 +41,7 @@ export class RegisterComponent implements OnInit {
       username: ['', [Validators.required, Validators.minLength(6)]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       is_volunteer: ['', Validators.required],
-      volunteer_interests:[{value: '', disabled:true},Validators.required],
+      selected_volunteer_interests:[{value: '', disabled:true},Validators.required],
       sports: [],
       academics:[],
       activities:[],
@@ -66,18 +67,26 @@ export class RegisterComponent implements OnInit {
       if (res.musicalInstruments) {
         this.selmus = [...res.musicalInstruments];
       }
-      this.volunteer_interests=[...this.selsports,...this.selacad,...this.selacti,...this.selmus  ]
+      this.volunteer_interests=[...this.selsports,...this.selacad,...this.selacti,...this.selmus  ];
+      if(this.selected_volunteer_interests.length > 0){
+        for (let i = 0; i < this.selected_volunteer_interests.length; i++) {
+          let selected_volunteer_interest = this.selected_volunteer_interests[i];
+          if(this.selsports.indexOf(selected_volunteer_interest) == -1 && this.selacad.indexOf(selected_volunteer_interest)== -1 && this.selacti.indexOf(selected_volunteer_interest) == -1 && this.selmus.indexOf(selected_volunteer_interest) == -1) {
+              this.selected_volunteer_interests.splice(i,1);
+          }
+        }
+      } 
     });
   }
   onRadioChange($event: MatRadioChange, controlName:string | null) {
     if (controlName == 'is_volunteer') {
       if ($event.value == 'true') {
         this.showvolunteer = true;
-        this.registerForm.get('volunteer_interests').enable();
+        this.registerForm.get('selected_volunteer_interests').enable();
       }
       else{
         this.showvolunteer = false;
-        this.registerForm.get('volunteer_interests').disable();
+        this.registerForm.get('selected_volunteer_interests').disable();
       }
     }
   }
@@ -90,6 +99,7 @@ export class RegisterComponent implements OnInit {
     let regRequest = new RegisterRequest();
     regRequest= this.registerForm.value;
     regRequest.interests=this.volunteer_interests;
+    regRequest.volunteer_interests=this.selected_volunteer_interests;
     this.registerservice.registerUser(regRequest).subscribe(res=>{
       if ((!res.hasOwnProperty('message'))) {
         this.openSnackBar('Registered Successfully!', 'x')
