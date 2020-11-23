@@ -1,7 +1,9 @@
 <div class="main-body">
   <mat-card>
+
     
-    <form *ngIf="loaded" [formGroup]="registerTimeSlotsForm">
+    <form *ngIf="loaded" [formGroup]="registerTimeSlotsForm" (ngSubmit)="onRegisterTimeSlot()">
+
       <mat-grid-list cols="1" rowHeight="500px">
         <mat-grid-tile>
           <div class="example-container">
@@ -49,7 +51,7 @@
               <input style="height: 50px;width: 100px;" type="time" id="stime" name="stime" formControlName="endTime">
             <br>
             <br>
-            <button mat-raised-button color="primary" type="submit" (click)="onRegisterTimeSlot()"
+            <button mat-raised-button color="primary" type="submit" (click)="openSnackBar('Your Time Slots are Successfully Registered, Hope you find a perfect match', 'x')"
             [disabled]="registerTimeSlotsForm.invalid">Register</button>
           </div>
         </mat-grid-tile>

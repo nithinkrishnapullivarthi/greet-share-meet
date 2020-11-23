@@ -31,6 +31,7 @@ export class ViewTimeSlotsComponent implements OnInit {
   console.log('this is userjson',this.userJson.id);
       this.homeService.getUserTimeSlot().subscribe(res => {
          if(res){
+          this.errorMessage = "No matching slots found";
          this.usercards = res;
          }
          else{

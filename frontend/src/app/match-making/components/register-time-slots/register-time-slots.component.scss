@@ -13,18 +13,13 @@
     margin-top: 2%;
     width: 65%;
     height: auto;
+    background: whitesmoke;
+
     .responsive{
       max-width: 100%;
       height: auto;
     } 
-    .mat-card-header {
-      background-image: url('../../../../assets/images/meetandgreetlogo.jpg');
-      flex-direction: row;
-      background: #191719;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-     }
+    
     }
   button,a {
     min-width: 150px;
@@ -36,7 +31,6 @@
     color: #fff !important
   }
   .example-container{
-    
     width: 100%;
     padding: 2rem;
     font-size: medium;
