@@ -24,6 +24,7 @@ export class AddeditinterestsComponent implements OnInit {
   public addeditinterestsForm: FormGroup;
   errorMessage = null;
   volunteer_interests: string[] = [];
+  selected_volunteer_interests: string[] = [];
   selsports: string[] = [];
   selacad: string[] = [];
   selacti: string[] = [];
@@ -51,6 +52,7 @@ export class AddeditinterestsComponent implements OnInit {
           let volint = res.volunteer_interests[i];
           this.pre_volunteer_interests.add(volint["interest"]);
         }
+        this.selected_volunteer_interests = Array.from(this.pre_volunteer_interests);
       }
       for (let i = 0; i < res.interests.length; i++) {
         let rows = res.interests[i];
@@ -66,23 +68,24 @@ export class AddeditinterestsComponent implements OnInit {
       this.addeditinterestsForm = this.fb.group({
 
         is_volunteer: [Validators.required],
-        volunteer_interests: [Array.from(this.pre_volunteer_interests),Validators.required],
+        selected_volunteer_interests: [Array.from(this.pre_volunteer_interests),Validators.required],
         sports: [this.selsports],
         academics: [this.selacad],
         activities: [this.selacti],
         musicalInstruments: [this.selmus]
 
       });
-      if (res.is_volunteer==true) {
-        this.addeditinterestsForm.get('volunteer_interests').enable();
-      }
-      else {
-        this.addeditinterestsForm.get('volunteer_interests').disable();
-      }
+      
       this.loaded = true;
       console.log(res);
       this.updateuserinterest = res;
       this.onFormChanges();
+      if (res.is_volunteer==true) {
+        this.addeditinterestsForm.get('selected_volunteer_interests').enable();
+      }
+      else {
+        this.addeditinterestsForm.get('selected_volunteer_interests').disable();
+      }
     });
 
   }
@@ -111,6 +114,15 @@ export class AddeditinterestsComponent implements OnInit {
       this.selacti.forEach(item => this.pre_volunteer_interests.add(item));
       this.selmus.forEach(item => this.pre_volunteer_interests.add(item));
       this.volunteer_interests = Array.from(this.pre_volunteer_interests);
+      for (let i = 0; i < this.selected_volunteer_interests.length; i++) {
+        let selected_volunteer_interest = this.selected_volunteer_interests[i];
+        if(res.sports.indexOf(selected_volunteer_interest) == -1 && res.academics.indexOf(selected_volunteer_interest)== -1 && res.activities.indexOf(selected_volunteer_interest) == -1 && res.musicalInstruments.indexOf(selected_volunteer_interest) == -1) {
+            this.selected_volunteer_interests.splice(i,1);
+        }
+      }
+     
+
+
     });
   }
 
@@ -141,30 +153,30 @@ export class AddeditinterestsComponent implements OnInit {
       inter.interest = res.academics[i];
       interests.push(inter);
     }
-    if(res.volunteer_interests!=undefined){
-      for (let i = 0; i < res.volunteer_interests.length; i++) {
-        if(res.academics.indexOf(res.volunteer_interests[i]) > -1){
+    if(res.selected_volunteer_interests!=undefined){
+      for (let i = 0; i < res.selected_volunteer_interests.length; i++) {
+        if(res.academics.indexOf(res.selected_volunteer_interests[i]) > -1){
           let inter = new Interest;
           inter.category = "Academics";
-          inter.interest = res.volunteer_interests[i];
+          inter.interest = res.selected_volunteer_interests[i];
           volunteer_interests.push(inter);
         }
-        if(res.activities.indexOf(res.volunteer_interests[i]) > -1){
+        if(res.activities.indexOf(res.selected_volunteer_interests[i]) > -1){
           let inter = new Interest;
           inter.category = "Other Activities";
-          inter.interest = res.volunteer_interests[i];
+          inter.interest = res.selected_volunteer_interests[i];
           volunteer_interests.push(inter);
         }
-        if(res.musicalInstruments.indexOf(res.volunteer_interests[i]) > -1){
+        if(res.musicalInstruments.indexOf(res.selected_volunteer_interests[i]) > -1){
           let inter = new Interest;
           inter.category = "Musical Instruments";
-          inter.interest = res.volunteer_interests[i];
+          inter.interest = res.selected_volunteer_interests[i];
           volunteer_interests.push(inter);
         }
-        if(res.sports.indexOf(res.volunteer_interests[i]) > -1){
+        if(res.sports.indexOf(res.selected_volunteer_interests[i]) > -1){
           let inter = new Interest;
           inter.category = "Sports";
-          inter.interest = res.volunteer_interests[i];
+          inter.interest = res.selected_volunteer_interests[i];
           volunteer_interests.push(inter);
         }
       }
@@ -179,11 +191,11 @@ export class AddeditinterestsComponent implements OnInit {
     if (controlName == 'is_volunteer') {
       if ($event.value == 'true') {
         this.showvolunteer = true;
-        this.addeditinterestsForm.get('volunteer_interests').enable();
+        this.addeditinterestsForm.get('selected_volunteer_interests').enable();
       }
       else {
         this.showvolunteer = false;
-        this.addeditinterestsForm.get('volunteer_interests').disable();
+        this.addeditinterestsForm.get('selected_volunteer_interests').disable();
       }
     }
   }

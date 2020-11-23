@@ -88,7 +88,7 @@
                 </div>
                 <mat-form-field appearance="outline" class="width-25">
                     <mat-label>volunteer</mat-label>
-                    <mat-select #volunteer formControlName="volunteer_interests" multiple>
+                    <mat-select #volunteer formControlName="selected_volunteer_interests" multiple [(ngModel)]="selected_volunteer_interests">
                         <mat-select-trigger>
                             {{volunteer.value ? volunteer.value[0] : ''}}
                             <span *ngIf="volunteer.value?.length > 1" class="example-additional-selection">
@@ -99,7 +99,7 @@
                         <mat-option *ngFor="let item of volunteer_interests" [value]="item">{{item}}</mat-option>
                     </mat-select>
                     <mat-error
-                        *ngIf="addeditinterestsForm.controls.is_volunteer && addeditinterestsForm.controls.volunteer_interests.hasError('required')">
+                        *ngIf="addeditinterestsForm.controls.is_volunteer && addeditinterestsForm.controls.selected_volunteer_interests.hasError('required')">
                         Select atleast one
                     </mat-error>
                 </mat-form-field>
@@ -107,7 +107,7 @@
         
         
             <button mat-raised-button color="primary" type="submit" (click)="onUpdate()"
-            [disabled]="addeditinterestsForm.invalid||volunteer_interests.length<1">Update</button>
+            [disabled]="addeditinterestsForm.invalid||(showvolunteer && selected_volunteer_interests.length<1)">Update</button>
         
         </div>
     </form>
