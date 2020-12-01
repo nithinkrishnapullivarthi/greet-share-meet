@@ -5,6 +5,7 @@ import {MatRadioChange} from '@angular/material/radio'
 import {RegisterRequest} from '../../models/register.model'
 import { AuthenticationService } from '../../services/authentication.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { invalid } from '@angular/compiler/src/render3/view/util';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -26,6 +27,7 @@ export class RegisterComponent implements OnInit {
   selacti:string[]=[];
   selmus:string[]=[];
   showvolunteer: boolean = false;
+  volinterests : boolean = false;
   department = new FormControl('',[Validators.required]);
   constructor(private fb: FormBuilder,
     private router: Router, 
@@ -40,11 +42,11 @@ export class RegisterComponent implements OnInit {
       username: ['', [Validators.required, Validators.minLength(6)]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       is_volunteer: ['', Validators.required],
-      volunteer_interests:[{value: '', disabled:true},Validators.required],
-      sports: [],
-      academics:[],
-      activities:[],
-      musicalInstruments:[]
+      volunteer_interests:['',Validators.required],
+      sports: [''],
+      academics:[''],
+      activities:[''],
+      musicalInstruments:['']
   
     });
 
@@ -66,8 +68,11 @@ export class RegisterComponent implements OnInit {
       if (res.musicalInstruments) {
         this.selmus = [...res.musicalInstruments];
       }
-      this.volunteer_interests=[...this.selsports,...this.selacad,...this.selacti,...this.selmus  ]
+      this.volunteer_interests=[...this.selsports,...this.selacad,...this.selacti,...this.selmus  ];
+      this.checkvolintsize();
+
     });
+   
   }
   onRadioChange($event: MatRadioChange, controlName:string | null) {
     if (controlName == 'is_volunteer') {
@@ -80,6 +85,22 @@ export class RegisterComponent implements OnInit {
         this.registerForm.get('volunteer_interests').disable();
       }
     }
+  
+  }
+  checkvolintsize(){
+    console.log("checked");
+    console.log(this.registerForm.get('volunteer_interests').value);
+    this.registerForm.controls.volunteer_interests.valueChanges.subscribe(res=>{
+      console.log(res);
+      if(this.showvolunteer==true){
+        if(!res){
+        console.log("no selcetion");
+        return false;
+        }
+      }
+    });
+     
+    
   }
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {

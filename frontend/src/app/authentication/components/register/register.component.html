@@ -171,7 +171,7 @@
                 </div>
                 
                 <button mat-raised-button color="primary" type="submit" (click)="onRegister()"
-                    [disabled]="registerForm.invalid||volunteer_interests.length<1">Register</button>
+                    [disabled]="registerForm.invalid || checkvolintsize() ">Register</button>
             </div>
         </form>
     </mat-card>
