@@ -1,178 +1,293 @@
 <div class="main-body">
-    <mat-card>
-        <mat-card-header>
-            <img src="assets/images/meetandgreetlogo.jpg" alt="" class="responsive">
-        </mat-card-header>
-        <form [formGroup]="registerForm">
-            <div class="example-container">
-                <div class="flex-wrap">
-                    <div *ngIf="errorMessage" class="error-field">Username already exists</div>
-                </div>
-                <div class="flex-wrap-sec">
-                    <mat-form-field appearance="outline" class="width-50">
-                        <mat-icon matPrefix>face</mat-icon>
-                        <mat-label>Name</mat-label>
-                        <input matInput #name formControlName="name" placeholder="enter your name">
-                        <mat-error *ngIf="registerForm.controls.name.hasError('required')">
-                            Name is a required field
-                        </mat-error>
-                        <mat-error *ngIf="registerForm.controls.name.hasError('minlength')">
-                            Name must be at least 3 characters long
-                        </mat-error>
-                    </mat-form-field>
-                    <mat-form-field appearance="outline" class="width-50">
-                        <mat-icon matPrefix>school</mat-icon>
-                        <mat-label>Department</mat-label>
-                        <input matInput #department formControlName="department" placeholder="enter your department">
-                        <mat-error *ngIf="registerForm.controls.department.hasError('required')">
-                            Department is a required field
-                        </mat-error>
-                    </mat-form-field>
-                    <mat-form-field appearance="outline" class="width-50">
-                        <mat-icon matPrefix>email</mat-icon>
-                        <mat-label>Email</mat-label>
-                        <input matInput #email formControlName="email" type="email" placeholder="Ex. name@example.com">
-                        <mat-error *ngIf="registerForm.controls.email.hasError('required')">
-                            Email address is a required field.
-                        </mat-error>
-                        <mat-error *ngIf="registerForm.controls.email.hasError('email')">
-                            Please enter a valid email address
-                        </mat-error>
-                    </mat-form-field>
-                    <mat-form-field appearance="outline" class="width-50">
-                        <mat-icon matPrefix>phone</mat-icon>
-                        <mat-label>Contact Number</mat-label>
-                        <input #contactNumber type="tel" matInput formControlName="contact"
-                            placeholder="5555551234">
-                        <mat-error *ngIf="registerForm.controls.contact.hasError('required')">
-                            Contact Number is a required field.
-                        </mat-error>
-                        <mat-error *ngIf="registerForm.controls.contact.hasError('pattern')">
-                            Enter valid contact number.
-                        </mat-error>
-                    </mat-form-field>
-                    <mat-form-field appearance="outline" class="width-50">
-                        <mat-icon matPrefix>account_circle</mat-icon>
-                        <mat-label>Username</mat-label>
-                        <input matInput placeholder="Enter your Username" #userName formControlName="username"
-                            type="text">
-                        <mat-error *ngIf="registerForm.controls.username.hasError('required')">
-                            Username is a required field
-                        </mat-error>
-                        <mat-error *ngIf="registerForm.controls.username.hasError('minlength')">
-                            Username must be at least 6 characters long
-                        </mat-error>
-                    </mat-form-field>
-                    <mat-form-field appearance="outline" class="width-50">
-                        <mat-icon matPrefix>lock</mat-icon>
-                        <mat-label>Password</mat-label>
-                        <input matInput placeholder="Enter your password" formControlName="password" type="password">
-                        <mat-error *ngIf="registerForm.controls.password.hasError('required')">
-                            Password is a required field
-                        </mat-error>
-                        <mat-error *ngIf="registerForm.controls.password.hasError('minlength')">
-                            Password must be at least 8 characters long
-                        </mat-error>
-                    </mat-form-field>
-                </div>
-                <div class="flex-wrap">
-                    <h2>Select your interests!</h2><sub style="color: red;">*</sub>
-                </div>
-                <div class="flex-wrap-sec">
-                    <mat-form-field appearance="outline" class="width-25">
-                        <mat-label>Sports</mat-label>
-                        <mat-select #sports formControlName="sports" multiple>
-                            <mat-select-trigger>
-                                {{sports.value ? sports.value[0] : ''}}
-                                <span *ngIf="sports.value?.length > 1" class="example-additional-selection">
-                                    (+{{sports.value.length - 1}}
-                                    {{sports.value?.length === 2 ? 'other' : 'others'}})
-                                </span>
-                            </mat-select-trigger>
-                            <mat-option *ngFor="let sport of sportsList" [value]="sport">{{sport}}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <mat-form-field appearance="outline" class="width-25">
-                        <mat-label>Academics</mat-label>
-                        <mat-select #academics formControlName="academics" multiple>
-                            <mat-select-trigger>
-                                {{academics.value ? academics.value[0] : ''}}
-                                <span *ngIf="academics.value?.length > 1" class="example-additional-selection">
-                                    (+{{academics.value.length - 1}}
-                                    {{academics.value?.length === 2 ? 'other' : 'others'}})
-                                </span>
-                            </mat-select-trigger>
-                            <mat-option *ngFor="let academics of academicsList" [value]="academics">
-                                {{academics}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <mat-form-field appearance="outline" class="width-25">
-                        <mat-label>Activities</mat-label>
-                        <mat-select #activities formControlName="activities" multiple>
-                            <mat-select-trigger>
-                                {{activities.value ? activities.value[0] : ''}}
-                                <span *ngIf="activities.value?.length > 1" class="example-additional-selection">
-                                    (+{{activities.value.length - 1}}
-                                    {{activities.value?.length === 2 ? 'other' : 'others'}})
-                                </span>
-                            </mat-select-trigger>
-                            <mat-option *ngFor="let activities of activitiesList" [value]="activities">
-                                {{activities}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <mat-form-field appearance="outline" class="width-25">
-                        <mat-label>Musical Instruments</mat-label>
-                        <mat-select #musicalInstruments formControlName="musicalInstruments" multiple>
-                            <mat-select-trigger>
-                                {{musicalInstruments.value ? musicalInstruments.value[0] : ''}}
-                                <span *ngIf="musicalInstruments.value?.length > 1" class="example-additional-selection">
-                                    (+{{musicalInstruments.value.length - 1}}
-                                    {{musicalInstruments.value?.length === 2 ? 'other' : 'others'}})
-                                </span>
-                            </mat-select-trigger>
-                            <mat-option *ngFor="let musicalInstruments of musicalInstrumentsList"
-                                [value]="musicalInstruments">{{musicalInstruments}}</mat-option>
-                        </mat-select>   
-                    </mat-form-field>
-                </div>
-                <div class="flex-wrap-sec">
-                    <div class="radio-class">
-                        <label id="example-radio-group-label">
-                            <h3>Would you like to
-                                volunteer?</h3>
-                        </label>
-                    </div>
-                    <div class="radio-class">
-                        <mat-radio-group (change)="onRadioChange($event, 'is_volunteer')"
-                            aria-labelledby="example-radio-group-label" formControlName="is_volunteer">
-                            <mat-radio-button value="true">Yes</mat-radio-button>&nbsp;
-                            <mat-radio-button value="false"> No</mat-radio-button>
-                        </mat-radio-group>
-                    </div>
-                    <mat-form-field appearance="outline" class="width-25">
-                        <mat-label>volunteer</mat-label>
-                        <mat-select #volunteer formControlName="selected_volunteer_interests" multiple [(ngModel)]="selected_volunteer_interests">
-                            <mat-select-trigger>
-                                {{volunteer.value ? volunteer.value[0] : ''}}
-                                <span *ngIf="volunteer.value?.length > 1" class="example-additional-selection">
-                                    (+{{volunteer.value.length - 1}}
-                                    {{volunteer.value?.length === 2 ? 'other' : 'others'}})
-                                </span>
-                            </mat-select-trigger>
-                            <mat-option *ngFor="let item of volunteer_interests" [value]="item">{{item}}</mat-option>
-                        </mat-select>
-                        <mat-error
-                            *ngIf="registerForm.controls.is_volunteer && registerForm.controls.selected_volunteer_interests.hasError('required')">
-                            Select atleast one
-                        </mat-error>
-                    </mat-form-field>
-                </div>
-                
-                <button mat-raised-button color="primary" type="submit" (click)="onRegister()"
-                    [disabled]="registerForm.invalid||(showvolunteer && selected_volunteer_interests.length<1)">Register</button>
-            </div>
-        </form>
-    </mat-card>
+  <mat-card>
+    <mat-card-header>
+      <img src="assets/images/meetandgreetlogo.jpg" alt="" class="responsive" />
+    </mat-card-header>
+    <form [formGroup]="registerForm">
+      <div class="example-container">
+        <div class="flex-wrap">
+          <div *ngIf="errorMessage" class="error-field">
+            Username already exists
+          </div>
+        </div>
+        <div class="flex-wrap-sec">
+          <mat-form-field appearance="outline" class="width-50">
+            <mat-icon matPrefix>face</mat-icon>
+            <mat-label>Name</mat-label>
+            <input
+              matInput
+              #name
+              formControlName="name"
+              placeholder="enter your name"
+              autocomplete="off"
+            />
+            <mat-error *ngIf="registerForm.controls.name.hasError('required')">
+              Name is a required field
+            </mat-error>
+            <mat-error *ngIf="registerForm.controls.name.hasError('minlength')">
+              Name must be at least 3 characters long
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="width-50">
+            <mat-icon matPrefix>school</mat-icon>
+            <mat-label>Department</mat-label>
+            <input
+              matInput
+              #department
+              formControlName="department"
+              placeholder="enter your department"
+              autocomplete="off"
+            />
+            <mat-error
+              *ngIf="registerForm.controls.department.hasError('required')"
+            >
+              Department is a required field
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="width-50">
+            <mat-icon matPrefix>email</mat-icon>
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              #email
+              formControlName="email"
+              type="email"
+              placeholder="Ex. name@example.com"
+              autocomplete="off"
+            />
+            <mat-error *ngIf="registerForm.controls.email.hasError('required')">
+              Email address is a required field.
+            </mat-error>
+            <mat-error *ngIf="registerForm.controls.email.hasError('email')">
+              Please enter a valid email address
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="width-50">
+            <mat-icon matPrefix>phone</mat-icon>
+            <mat-label>Contact Number</mat-label>
+            <input
+              #contactNumber
+              type="tel"
+              matInput
+              formControlName="contact"
+              placeholder="5555551234"
+              autocomplete="off"
+            />
+            <mat-error
+              *ngIf="registerForm.controls.contact.hasError('required')"
+            >
+              Contact Number is a required field.
+            </mat-error>
+            <mat-error
+              *ngIf="registerForm.controls.contact.hasError('pattern')"
+            >
+              Enter valid contact number.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="width-50">
+            <mat-icon matPrefix>account_circle</mat-icon>
+            <mat-label>Username</mat-label>
+            <input
+              matInput
+              placeholder="Enter your Username"
+              #userName
+              formControlName="username"
+              type="text"
+              autocomplete="off"
+            />
+            <mat-error
+              *ngIf="registerForm.controls.username.hasError('required')"
+            >
+              Username is a required field
+            </mat-error>
+            <mat-error
+              *ngIf="registerForm.controls.username.hasError('minlength')"
+            >
+              Username must be at least 6 characters long
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="width-50">
+            <mat-icon matPrefix>lock</mat-icon>
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              placeholder="Enter your password"
+              formControlName="password"
+              type="password"
+              autocomplete="off"
+            />
+            <mat-error
+              *ngIf="registerForm.controls.password.hasError('required')"
+            >
+              Password is a required field
+            </mat-error>
+            <mat-error
+              *ngIf="registerForm.controls.password.hasError('minlength')"
+            >
+              Password must be at least 8 characters long
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="flex-wrap">
+          <h2>Select your interests!</h2>
+          <sub style="color: red">*</sub>
+        </div>
+        <div class="flex-wrap-sec">
+          <mat-form-field appearance="outline" class="width-25">
+            <mat-label>Sports</mat-label>
+            <mat-select #sports formControlName="sports" multiple>
+              <mat-select-trigger>
+                {{ sports.value ? sports.value[0] : "" }}
+                <span
+                  *ngIf="sports.value?.length > 1"
+                  class="example-additional-selection"
+                >
+                  (+{{ sports.value.length - 1 }}
+                  {{ sports.value?.length === 2 ? "other" : "others" }})
+                </span>
+              </mat-select-trigger>
+              <mat-option *ngFor="let sport of sportsList" [value]="sport">{{
+                sport
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="width-25">
+            <mat-label>Academics</mat-label>
+            <mat-select #academics formControlName="academics" multiple>
+              <mat-select-trigger>
+                {{ academics.value ? academics.value[0] : "" }}
+                <span
+                  *ngIf="academics.value?.length > 1"
+                  class="example-additional-selection"
+                >
+                  (+{{ academics.value.length - 1 }}
+                  {{ academics.value?.length === 2 ? "other" : "others" }})
+                </span>
+              </mat-select-trigger>
+              <mat-option
+                *ngFor="let academics of academicsList"
+                [value]="academics"
+              >
+                {{ academics }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="width-25">
+            <mat-label>Activities</mat-label>
+            <mat-select #activities formControlName="activities" multiple>
+              <mat-select-trigger>
+                {{ activities.value ? activities.value[0] : "" }}
+                <span
+                  *ngIf="activities.value?.length > 1"
+                  class="example-additional-selection"
+                >
+                  (+{{ activities.value.length - 1 }}
+                  {{ activities.value?.length === 2 ? "other" : "others" }})
+                </span>
+              </mat-select-trigger>
+              <mat-option
+                *ngFor="let activities of activitiesList"
+                [value]="activities"
+              >
+                {{ activities }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="width-25">
+            <mat-label>Musical Instruments</mat-label>
+            <mat-select
+              #musicalInstruments
+              formControlName="musicalInstruments"
+              multiple
+            >
+              <mat-select-trigger>
+                {{
+                  musicalInstruments.value ? musicalInstruments.value[0] : ""
+                }}
+                <span
+                  *ngIf="musicalInstruments.value?.length > 1"
+                  class="example-additional-selection"
+                >
+                  (+{{ musicalInstruments.value.length - 1 }}
+                  {{
+                    musicalInstruments.value?.length === 2 ? "other" : "others"
+                  }})
+                </span>
+              </mat-select-trigger>
+              <mat-option
+                *ngFor="let musicalInstruments of musicalInstrumentsList"
+                [value]="musicalInstruments"
+                >{{ musicalInstruments }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="flex-wrap-sec">
+          <div class="radio-class">
+            <label id="example-radio-group-label">
+              <h3>Would you like to volunteer?</h3>
+            </label>
+          </div>
+          <div class="radio-class">
+            <mat-radio-group
+              (change)="onRadioChange($event, 'is_volunteer')"
+              aria-labelledby="example-radio-group-label"
+              formControlName="is_volunteer"
+            >
+              <mat-radio-button value="true">Yes</mat-radio-button>&nbsp;
+              <mat-radio-button value="false"> No</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <mat-form-field appearance="outline" class="width-25">
+            <mat-label>volunteer</mat-label>
+            <mat-select
+              #volunteer
+              formControlName="selected_volunteer_interests"
+              multiple
+              [(ngModel)]="selected_volunteer_interests"
+            >
+              <mat-select-trigger>
+                {{ volunteer.value ? volunteer.value[0] : "" }}
+                <span
+                  *ngIf="volunteer.value?.length > 1"
+                  class="example-additional-selection"
+                >
+                  (+{{ volunteer.value.length - 1 }}
+                  {{ volunteer.value?.length === 2 ? "other" : "others" }})
+                </span>
+              </mat-select-trigger>
+              <mat-option
+                *ngFor="let item of volunteer_interests"
+                [value]="item"
+                >{{ item }}</mat-option
+              >
+            </mat-select>
+            <mat-error
+              *ngIf="
+                registerForm.controls.is_volunteer &&
+                registerForm.controls.selected_volunteer_interests.hasError(
+                  'required'
+                )
+              "
+            >
+              Select atleast one
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          (click)="onRegister()"
+          [disabled]="
+            registerForm.invalid ||
+            (showvolunteer && selected_volunteer_interests.length < 1)
+          "
+        >
+          Register
+        </button>
+      </div>
+    </form>
+  </mat-card>
 </div>
